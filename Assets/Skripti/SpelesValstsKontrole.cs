@@ -6,16 +6,16 @@ using UnityEngine;
 
 public class SpelesValstsKontrole : MonoBehaviour
 {
+
+    public Valstis valsts;
     private SpriteRenderer sprite;
 
     public Color32 vecaKrasa;
     public Color32 hoverKrasa;
-    public Color32 sakumaKrasa;
 
     void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
-        Debug.Log(sprite);
     }
 
      void OnMouseEnter()
@@ -29,4 +29,14 @@ public class SpelesValstsKontrole : MonoBehaviour
         sprite.color = vecaKrasa;
     }
 
+     void OnDrawGizmos()
+    {
+        valsts.nosaukums = name;
+        this.tag = "Valsts";
+    }
+
+     public void tintesKrasa(Color32 krasa)
+    {
+        sprite.color = krasa;
+    }
 }
