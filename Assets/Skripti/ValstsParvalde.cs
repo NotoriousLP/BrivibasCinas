@@ -34,9 +34,9 @@ public class ValstsParvalde : MonoBehaviour
     {
         for(int i=0; i<valstsSaraksts.Count; i++)
         {
-            SpelesValstsKontrole kontroleValsts = valstsSaraksts[i].GetComponent<SpelesValstsKontrole>();
+            SpelesKontrole kontroleValsts = valstsSaraksts[i].GetComponent<SpelesKontrole>();
 
-            if(kontroleValsts.valsts.speletajs == Valstis.Speletaji.USSR)
+            if(kontroleValsts.valsts.speletajs == Valstis.Speletaji.LSPR)
             {
                 kontroleValsts.tintesKrasa(new Color32(243, 43, 43, 255));
             }

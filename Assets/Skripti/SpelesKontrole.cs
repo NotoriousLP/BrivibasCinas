@@ -1,26 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(PolygonCollider2D))]
 
-public class SpelesValstsKontrole : MonoBehaviour
+public class SpelesKontrole : MonoBehaviour
 {
 
     public Valstis valsts;
+    public ValstsParvalde parvalde;
     private SpriteRenderer sprite;
+
+    public List<GameObject> valstsSaraksts = new List<GameObject>();
 
     public Color32 vecaKrasa;
     public Color32 hoverKrasa;
-
+    //Mainīgie
+    
+    
     void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
     }
 
-     void OnMouseEnter()
+    void OnMouseEnter()
     {
         vecaKrasa = sprite.color;
+         if (valsts.speletajs == Valstis.Speletaji.LSPR){
+              hoverKrasa = new Color32(vecaKrasa.r, vecaKrasa.g, vecaKrasa.b, 255);
+         }
+        if (valsts.speletajs == Valstis.Speletaji.LSPR)
+        {
+            hoverKrasa = new Color32(vecaKrasa.r, vecaKrasa.g, vecaKrasa.b, 200);
+        }
         sprite.color = hoverKrasa;
     }
 
@@ -39,4 +52,5 @@ public class SpelesValstsKontrole : MonoBehaviour
     {
         sprite.color = krasa;
     }
+
 }

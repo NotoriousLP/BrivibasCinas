@@ -4,10 +4,13 @@ using UnityEngine;
 
 
 [System.Serializable]
+
+
 public class Valstis
 {
     public string nosaukums;
-    public enum Speletaji {USSR, PLAYER}
+    public enum Speletaji {LSPR, PLAYER}
 
     public Speletaji speletajs;
 }
+
