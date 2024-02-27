@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(PolygonCollider2D))]
 
-public class SpelesKontrole : MonoBehaviour
+public class SpelesKontrole : MonoBehaviour, IPointerClickHandler
 {
 
     public Valstis valsts;
@@ -43,15 +43,20 @@ public class SpelesKontrole : MonoBehaviour
         sprite.color = hoverKrasa;
     }
 
-    public void OnMouseClick(){
-         if (valsts.speletajs == Valstis.Speletaji.PLAYER && Input.GetKeyDown(KeyCode.Mouse0)){
-             objekti.izvelesLauks.gameObject.SetActive(true);
-             Debug.Log("Nokliķšķinās!");
-         }
-         Debug.Log("Nokliķšķinās!");
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+
+        if (hit.collider != null)
+        {
+            Debug.Log("Collider hit: " + hit.collider.name);
+            Debug.Log("Hit point: " + hit.point);
+        }
+
     }
 
-     void OnMouseExit()
+        void OnMouseExit()
     {
         sprite.color = vecaKrasa;
     }
