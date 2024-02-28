@@ -4,6 +4,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Pogas : MonoBehaviour
 {
+
+    public Objekti objekti;
+
+    void Start()
+    {
+        objekti = FindObjectOfType<Objekti>();
+    }
+
     public void uzIestatijumuAinu()
     {
         SceneManager.LoadScene("iestatijumi", LoadSceneMode.Single);
@@ -17,5 +25,11 @@ public class Pogas : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void izietNoLauka()
+    {
+        objekti.izvelesLauks.gameObject.SetActive(false);
+    }
+
 
 }
