@@ -38,12 +38,12 @@ public class ValstsParvalde : MonoBehaviour
 
             if(kontroleValsts.valsts.speletajs == Valstis.Speletaji.LSPR)
             {
-                kontroleValsts.tintesKrasa(new Color32(243, 43, 43, 255));
+                kontroleValsts.tintesKrasa(new Color32(243, 43, 43, 235));
             }
 
             if (kontroleValsts.valsts.speletajs == Valstis.Speletaji.PLAYER)
             {
-                kontroleValsts.tintesKrasa(new Color32(139, 221, 51, 255));
+                kontroleValsts.tintesKrasa(new Color32(139, 221, 51, 210));
             }
         }
     }
