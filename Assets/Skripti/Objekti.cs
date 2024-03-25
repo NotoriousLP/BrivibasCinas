@@ -13,7 +13,12 @@ public class Objekti : MonoBehaviour
     public InputField inputSkaits;
     public Button plus;
     public Button minus;
-    public Button okPoga;
+
+
+    //okPogas
+    public Button okPogaMob;
+    public Button okPogaPar;
+    public Button okPogaUzb;
 
     //Izvēles lauks
     public GameObject izvele;
@@ -30,4 +35,12 @@ public class Objekti : MonoBehaviour
 
     //atpakal lauks
     public GameObject atpakalUzIzveli;
+
+
+    //ESC
+    public GameObject ESCMenu;
+    public GameObject fons;
+    public bool vaiIrEsc = false;
 }
+
+

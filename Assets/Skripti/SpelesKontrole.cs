@@ -28,6 +28,22 @@ public class SpelesKontrole : MonoBehaviour
     {
         sprite = GetComponent<SpriteRenderer>();
     }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && objekti.vaiIrEsc == false)
+        {
+            objekti.ESCMenu.gameObject.SetActive(true);
+            objekti.fons.gameObject.SetActive(true);
+            objekti.vaiIrEsc = true;
+        }else if (Input.GetKeyDown(KeyCode.Escape) && objekti.vaiIrEsc == true)
+        {
+            objekti.ESCMenu.gameObject.SetActive(false);
+            objekti.fons.gameObject.SetActive(false);
+            objekti.vaiIrEsc = false;
+        }
+    }
+
     void OnMouseEnter()
     {
         vecaKrasa = sprite.color;
@@ -47,17 +63,32 @@ public class SpelesKontrole : MonoBehaviour
         GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
         foreach (GameObject stateObject in visiStates)
         {
-            if (stateObject != gameObject && Vector2.Distance(transform.position, stateObject.transform.position) < 1.55f)
+            Debug.Log(Vector2.Distance(transform.position, stateObject.transform.position)); 
+            SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
+            Debug.Log(visiStates);
+            if (stateController == visiStates[0])
             {
-                SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
+                if (stateController.valsts.speletajs == Valstis.Speletaji.LSPR && stateController == visiStates[1])
+                {
+
+                }
+                {
+                    Debug.Log("Found state: " + stateObject.name + ", Owner: " + stateController.valsts.speletajs + "Pozīcija:" + Vector2.Distance(transform.position, stateObject.transform.position));
+                    stateController.tintesKrasa(new Color32(255, 10, 0, 255));
+                }
+            }
+
+            if (stateObject != gameObject && Vector2.Distance(transform.position, stateObject.transform.position) > 1.68f)
+            {
+
                 if (stateController != null)
                 {
                     if (stateController.valsts.speletajs == Valstis.Speletaji.LSPR) 
                     {
-                        Debug.Log("Found state: " + stateObject.name + ", Owner: " + stateController.valsts.speletajs);
+                        Debug.Log("Found state: " + stateObject.name + ", Owner: " + stateController.valsts.speletajs + "Pozīcija:" + Vector2.Distance(transform.position, stateObject.transform.position));
                         stateController.tintesKrasa(new Color32(255, 10, 0, 255));
                     }
-                            
+         
                 }
             }
         }
@@ -77,8 +108,6 @@ public class SpelesKontrole : MonoBehaviour
     }
 
 
-
-
     public void atgriezLietotajuKrasas()
     {
         GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
@@ -92,9 +121,9 @@ public class SpelesKontrole : MonoBehaviour
         }
     }
 
+
     void OnMouseDown()
     {
-        
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
@@ -134,5 +163,7 @@ public class SpelesKontrole : MonoBehaviour
     {
         sprite.color = krasa;
     }
+
+
 
 }
