@@ -32,7 +32,7 @@ public class SpelesKontrole : MonoBehaviour
     {
         vecaKrasa = sprite.color;
          if (valsts.speletajs == Valstis.Speletaji.PLAYER){
-              hoverKrasa = new Color32(vecaKrasa.r, vecaKrasa.g, vecaKrasa.b, 180);
+              hoverKrasa = new Color32(vecaKrasa.r, vecaKrasa.g, vecaKrasa.b, 170);
          }
         if (valsts.speletajs == Valstis.Speletaji.LSPR)
         {
@@ -47,7 +47,7 @@ public class SpelesKontrole : MonoBehaviour
         GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
         foreach (GameObject stateObject in visiStates)
         {
-            if (stateObject != gameObject && Vector2.Distance(transform.position, stateObject.transform.position) < 1.35f)
+            if (stateObject != gameObject && Vector2.Distance(transform.position, stateObject.transform.position) < 1.55f)
             {
                 SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
                 if (stateController != null)
