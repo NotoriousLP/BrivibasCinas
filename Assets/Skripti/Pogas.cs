@@ -22,7 +22,10 @@ public class Pogas : MonoBehaviour
     {
         SceneManager.LoadScene("mainMenu", LoadSceneMode.Single);
     }
-
+    public void uzSpeli()
+    {
+        SceneManager.LoadScene("spelesAina", LoadSceneMode.Single);
+    }
     public void izietNoSpeles()
     {
         Application.Quit();

@@ -19,7 +19,6 @@ public class SpelesKontrole : MonoBehaviour
     public Color32 vecaKrasa;
     public Color32 hoverKrasa;
     //Mainīgie
-    
 
     void Start(){
         objekti = FindObjectOfType<Objekti>();
@@ -44,20 +43,21 @@ public class SpelesKontrole : MonoBehaviour
 
   public void iekrasoBlakusTeritoriju()
 {
-        Debug.Log("Funkcija nostrādā");
+        //Debug.Log("Funkcija nostrādā");
         GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
         foreach (GameObject stateObject in visiStates)
         {
-            if (stateObject != gameObject && Vector2.Distance(transform.position, stateObject.transform.position) < 1.9f)
+            if (stateObject != gameObject && Vector2.Distance(transform.position, stateObject.transform.position) < 1.35f)
             {
                 SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
                 if (stateController != null)
                 {
-                    Debug.Log("Found state: " + stateObject.name + ", Owner: " + stateController.valsts.speletajs);
                     if (stateController.valsts.speletajs == Valstis.Speletaji.LSPR) 
                     {
+                        Debug.Log("Found state: " + stateObject.name + ", Owner: " + stateController.valsts.speletajs);
                         stateController.tintesKrasa(new Color32(255, 10, 0, 255));
                     }
+                            
                 }
             }
         }
@@ -76,6 +76,9 @@ public class SpelesKontrole : MonoBehaviour
         }
     }
 
+
+
+
     public void atgriezLietotajuKrasas()
     {
         GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
@@ -91,9 +94,11 @@ public class SpelesKontrole : MonoBehaviour
 
     void OnMouseDown()
     {
+        
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
-        Debug.Log(objekti.irIzvelesLauksIeslegts);
+
+        //Debug.Log(objekti.irIzvelesLauksIeslegts);
 
         if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.PLAYER && objekti.irIzvelesLauksIeslegts == false)
         {
@@ -107,7 +112,11 @@ public class SpelesKontrole : MonoBehaviour
             objekti.kustinat.gameObject.SetActive(false);
             objekti.mobilizet.gameObject.SetActive(false);
         }
-
+       if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.LSPR) {
+            Debug.Log("Collider hit: " + hit.collider.name);
+            objekti.kurVietaUzbrukt.gameObject.SetActive(false);
+            objekti.uzbrukt.gameObject.SetActive(true);
+        }
     }
 
         void OnMouseExit()
