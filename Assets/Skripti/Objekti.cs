@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,10 +11,13 @@ public class Objekti : MonoBehaviour
     public bool irIzvelesLauksIeslegts = false;
     public Button izietPoga;
 
-    public InputField inputSkaits;
+
+    //Izvele
+    public TextMeshProUGUI skaitaLauks;
+    public GameObject skaits;
     public Button plus;
     public Button minus;
-
+    public int rotuSkaitsIzv;
 
     //okPogas
     public Button okPogaMob;
@@ -41,6 +45,13 @@ public class Objekti : MonoBehaviour
     public GameObject ESCMenu;
     public GameObject fons;
     public bool vaiIrEsc = false;
+
+
+    //Rotas skaits
+    public int rotuSkaits = 2;
+    public GameObject noklikState;
+
+
 }
 
 
