@@ -67,30 +67,22 @@ public class SpelesKontrole : MonoBehaviour
         GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
         float nokliksinataState = Vector2.Distance(transform.position, noklikState.transform.position);
         Debug.Log(nokliksinataState);
+
+         Vector2 offset = new Vector2(0.2f, 0.2f);
+
         foreach (GameObject stateObject in visiStates)
         {
             //Debug.Log(Vector2.Distance(transform.position, stateObject.transform.position));
-            SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
+        SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
+     float distance = Vector2.Distance(noklikState.transform.position, stateObject.transform.position - (Vector3)offset);
+      Debug.Log("State Object: " + stateObject + " Distance: " + distance);
 
-            float blakusState = Vector2.Distance(transform.position, stateObject.transform.position);
-            Debug.Log("State Object: " + stateObject + " Distance: "+blakusState);
-            float distance = blakusState - nokliksinataState;
-            Debug.Log("Distance: " + distance);
-
-            if (stateObject != gameObject && distance > -0.8f && distance < 0.1f)
+             if (stateController != null && stateController.valsts.speletajs == Valstis.Speletaji.LSPR && distance < 2.8f)
             {
-
-                if (stateController != null)
-                {
-                    if (stateController.valsts.speletajs == Valstis.Speletaji.LSPR)
-                    {
-                        Debug.Log("Nokrasojas State Object: " + stateObject + " Distance: " + blakusState);
+                        //Debug.Log("Nokrasojas State Object: " + stateObject + " Distance: " + blakusState);
                         Debug.Log("Nokrasojas Distance: " + distance);
-                        //Debug.Log("Found state: " + stateObject.name + ", Owner: " + stateController.valsts.speletajs + "Pozīcija:" + Vector2.Distance(transform.position, stateObject.transform.position));
+                        Debug.Log("Found state: " + stateObject.name + ", Owner: " + stateController.valsts.speletajs + "Pozīcija:" + Vector2.Distance(transform.position, stateObject.transform.position));
                         stateController.tintesKrasa(new Color32(255, 10, 0, 255));
-                    }
-
-                }
             }
         }
     }
