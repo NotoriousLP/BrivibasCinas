@@ -50,6 +50,7 @@ public class Objekti : MonoBehaviour
     //Rotas skaits
     public int rotuSkaits = 2;
     public GameObject noklikState;
+    public int nokrasojas = 0;
 
 
 }
