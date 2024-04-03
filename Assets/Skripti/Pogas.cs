@@ -37,6 +37,7 @@ public class Pogas : MonoBehaviour
         objekti.izvelesLauks.gameObject.SetActive(false);
         objekti.irIzvelesLauksIeslegts = false;
         kontrole.atgriezPretiniekuKrasas();
+         objekti.vaiIrIzvele = false;
     }
 
     public void mobilizetPoga()
@@ -47,6 +48,7 @@ public class Pogas : MonoBehaviour
         objekti.minus.gameObject.SetActive(true);
         objekti.skaits.gameObject.SetActive(true);
         objekti.rotuSkaitsIzv = 0;
+
     }
 
     public void kustinatPoga()
@@ -77,6 +79,42 @@ public class Pogas : MonoBehaviour
             objekti.rotuSkaitsIzv--;
         }
     }
+    GameObject[] rotasPozicijas;
+    public void mobilizetRotas(){
+        if(objekti.rotuSkaits != 0 && objekti.rotuSkaitsIzv !=0){
+        GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
+            foreach (GameObject stateObject in visiStates)
+            {
+                if(objekti.noklikState == GameObject.Find("States_1")){
+                 rotasPozicijas = GameObject.FindGameObjectsWithTag("state1Pozicijas");
+                }
+            }
+            for(int i=0; i<objekti.rotuSkaitsIzv; i++){
+           Instantiate(objekti.rotasPrefs, rotasPozicijas[i].transform.position, Quaternion.identity, objekti.noklikState.transform); // Spawn the archer troop prefab at the barracks position
+            }
+        }
+    }
+
+
+    public void okPogaUzbrukt(){
+        objekti.noklikBlakusState.GetComponent<SpelesKontrole>().valsts.speletajs = Valstis.Speletaji.PLAYER;
+        GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
+        foreach (GameObject stateObject in visiStates)
+        {
+            SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
+            if (stateController.valsts.speletajs == Valstis.Speletaji.PLAYER)
+            {
+                stateController.tintesKrasa(new Color32(139, 221, 51, 255));
+            }
+        }
+        objekti.vaiIrIzvele = false;
+        objekti.izvelesLauks.gameObject.SetActive(false);
+        objekti.izvele.gameObject.SetActive(false);
+        objekti.uzbrukt.gameObject.SetActive(false);
+        objekti.plus.gameObject.SetActive(false);
+        objekti.minus.gameObject.SetActive(false);
+        objekti.skaits.gameObject.SetActive(false);
+    }
 
     public void atpakalUzIzveli()
     {
@@ -90,5 +128,8 @@ public class Pogas : MonoBehaviour
         objekti.minus.gameObject.SetActive(false);
         objekti.skaits.gameObject.SetActive(false);
         kontrole.atgriezPretiniekuKrasas();
+        objekti.vaiIrIzvele = false;
     }
+
+
 }

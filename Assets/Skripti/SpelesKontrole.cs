@@ -61,6 +61,7 @@ public class SpelesKontrole : MonoBehaviour
         }
         sprite.color = hoverKrasa;
     }
+
     public void iekrasoBlakusTeritoriju(GameObject noklikState)
     {
         //Debug.Log("Funkcija nostrādā");
@@ -72,31 +73,31 @@ public class SpelesKontrole : MonoBehaviour
         //Debug.Log(territoryBounds);
         float territoryWidth = territoryBounds.size.x;
         float territoryHeight = territoryBounds.size.y;
-
+        Debug.Log("x: "+ territoryWidth + " y: " + territoryHeight);
         // Calculate dynamic offset based on territory size
-        Vector2 offset = new Vector2(territoryWidth * (-0.5f), territoryHeight * (-0.5f));
-
+        Vector2 offset = new Vector2(territoryWidth * 0.001f, territoryHeight * 0.001f);
+        //Debug.Log("Offset: "+offset);
         foreach (GameObject stateObject in visiStates)
         {
             //Debug.Log(Vector2.Distance(transform.position, stateObject.transform.position));
         SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
             float distance = Vector2.Distance(noklikState.transform.position, stateObject.transform.position - (Vector3)offset);
-            //Debug.Log("State Object: " + stateObject + " Distance: " + distance);
-
-
-            if (stateController != null && stateController.valsts.speletajs == Valstis.Speletaji.LSPR && distance < 1.55f)
+            float blakusDistance = Vector2.Distance(transform.position, stateObject.transform.position);
+            Debug.Log("State Object: " + stateObject + " Distance: " + distance);
+            Debug.Log("State Object: " + stateObject + " Blakus: " + blakusDistance);
+         
+            if (stateController != null && stateController.valsts.speletajs == Valstis.Speletaji.LSPR && distance < 1.96f)
             {
                 //Debug.Log("Nokrasojas State Object: " + stateObject + " Distance: " + blakusState);
                 //Debug.Log("Nokrasojas Distance: " + distance);
                 //Debug.Log("Found state: " + stateObject.name + ", Owner: " + stateController.valsts.speletajs + "Pozīcija:" + Vector2.Distance(transform.position, stateObject.transform.position));
                 stateController.tintesKrasa(new Color32(255, 10, 0, 255));
-                objekti.nokrasojas++;
+                objekti.vaiIrIzvele = true;
             }
-
-                    
 
         }
     }
+
 
 
 
@@ -135,10 +136,10 @@ public class SpelesKontrole : MonoBehaviour
 
         //Debug.Log(objekti.irIzvelesLauksIeslegts);
 
-        if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.PLAYER)
+        if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.PLAYER && objekti.vaiIrIzvele == false)
         {
             objekti.noklikState = hit.collider.gameObject;
-            Debug.Log("Collider hit: " + hit.collider.name);
+            //Debug.Log("Collider hit: " + hit.collider.name);
             objekti.izvelesLauks.gameObject.SetActive(true);
             objekti.izvele.gameObject.SetActive(true);
             objekti.irIzvelesLauksIeslegts = true;
@@ -151,16 +152,28 @@ public class SpelesKontrole : MonoBehaviour
             objekti.minus.gameObject.SetActive(false);
             objekti.skaits.gameObject.SetActive(false);
         }
-       if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.LSPR) {
+       if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.LSPR && objekti.vaiIrIzvele == true) {
             Debug.Log("Collider hit: " + hit.collider.name);
+            objekti.noklikBlakusState = hit.collider.gameObject;
             objekti.kurVietaUzbrukt.gameObject.SetActive(false);
             objekti.uzbrukt.gameObject.SetActive(true);
             objekti.plus.gameObject.SetActive(true);
             objekti.minus.gameObject.SetActive(true);
             objekti.skaits.gameObject.SetActive(true);
+
+            GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
+            foreach (GameObject stateObject in visiStates)
+            {
+                    SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
+                    if (stateController.valsts.speletajs == Valstis.Speletaji.LSPR)
+                    {
+                        stateController.tintesKrasa(new Color32(243, 43, 43, 235));
+                    }
+            }
+
+
         }
     }
-
 
     void OnMouseExit()
     {

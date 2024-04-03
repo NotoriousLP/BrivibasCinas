@@ -16,17 +16,16 @@ public class Iestatijumi : MonoBehaviour
 
     private float currentRefreshRate;
     private int currentResolutionIndex = 0;
-    //Resolution vçrtîbas
+    //Resolution vï¿½rtï¿½bas
 
-    //Skaòas vçrtîbas
+    //Skaï¿½as vï¿½rtï¿½bas
      public Slider volumeSlider;
      public GameObject ObjektuMuzika;
 
     public float MusicVolume = 0.5f;
     public AudioSource AudioSource;
 
-
-
+    [System.Obsolete]
     void Start()
     {
         resolutions = Screen.resolutions;
@@ -56,16 +55,16 @@ public class Iestatijumi : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
-        //Resolution iestatîjuma beigas
+        //Resolution iestatï¿½juma beigas
 
-        //Skaòas iestatîjumi
+        //Skaï¿½as iestatï¿½jumi
         ObjektuMuzika = GameObject.FindWithTag("gameMusic");
         AudioSource = ObjektuMuzika.GetComponent<AudioSource>();
 
         MusicVolume = PlayerPrefs.GetFloat("volume");
         AudioSource.volume = MusicVolume;
         volumeSlider.value = MusicVolume;
-        //Skaòas beigas
+        //Skaï¿½as beigas
     }
     private void Awake()
     {

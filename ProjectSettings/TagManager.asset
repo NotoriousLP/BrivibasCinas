@@ -6,6 +6,8 @@ TagManager:
   tags:
   - gameMusic
   - Valsts
+  - Pozicijas
+  - state1Pozicijas
   layers:
   - Default
   - TransparentFX
