@@ -80,17 +80,23 @@ public class Pogas : MonoBehaviour
         }
     }
     GameObject[] rotasPozicijas;
+    int izmantotasPozicijas;
     public void mobilizetRotas(){
         if(objekti.rotuSkaits != 0 && objekti.rotuSkaitsIzv !=0){
-        GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
-            foreach (GameObject stateObject in visiStates)
-            {
                 if(objekti.noklikState == GameObject.Find("States_1")){
                  rotasPozicijas = GameObject.FindGameObjectsWithTag("state1Pozicijas");
+                }else if(objekti.noklikState == GameObject.Find("States_2")){
+                 rotasPozicijas = GameObject.FindGameObjectsWithTag("state2Pozicijas");
+                }else if(objekti.noklikState == GameObject.Find("States_3")){
+                 rotasPozicijas = GameObject.FindGameObjectsWithTag("state3Pozicijas");
                 }
+
+            for(int i=0; i<rotasPozicijas.Length; i++){
+            if (!objekti.izmantotasPozicijas.Contains(rotasPozicijas[i]) && objekti.rotuSkaitsIzv > 0){ 
+            Instantiate(objekti.rotasPrefs, rotasPozicijas[i].transform.position, Quaternion.identity, objekti.noklikState.transform);
+            objekti.izmantotasPozicijas.Add(rotasPozicijas[i]);
+            objekti.rotuSkaitsIzv--;
             }
-            for(int i=0; i<objekti.rotuSkaitsIzv; i++){
-           Instantiate(objekti.rotasPrefs, rotasPozicijas[i].transform.position, Quaternion.identity, objekti.noklikState.transform); // Spawn the archer troop prefab at the barracks position
             }
         }
     }

@@ -23,7 +23,7 @@ public class SpelesKontrole : MonoBehaviour
 
     void Start(){
         objekti = FindObjectOfType<Objekti>();
-        //objekti.rotuSkaits = objekti.rotuSkaitsIzv;
+        
     }
 
     void Awake()
@@ -90,7 +90,6 @@ public class SpelesKontrole : MonoBehaviour
             {
                 //Debug.Log("Nokrasojas State Object: " + stateObject + " Distance: " + blakusState);
                 //Debug.Log("Nokrasojas Distance: " + distance);
-                //Debug.Log("Found state: " + stateObject.name + ", Owner: " + stateController.valsts.speletajs + "Pozīcija:" + Vector2.Distance(transform.position, stateObject.transform.position));
                 stateController.tintesKrasa(new Color32(255, 10, 0, 255));
                 objekti.vaiIrIzvele = true;
             }
