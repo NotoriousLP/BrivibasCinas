@@ -8,6 +8,8 @@ TagManager:
   - Valsts
   - Pozicijas
   - state1Pozicijas
+  - state2Pozicijas
+  - state3Pozicijas
   layers:
   - Default
   - TransparentFX

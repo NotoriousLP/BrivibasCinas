@@ -15,14 +15,12 @@ public class Objekti : MonoBehaviour
     //Izvele
     public TextMeshProUGUI skaitaLauks;
     public GameObject skaits;
-    public Button plus;
-    public Button minus;
-    public int rotuSkaitsIzv;
+    public Button plusMob;
+    public Button minusMob;
+    public Button plusUzb;
+    public Button minusUzb;
 
-    //okPogas
-    public Button okPogaMob;
-    public Button okPogaPar;
-    public Button okPogaUzb;
+    public int rotuSkaitsIzv;
 
     //Izvēles lauks
     public GameObject izvele;
@@ -60,7 +58,8 @@ public class Objekti : MonoBehaviour
     public GameObject[] rotasPozicijas;
     public List<GameObject> izmantotasPozicijas = new List<GameObject>();
 
-
+    public int rotasSkaitsPL;
+    public int rotasSkaitsLSPR;
 }
 
 

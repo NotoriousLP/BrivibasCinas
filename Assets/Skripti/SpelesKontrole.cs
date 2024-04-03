@@ -19,11 +19,26 @@ public class SpelesKontrole : MonoBehaviour
 
     public Color32 vecaKrasa;
     public Color32 hoverKrasa;
-    //Mainīgie
 
+    //Mainīgie
+    public Dictionary<Valstis.Speletaji, int> rotasSkaitsByPlayer = new Dictionary<Valstis.Speletaji, int>()
+    {
+        { Valstis.Speletaji.LSPR, 0 },
+        { Valstis.Speletaji.PLAYER, 0 }
+    };
+
+    public void PievienotRotas(Valstis.Speletaji speletajs, int count)
+    {
+        if (rotasSkaitsByPlayer.ContainsKey(speletajs))
+        {
+            rotasSkaitsByPlayer[speletajs] += count;
+        }
+
+        //Debug.Log(rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER]);
+    }
     void Start(){
         objekti = FindObjectOfType<Objekti>();
-        
+
     }
 
     void Awake()
@@ -84,7 +99,7 @@ public class SpelesKontrole : MonoBehaviour
             float distance = Vector2.Distance(noklikState.transform.position, stateObject.transform.position - (Vector3)offset);
             float blakusDistance = Vector2.Distance(transform.position, stateObject.transform.position);
             Debug.Log("State Object: " + stateObject + " Distance: " + distance);
-            Debug.Log("State Object: " + stateObject + " Blakus: " + blakusDistance);
+            //Debug.Log("State Object: " + stateObject + " Blakus: " + blakusDistance);
          
             if (stateController != null && stateController.valsts.speletajs == Valstis.Speletaji.LSPR && distance < 1.96f)
             {
@@ -147,19 +162,21 @@ public class SpelesKontrole : MonoBehaviour
             objekti.kurVietaKustinat.gameObject.SetActive(false);
             objekti.kustinat.gameObject.SetActive(false);
             objekti.mobilizet.gameObject.SetActive(false);
-            objekti.plus.gameObject.SetActive(false);
-            objekti.minus.gameObject.SetActive(false);
             objekti.skaits.gameObject.SetActive(false);
+            objekti.plusUzb.gameObject.SetActive(false);
+            objekti.minusUzb.gameObject.SetActive(false);
+            objekti.plusMob.gameObject.SetActive(false);
+            objekti.minusMob.gameObject.SetActive(false);
         }
        if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.LSPR && objekti.vaiIrIzvele == true) {
             Debug.Log("Collider hit: " + hit.collider.name);
             objekti.noklikBlakusState = hit.collider.gameObject;
             objekti.kurVietaUzbrukt.gameObject.SetActive(false);
             objekti.uzbrukt.gameObject.SetActive(true);
-            objekti.plus.gameObject.SetActive(true);
-            objekti.minus.gameObject.SetActive(true);
             objekti.skaits.gameObject.SetActive(true);
-
+            objekti.plusUzb.gameObject.SetActive(true);
+            objekti.minusUzb.gameObject.SetActive(true);
+            objekti.rotuSkaitsIzv = 0;
             GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
             foreach (GameObject stateObject in visiStates)
             {

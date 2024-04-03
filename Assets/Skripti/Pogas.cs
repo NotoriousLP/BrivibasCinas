@@ -8,7 +8,6 @@ public class Pogas : MonoBehaviour
 
     public Objekti objekti;
     public SpelesKontrole kontrole;
-
     void Start()
     {
         objekti = FindObjectOfType<Objekti>();
@@ -44,9 +43,9 @@ public class Pogas : MonoBehaviour
     {
         objekti.izvele.gameObject.SetActive(false);
         objekti.mobilizet.gameObject.SetActive(true);
-        objekti.plus.gameObject.SetActive(true);
-        objekti.minus.gameObject.SetActive(true);
         objekti.skaits.gameObject.SetActive(true);
+        objekti.plusMob.gameObject.SetActive(true);
+        objekti.minusMob.gameObject.SetActive(true);
         objekti.rotuSkaitsIzv = 0;
 
     }
@@ -64,7 +63,7 @@ public class Pogas : MonoBehaviour
         kontrole.iekrasoBlakusTeritoriju(objekti.noklikState);
     }
 
-    public void plusPoga()
+    public void plusPogaMob()
     {
         if(objekti.rotuSkaits > 0 && objekti.rotuSkaits <= 5 && objekti.rotuSkaitsIzv >= 0 && objekti.rotuSkaitsIzv < objekti.rotuSkaits)
         {
@@ -72,31 +71,61 @@ public class Pogas : MonoBehaviour
         }
     }
 
-    public void minusPoga()
+    public void minusPogaMob()
     {
         if (objekti.rotuSkaits > 0 && objekti.rotuSkaits <= 5 && objekti.rotuSkaitsIzv > 0 && objekti.rotuSkaitsIzv <= objekti.rotuSkaits)
         {
             objekti.rotuSkaitsIzv--;
         }
     }
+
+    public void plusPogaUzb(){
+        GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
+        foreach (GameObject stateObject in visiStates){
+        SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
+        if(stateObject == objekti.noklikState && 
+        stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] > 0 && stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] <= 5 && objekti.rotuSkaitsIzv < stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER]){
+              objekti.rotuSkaitsIzv++;
+        }
+    
+    }
+    }
+  public void minusPogaUzb(){
+        GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
+        foreach (GameObject stateObject in visiStates){
+        SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
+        if(stateObject == objekti.noklikState && 
+        stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] > 0 && stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] <= 5 && objekti.rotuSkaitsIzv > stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER]){
+              objekti.rotuSkaitsIzv--;
+        }
+    
+    }
+    }
     GameObject[] rotasPozicijas;
-    int izmantotasPozicijas;
     public void mobilizetRotas(){
         if(objekti.rotuSkaits != 0 && objekti.rotuSkaitsIzv !=0){
-                if(objekti.noklikState == GameObject.Find("States_1")){
-                 rotasPozicijas = GameObject.FindGameObjectsWithTag("state1Pozicijas");
-                }else if(objekti.noklikState == GameObject.Find("States_2")){
-                 rotasPozicijas = GameObject.FindGameObjectsWithTag("state2Pozicijas");
-                }else if(objekti.noklikState == GameObject.Find("States_3")){
-                 rotasPozicijas = GameObject.FindGameObjectsWithTag("state3Pozicijas");
+            GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
+            for(int i=0; i<visiStates.Length; i++){
+                if(objekti.noklikState == GameObject.Find("States_"+i)){
+                    rotasPozicijas = GameObject.FindGameObjectsWithTag("state"+i+"Pozicijas");
                 }
-
-            for(int i=0; i<rotasPozicijas.Length; i++){
-            if (!objekti.izmantotasPozicijas.Contains(rotasPozicijas[i]) && objekti.rotuSkaitsIzv > 0){ 
-            Instantiate(objekti.rotasPrefs, rotasPozicijas[i].transform.position, Quaternion.identity, objekti.noklikState.transform);
-            objekti.izmantotasPozicijas.Add(rotasPozicijas[i]);
-            objekti.rotuSkaitsIzv--;
             }
+           
+            foreach (GameObject stateObject in visiStates){
+                SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
+                if (stateController.valsts.speletajs == Valstis.Speletaji.PLAYER && stateObject == objekti.noklikState)
+                {
+                 for(int i=0; i<rotasPozicijas.Length; i++){
+                        if (!objekti.izmantotasPozicijas.Contains(rotasPozicijas[i]) && objekti.rotuSkaitsIzv > 0){ 
+                        Instantiate(objekti.rotasPrefs, rotasPozicijas[i].transform.position, Quaternion.identity, objekti.noklikState.transform);
+                        objekti.izmantotasPozicijas.Add(rotasPozicijas[i]);
+
+                        stateController.PievienotRotas(Valstis.Speletaji.PLAYER, 1);
+                        objekti.rotuSkaitsIzv--;
+                    }
+
+            }
+                }
             }
         }
     }
@@ -117,9 +146,9 @@ public class Pogas : MonoBehaviour
         objekti.izvelesLauks.gameObject.SetActive(false);
         objekti.izvele.gameObject.SetActive(false);
         objekti.uzbrukt.gameObject.SetActive(false);
-        objekti.plus.gameObject.SetActive(false);
-        objekti.minus.gameObject.SetActive(false);
         objekti.skaits.gameObject.SetActive(false);
+        objekti.plusUzb.gameObject.SetActive(false);
+        objekti.minusUzb.gameObject.SetActive(false);
     }
 
     public void atpakalUzIzveli()
@@ -130,9 +159,11 @@ public class Pogas : MonoBehaviour
         objekti.kurVietaKustinat.gameObject.SetActive(false);
         objekti.kustinat.gameObject.SetActive(false);
         objekti.mobilizet.gameObject.SetActive(false);
-        objekti.plus.gameObject.SetActive(false);
-        objekti.minus.gameObject.SetActive(false);
         objekti.skaits.gameObject.SetActive(false);
+        objekti.plusUzb.gameObject.SetActive(false);
+        objekti.minusUzb.gameObject.SetActive(false);
+        objekti.plusMob.gameObject.SetActive(false);
+        objekti.minusMob.gameObject.SetActive(false);
         kontrole.atgriezPretiniekuKrasas();
         objekti.vaiIrIzvele = false;
     }
