@@ -95,7 +95,7 @@ public class Pogas : MonoBehaviour
         foreach (GameObject stateObject in visiStates){
         SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
         if(stateObject == objekti.noklikState && 
-        stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] > 0 && stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] <= 5 && objekti.rotuSkaitsIzv > stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER]){
+        stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] > 0 && stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] <= 5 && objekti.rotuSkaitsIzv <= stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] && objekti.rotuSkaitsIzv > 0){
               objekti.rotuSkaitsIzv--;
         }
     
