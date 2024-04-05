@@ -20,6 +20,7 @@ public class SpelesKontrole : MonoBehaviour
     public Color32 vecaKrasa;
     public Color32 hoverKrasa;
 
+    
     //Mainīgie
     public Dictionary<Valstis.Speletaji, int> rotasSkaitsByPlayer = new Dictionary<Valstis.Speletaji, int>()
     {
@@ -36,10 +37,47 @@ public class SpelesKontrole : MonoBehaviour
 
         //Debug.Log(rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER]);
     }
+    
+    public void NonemtRotas(Valstis.Speletaji speletajs, int count)
+    {
+        if (rotasSkaitsByPlayer.ContainsKey(speletajs))
+        {
+            rotasSkaitsByPlayer[speletajs] -= count;
+        }
+
+        //Debug.Log(rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER]);
+    }
+
+
+
     void Start(){
         objekti = FindObjectOfType<Objekti>();
 
+            SpelesKontrole stateController = GameObject.Find("States_1").GetComponent<SpelesKontrole>();
+            objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state1Pozicijas");
+            if (stateController.valsts.speletajs == Valstis.Speletaji.PLAYER && !objekti.vaiIrSakumaRotas)    
+            {
+                rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] = 3;
+                sakumaRotas(stateController, objekti.rotasPozicijas);
+                objekti.vaiIrSakumaRotas = true;
+                Debug.Log(rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER]);
+            }
+        }
+
+    void sakumaRotas(SpelesKontrole stateController, GameObject[] pozicijasRotas){
+            if (rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] <= 3){
+                   for(int i=0; i<pozicijasRotas.Length; i++){
+                    if (!objekti.izmantotasPozicijas.Contains(pozicijasRotas[i]) && rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] > 0 && rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] <=3){ 
+                    Instantiate(objekti.rotasPrefs, pozicijasRotas[i].transform.position, Quaternion.identity, stateController.transform);
+                    objekti.izmantotasPozicijas.Add(pozicijasRotas[i]);
+                    rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER]--;
+                    stateController.PievienotRotas(Valstis.Speletaji.PLAYER, 1);
+                    }
+                   }
+        }
+
     }
+
 
     void Awake()
     {
@@ -77,29 +115,20 @@ public class SpelesKontrole : MonoBehaviour
         sprite.color = hoverKrasa;
     }
 
-    public void iekrasoBlakusTeritoriju(GameObject noklikState)
+    public void iekrasoBlakusPretiniekuTeritoriju(GameObject noklikState)
     {
-        //Debug.Log("Funkcija nostrādā");
         GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
         float nokliksinataState = Vector2.Distance(transform.position, noklikState.transform.position);
-        Debug.Log(nokliksinataState);
 
         Bounds territoryBounds = noklikState.GetComponent<PolygonCollider2D>().bounds;
-        //Debug.Log(territoryBounds);
         float territoryWidth = territoryBounds.size.x;
         float territoryHeight = territoryBounds.size.y;
-        Debug.Log("x: "+ territoryWidth + " y: " + territoryHeight);
-        // Calculate dynamic offset based on territory size
         Vector2 offset = new Vector2(territoryWidth * 0.001f, territoryHeight * 0.001f);
-        //Debug.Log("Offset: "+offset);
         foreach (GameObject stateObject in visiStates)
         {
-            //Debug.Log(Vector2.Distance(transform.position, stateObject.transform.position));
         SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
             float distance = Vector2.Distance(noklikState.transform.position, stateObject.transform.position - (Vector3)offset);
-            float blakusDistance = Vector2.Distance(transform.position, stateObject.transform.position);
-            Debug.Log("State Object: " + stateObject + " Distance: " + distance);
-            //Debug.Log("State Object: " + stateObject + " Blakus: " + blakusDistance);
+           // Debug.Log("State Object: " + stateObject + " Distance: " + distance);
          
             if (stateController != null && stateController.valsts.speletajs == Valstis.Speletaji.LSPR && distance < 1.96f)
             {
@@ -112,7 +141,28 @@ public class SpelesKontrole : MonoBehaviour
         }
     }
 
+        public void iekrasoBlakusLietotajuTeritoriju(GameObject noklikState)
+    {
+        GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
+        float nokliksinataState = Vector2.Distance(transform.position, noklikState.transform.position);
 
+        Bounds territoryBounds = noklikState.GetComponent<PolygonCollider2D>().bounds;
+        float territoryWidth = territoryBounds.size.x;
+        float territoryHeight = territoryBounds.size.y;
+        Vector2 offset = new Vector2(territoryWidth * 0.001f, territoryHeight * 0.001f);
+        foreach (GameObject stateObject in visiStates)
+        {
+        SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
+            float distance = Vector2.Distance(noklikState.transform.position, stateObject.transform.position - (Vector3)offset);
+         
+            if (stateController != null && stateController.valsts.speletajs == Valstis.Speletaji.LSPR && distance < 1.96f)
+            {
+                stateController.tintesKrasa(new Color32(255, 10, 0, 255));
+                objekti.vaiIrIzvele = true;
+            }
+
+        }
+    }
 
 
     public void atgriezPretiniekuKrasas()

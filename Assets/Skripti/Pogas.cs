@@ -54,13 +54,14 @@ public class Pogas : MonoBehaviour
     {
         objekti.izvele.gameObject.SetActive(false);
         objekti.kurVietaKustinat.gameObject.SetActive(true);
+        kontrole.iekrasoBlakusLietotajuTeritoriju(objekti.noklikState);
     }
 
     public void uzbruktPoga()
     {
         objekti.izvele.gameObject.SetActive(false);
         objekti.kurVietaUzbrukt.gameObject.SetActive(true);
-        kontrole.iekrasoBlakusTeritoriju(objekti.noklikState);
+        kontrole.iekrasoBlakusPretiniekuTeritoriju(objekti.noklikState);
     }
 
     public void plusPogaMob()
@@ -101,13 +102,13 @@ public class Pogas : MonoBehaviour
     
     }
     }
-    GameObject[] rotasPozicijas;
+
     public void mobilizetRotas(){
         if(objekti.rotuSkaits != 0 && objekti.rotuSkaitsIzv !=0){
             GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
             for(int i=0; i<visiStates.Length; i++){
                 if(objekti.noklikState == GameObject.Find("States_"+i)){
-                    rotasPozicijas = GameObject.FindGameObjectsWithTag("state"+i+"Pozicijas");
+                    objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state"+i+"Pozicijas");
                 }
             }
            
@@ -115,10 +116,10 @@ public class Pogas : MonoBehaviour
                 SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
                 if (stateController.valsts.speletajs == Valstis.Speletaji.PLAYER && stateObject == objekti.noklikState)
                 {
-                 for(int i=0; i<rotasPozicijas.Length; i++){
-                        if (!objekti.izmantotasPozicijas.Contains(rotasPozicijas[i]) && objekti.rotuSkaitsIzv > 0){ 
-                        Instantiate(objekti.rotasPrefs, rotasPozicijas[i].transform.position, Quaternion.identity, objekti.noklikState.transform);
-                        objekti.izmantotasPozicijas.Add(rotasPozicijas[i]);
+                 for(int i=0; i<objekti.rotasPozicijas.Length; i++){
+                        if (!objekti.izmantotasPozicijas.Contains(objekti.rotasPozicijas[i]) && objekti.rotuSkaitsIzv > 0){ 
+                        Instantiate(objekti.rotasPrefs, objekti.rotasPozicijas[i].transform.position, Quaternion.identity, objekti.noklikState.transform);
+                        objekti.izmantotasPozicijas.Add(objekti.rotasPozicijas[i]);
 
                         stateController.PievienotRotas(Valstis.Speletaji.PLAYER, 1);
                         objekti.rotuSkaitsIzv--;
@@ -131,15 +132,60 @@ public class Pogas : MonoBehaviour
     }
 
 
-    public void okPogaUzbrukt(){
+    public void okPogaUzbrukt(){ //Funkcija kad uzbrūk pretiniekam.
+
+        bool irUzbrucis = false;
         objekti.noklikBlakusState.GetComponent<SpelesKontrole>().valsts.speletajs = Valstis.Speletaji.PLAYER;
         GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
-        foreach (GameObject stateObject in visiStates)
-        {
+            for(int i=0; i<visiStates.Length; i++){
+            if(objekti.noklikBlakusState == GameObject.Find("States_"+i)){
+                objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state"+i+"Pozicijas");
+                }
+            }
+            foreach (GameObject stateObject in visiStates){
             SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
-            if (stateController.valsts.speletajs == Valstis.Speletaji.PLAYER)
-            {
-                stateController.tintesKrasa(new Color32(139, 221, 51, 255));
+                if (stateController.valsts.speletajs == Valstis.Speletaji.PLAYER && stateObject == objekti.noklikBlakusState)
+                {
+                    stateController.tintesKrasa(new Color32(139, 221, 51, 255));
+                      for(int i=0; i<objekti.rotasPozicijas.Length; i++){
+                        if (!objekti.izmantotasPozicijas.Contains(objekti.rotasPozicijas[i]) && objekti.rotuSkaitsIzv > 0){ 
+                        Instantiate(objekti.rotasPrefs, objekti.rotasPozicijas[i].transform.position, Quaternion.identity, objekti.noklikBlakusState.transform);
+                        objekti.izmantotasPozicijas.Add(objekti.rotasPozicijas[i]);
+                        stateController.PievienotRotas(Valstis.Speletaji.PLAYER, 1);
+                        objekti.rotuSkaitsIzv--;
+                    }
+                    irUzbrucis = true;
+                    }
+                }
+            }
+                if(irUzbrucis == true){
+                int uzbrukusoSkaits = 0;
+                for(int i=0; i<visiStates.Length; i++){
+                 if(objekti.noklikState == GameObject.Find("States_"+i)){
+                objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state"+i+"Pozicijas");
+                }
+                }
+                foreach (GameObject stateObject in visiStates){
+                  SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
+                   SpelesKontrole stateController1 = objekti.noklikBlakusState.GetComponent<SpelesKontrole>();
+                if (stateController.valsts.speletajs == Valstis.Speletaji.PLAYER && stateObject.Equals(objekti.noklikState))
+                {
+                    uzbrukusoSkaits = stateController1.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER];
+                    Debug.Log(uzbrukusoSkaits);
+                      for(int i=0; i<stateController1.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER]; i++){
+                        if (objekti.izmantotasPozicijas.Contains(objekti.rotasPozicijas[i]) && stateObject == objekti.noklikState){ 
+                         foreach (Transform child in objekti.noklikState.transform){
+                            Debug.Log(child);
+                         if (child.CompareTag("PLAYERTroop") && uzbrukusoSkaits > 0){
+                            Destroy(child.gameObject);
+                            objekti.izmantotasPozicijas.Remove(objekti.rotasPozicijas[i]);
+                            uzbrukusoSkaits--;
+                            irUzbrucis = false;
+                          }
+                        }
+                    }
+                }
+                }
             }
         }
         objekti.vaiIrIzvele = false;

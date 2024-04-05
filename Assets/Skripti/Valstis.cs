@@ -9,7 +9,6 @@ using UnityEngine;
 public class Valstis
 {
     public string nosaukums;
-    public int rotasSkaits = 0;
 
     public enum Speletaji {LSPR, PLAYER}
 

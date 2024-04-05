@@ -58,8 +58,8 @@ public class Objekti : MonoBehaviour
     public GameObject[] rotasPozicijas;
     public List<GameObject> izmantotasPozicijas = new List<GameObject>();
 
-    public int rotasSkaitsPL;
-    public int rotasSkaitsLSPR;
+    public bool vaiIrSakumaRotas = false;
+
 }
 
 
