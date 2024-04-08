@@ -58,11 +58,12 @@ public class Objekti : MonoBehaviour
 
     //Rotas sistēmas mainīgie
     public GameObject rotasPrefs;
+    public GameObject rotasPrefsLSPR;
     public GameObject[] rotasPozicijas;
     public List<GameObject> izmantotasPozicijas = new List<GameObject>();
 
     public bool vaiIrSakumaRotas = false;
-
+    public bool vaiIrSakumaRotasLSPR = false;
 }
 
 

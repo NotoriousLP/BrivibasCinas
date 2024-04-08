@@ -116,9 +116,9 @@ public void plusPogaParvietot()
             if (stateObject == objekti.noklikState)
         {
             // Calculate the maximum number of troops that can be moved (minimum of available troops and 5 - current troop count)
-            int availableTroops = stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER];
-            int maxTroopsToMove = Mathf.Min(5 - stateController1.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER], availableTroops);
-            if (maxTroopsToMove > 0 && objekti.rotuSkaitsIzv < maxTroopsToMove)
+            int pieejamasRotas = stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER];
+            int maksimalasRotasKustinat = Mathf.Min(5 - stateController1.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER], pieejamasRotas);
+            if (maksimalasRotasKustinat > 0 && objekti.rotuSkaitsIzv < maksimalasRotasKustinat)
             {
                 objekti.rotuSkaitsIzv++;
             }
@@ -158,7 +158,6 @@ public void plusPogaParvietot()
     public void parvietotRotas(){
         if(objekti.rotuSkaitsIzv!=0){
         bool irParvietojis = false;
-        objekti.noklikBlakusState.GetComponent<SpelesKontrole>().valsts.speletajs = Valstis.Speletaji.PLAYER;
         GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
             for(int i=0; i<visiStates.Length; i++){
             if(objekti.noklikBlakusState == GameObject.Find("States_"+i)){
@@ -169,7 +168,10 @@ public void plusPogaParvietot()
             SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
                 if (stateController.valsts.speletajs == Valstis.Speletaji.PLAYER && stateObject == objekti.noklikBlakusState)
                 {
-                      for(int i=0; i<objekti.rotasPozicijas.Length; i++){
+                        int availableSpace = 5 - stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER];
+                         int actualTroopsToMove = Mathf.Min(objekti.rotuSkaitsIzv, availableSpace);
+
+                      for(int i=0; i<actualTroopsToMove; i++){
                         if (!objekti.izmantotasPozicijas.Contains(objekti.rotasPozicijas[i]) && objekti.rotuSkaitsIzv > 0){ 
                         Instantiate(objekti.rotasPrefs, objekti.rotasPozicijas[i].transform.position, Quaternion.identity, objekti.noklikBlakusState.transform);
                         objekti.izmantotasPozicijas.Add(objekti.rotasPozicijas[i]);
@@ -193,22 +195,24 @@ public void plusPogaParvietot()
                 if (stateController.valsts.speletajs == Valstis.Speletaji.PLAYER && stateObject.Equals(objekti.noklikState))
                 {
                     parvietojumoSkaits = stateController1.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER];
-                      for(int i=0; i<stateController1.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER]; i++){
+                    Debug.Log("Pārvietojumo skaits: "+parvietojumoSkaits);
+                      for(int i=0; i<parvietojumoSkaits; i++){
                         if (objekti.izmantotasPozicijas.Contains(objekti.rotasPozicijas[i]) && stateObject == objekti.noklikState){ 
                          foreach (Transform child in objekti.noklikState.transform){
                          if (child.CompareTag("PLAYERTroop") && parvietojumoSkaits > 0){
                             Destroy(child.gameObject);
                             parvietojumoSkaits--;
+                            stateController.NonemtRotas(Valstis.Speletaji.PLAYER, 1);
+                            objekti.izmantotasPozicijas.Remove(objekti.rotasPozicijas[i]);
                             irParvietojis = false;
                           }
                         }
-                         objekti.izmantotasPozicijas.Remove(objekti.rotasPozicijas[i]);
-                         stateController.NonemtRotas(Valstis.Speletaji.PLAYER, 1);
+                         Debug.Log("Rotas skaits uz uzsķlikšķinātā state: "+stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER]);
                     }
                 }
                 }
-                Debug.Log("Pašreizējais state: "+stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER]);
-                Debug.Log("Blakus state"+stateController1.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER]);
+                //Debug.Log("Pašreizējais state: "+stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER]);
+                //Debug.Log("Blakus state"+stateController1.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER]);
             }
         }
         }
@@ -219,7 +223,9 @@ public void plusPogaParvietot()
         objekti.skaits.gameObject.SetActive(false);
         objekti.plusParvietot.gameObject.SetActive(false);
         objekti.minusParvietot.gameObject.SetActive(false);
+        kontrole.atgriezLietotajuKrasas();
     }
+
 
 
 
@@ -272,6 +278,7 @@ public void plusPogaParvietot()
                           }
                         }
                         objekti.izmantotasPozicijas.Remove(objekti.rotasPozicijas[i]);
+                        stateController.NonemtRotas(Valstis.Speletaji.PLAYER, 1);
                     }
                 }
                 }

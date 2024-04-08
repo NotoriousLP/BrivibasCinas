@@ -21,6 +21,8 @@ public class SpelesKontrole : MonoBehaviour
     public Color32 vecaKrasa;
     public Color32 hoverKrasa;
 
+    public AI ai;
+
     
     //Mainīgie
     public Dictionary<Valstis.Speletaji, int> rotasSkaitsByPlayer = new Dictionary<Valstis.Speletaji, int>()
@@ -29,6 +31,29 @@ public class SpelesKontrole : MonoBehaviour
         { Valstis.Speletaji.PLAYER, 0 }
     };
 
+
+
+
+    void Start(){
+        objekti = FindObjectOfType<Objekti>();
+        ai = FindObjectOfType<AI>();
+            SpelesKontrole stateController = GameObject.Find("States_1").GetComponent<SpelesKontrole>();
+            objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state1Pozicijas");
+            if (stateController.valsts.speletajs == Valstis.Speletaji.PLAYER && !objekti.vaiIrSakumaRotas)    
+            {
+                rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] = 3;
+                sakumaRotas(stateController, objekti.rotasPozicijas, objekti.rotasPrefs, Valstis.Speletaji.PLAYER);
+                objekti.vaiIrSakumaRotas = true;
+            }
+            if(!objekti.vaiIrSakumaRotasLSPR){
+                  ai.jaunasRotas();
+                  Debug.Log("Tika iekšā");
+                stateController.sakumaRotas(stateController, objekti.rotasPozicijas, objekti.rotasPrefsLSPR, Valstis.Speletaji.LSPR);
+                  objekti.vaiIrSakumaRotasLSPR = true;
+            }
+        }
+
+
     public void PievienotRotas(Valstis.Speletaji speletajs, int count)
     {
         if (rotasSkaitsByPlayer.ContainsKey(speletajs))
@@ -36,7 +61,7 @@ public class SpelesKontrole : MonoBehaviour
             rotasSkaitsByPlayer[speletajs] += count;
         }
 
-        //Debug.Log(rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER]);
+        Debug.Log(rotasSkaitsByPlayer[Valstis.Speletaji.LSPR]);
     }
     
     public void NonemtRotas(Valstis.Speletaji speletajs, int count)
@@ -50,28 +75,15 @@ public class SpelesKontrole : MonoBehaviour
     }
 
 
-
-    void Start(){
-        objekti = FindObjectOfType<Objekti>();
-
-            SpelesKontrole stateController = GameObject.Find("States_1").GetComponent<SpelesKontrole>();
-            objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state1Pozicijas");
-            if (stateController.valsts.speletajs == Valstis.Speletaji.PLAYER && !objekti.vaiIrSakumaRotas)    
-            {
-                rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] = 3;
-                sakumaRotas(stateController, objekti.rotasPozicijas);
-                objekti.vaiIrSakumaRotas = true;
-            }
-        }
-
-    void sakumaRotas(SpelesKontrole stateController, GameObject[] pozicijasRotas){
-            if (rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] <= 3){
+    public void sakumaRotas(SpelesKontrole stateController, GameObject[] pozicijasRotas, GameObject prefs, Valstis.Speletaji speletajs){
+            Debug.Log("Šeit tiek");
+            if (rotasSkaitsByPlayer[speletajs] <= 5){
                    for(int i=0; i<pozicijasRotas.Length; i++){
-                    if (!objekti.izmantotasPozicijas.Contains(pozicijasRotas[i]) && rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] > 0 && rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] <=3){ 
-                    Instantiate(objekti.rotasPrefs, pozicijasRotas[i].transform.position, Quaternion.identity, stateController.transform);
+                    if (!objekti.izmantotasPozicijas.Contains(pozicijasRotas[i]) && rotasSkaitsByPlayer[speletajs] > 0 && rotasSkaitsByPlayer[speletajs] <=5){ 
+                    Instantiate(prefs, pozicijasRotas[i].transform.position, Quaternion.identity, stateController.transform);
                     objekti.izmantotasPozicijas.Add(pozicijasRotas[i]);
-                    rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER]--;
-                    stateController.PievienotRotas(Valstis.Speletaji.PLAYER, 1);
+                    rotasSkaitsByPlayer[speletajs]--;
+                    stateController.PievienotRotas(speletajs, 1);
                     }
                    }
         }
@@ -250,12 +262,12 @@ public class SpelesKontrole : MonoBehaviour
             objekti.plusParvietot.gameObject.SetActive(true);
             objekti.minusParvietot.gameObject.SetActive(true);
             objekti.rotuSkaitsIzv = 0;
-
+            atgriezLietotajuKrasas();
             GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
             foreach (GameObject stateObject in visiStates)
             {
                     SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
-                    if (stateController.valsts.speletajs == Valstis.Speletaji.PLAYER)
+                    if (stateObject == objekti.noklikBlakusState)
                     {
                         stateController.tintesKrasa(new Color32(139, 221, 51, 210));
                     }

@@ -11,6 +11,9 @@ TagManager:
   - state2Pozicijas
   - state3Pozicijas
   - PLAYERTroop
+  - state4Pozicijas
+  - state5Pozicijas
+  - LSPRTroop
   layers:
   - Default
   - TransparentFX
