@@ -19,6 +19,8 @@ public class Objekti : MonoBehaviour
     public Button minusMob;
     public Button plusUzb;
     public Button minusUzb;
+    public Button plusParvietot;
+    public Button minusParvietot;
 
     public int rotuSkaitsIzv;
 
@@ -50,8 +52,9 @@ public class Objekti : MonoBehaviour
     public GameObject noklikState;
     
     public GameObject noklikBlakusState;
-    public bool vaiIrIzvele = false;
+    public bool vaiIrIzveleUzbr = false;
 
+    public bool vaiIrIzveleKust = false;
 
     //Rotas sistēmas mainīgie
     public GameObject rotasPrefs;
