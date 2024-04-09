@@ -41,16 +41,28 @@ public class SpelesKontrole : MonoBehaviour
             objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state1Pozicijas");
             if (stateController.valsts.speletajs == Valstis.Speletaji.PLAYER && !objekti.vaiIrSakumaRotas)    
             {
-                rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] = 3;
-                sakumaRotas(stateController, objekti.rotasPozicijas, objekti.rotasPrefs, Valstis.Speletaji.PLAYER);
+                sakumaRotas(stateController, objekti.rotasPozicijas, objekti.rotasPrefs, Valstis.Speletaji.PLAYER, 3);
                 objekti.vaiIrSakumaRotas = true;
             }
-            if(!objekti.vaiIrSakumaRotasLSPR){
-                  ai.jaunasRotas();
-                  Debug.Log("Tika iekšā");
-                stateController.sakumaRotas(stateController, objekti.rotasPozicijas, objekti.rotasPrefsLSPR, Valstis.Speletaji.LSPR);
-                  objekti.vaiIrSakumaRotasLSPR = true;
+
+            SpelesKontrole stateController1 = GameObject.Find("States_2").GetComponent<SpelesKontrole>();
+            if (stateController1.valsts.speletajs == Valstis.Speletaji.LSPR && !objekti.vaiIrSakumaRotasLSPR)    
+            {
+                objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state2Pozicijas");
+                sakumaRotas(stateController1, objekti.rotasPozicijas, objekti.rotasPrefsLSPR, Valstis.Speletaji.LSPR, 2);
+              
             }
+                        
+            SpelesKontrole stateController2 = GameObject.Find("States_4").GetComponent<SpelesKontrole>();
+            if (stateController2.valsts.speletajs == Valstis.Speletaji.LSPR && !objekti.vaiIrSakumaRotasLSPR)    
+            {
+                objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state4Pozicijas");
+                sakumaRotas(stateController2, objekti.rotasPozicijas, objekti.rotasPrefsLSPR, Valstis.Speletaji.LSPR, 2);
+              
+            }
+                  objekti.vaiIrSakumaRotasLSPR = true;
+
+
         }
 
 
@@ -61,7 +73,6 @@ public class SpelesKontrole : MonoBehaviour
             rotasSkaitsByPlayer[speletajs] += count;
         }
 
-        Debug.Log(rotasSkaitsByPlayer[Valstis.Speletaji.LSPR]);
     }
     
     public void NonemtRotas(Valstis.Speletaji speletajs, int count)
@@ -75,8 +86,9 @@ public class SpelesKontrole : MonoBehaviour
     }
 
 
-    public void sakumaRotas(SpelesKontrole stateController, GameObject[] pozicijasRotas, GameObject prefs, Valstis.Speletaji speletajs){
+    public void sakumaRotas(SpelesKontrole stateController, GameObject[] pozicijasRotas, GameObject prefs, Valstis.Speletaji speletajs, int skaits){
             Debug.Log("Šeit tiek");
+            rotasSkaitsByPlayer[speletajs] = skaits;
             if (rotasSkaitsByPlayer[speletajs] <= 5){
                    for(int i=0; i<pozicijasRotas.Length; i++){
                     if (!objekti.izmantotasPozicijas.Contains(pozicijasRotas[i]) && rotasSkaitsByPlayer[speletajs] > 0 && rotasSkaitsByPlayer[speletajs] <=5){ 
