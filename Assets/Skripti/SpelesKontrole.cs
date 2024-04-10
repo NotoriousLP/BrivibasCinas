@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,13 +82,10 @@ public class SpelesKontrole : MonoBehaviour
         {
             rotasSkaitsByPlayer[speletajs] -= count;
         }
-
-        //Debug.Log(rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER]);
     }
 
 
     public void sakumaRotas(SpelesKontrole stateController, GameObject[] pozicijasRotas, GameObject prefs, Valstis.Speletaji speletajs, int skaits){
-            Debug.Log("Šeit tiek");
             rotasSkaitsByPlayer[speletajs] = skaits;
             if (rotasSkaitsByPlayer[speletajs] <= 5){
                    for(int i=0; i<pozicijasRotas.Length; i++){
@@ -142,7 +140,6 @@ public class SpelesKontrole : MonoBehaviour
     public void iekrasoBlakusPretiniekuTeritoriju(GameObject noklikState)
     {
         GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
-        float nokliksinataState = Vector2.Distance(transform.position, noklikState.transform.position);
 
         Bounds territoryBounds = noklikState.GetComponent<PolygonCollider2D>().bounds;
         float territoryWidth = territoryBounds.size.x;
@@ -168,7 +165,6 @@ public class SpelesKontrole : MonoBehaviour
         public void iekrasoBlakusLietotajuTeritoriju(GameObject noklikState)
     {
         GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
-        float nokliksinataState = Vector2.Distance(transform.position, noklikState.transform.position);
 
         Bounds territoryBounds = noklikState.GetComponent<PolygonCollider2D>().bounds;
         float territoryWidth = territoryBounds.size.x;
@@ -191,6 +187,29 @@ public class SpelesKontrole : MonoBehaviour
         }
     }
 
+    public SpelesKontrole Atpaksanas(SpelesKontrole kontrole){
+        GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
+        Bounds territoryBounds = kontrole.GetComponent<PolygonCollider2D>().bounds;
+        float territoryWidth = territoryBounds.size.x;
+        float territoryHeight = territoryBounds.size.y;
+        Vector2 offset = new Vector2(territoryWidth * 0.001f, territoryHeight * 0.001f);
+        foreach (GameObject stateObject in visiStates)
+        {
+        SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
+        
+            float distance = Vector2.Distance(kontrole.transform.position, stateObject.transform.position - (Vector3)offset);
+         
+            if (stateController != null && stateController.valsts.speletajs == Valstis.Speletaji.LSPR && distance < 1.96f && stateController != objekti.noklikBlakusState  && 
+            stateController != objekti.noklikState && objekti.atpakpesState == null)
+            {
+                 objekti.atpakpesState = stateObject.GetComponent<SpelesKontrole>();
+                 objekti.stateAtkapes = stateObject;
+                 Debug.Log("State controller: "+stateController);
+            }
+        }
+        Debug.Log(objekti.atpakpesState);
+        return objekti.atpakpesState;
+    }
 
     public void atgriezPretiniekuKrasas()
     {
@@ -303,5 +322,8 @@ public class SpelesKontrole : MonoBehaviour
         sprite.color = krasa;
     }
 
-
+    public static explicit operator GameObject(SpelesKontrole v)
+    {
+        throw new NotImplementedException();
+    }
 }

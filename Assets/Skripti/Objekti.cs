@@ -64,6 +64,11 @@ public class Objekti : MonoBehaviour
 
     public bool vaiIrSakumaRotas = false;
     public bool vaiIrSakumaRotasLSPR = false;
+
+
+    public SpelesKontrole atpakpesState;
+
+    public GameObject stateAtkapes;
 }
 
 
