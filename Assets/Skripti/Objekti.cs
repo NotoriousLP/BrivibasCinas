@@ -69,6 +69,9 @@ public class Objekti : MonoBehaviour
     public SpelesKontrole atpakpesState;
 
     public GameObject stateAtkapes;
+
+    public GameObject[] blakusStateLSPR;
+    public GameObject[] blakusStatePlayer;
 }
 
 

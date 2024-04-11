@@ -54,10 +54,10 @@ public class SpelesKontrole : MonoBehaviour
               
             }
                         
-            SpelesKontrole stateController2 = GameObject.Find("States_4").GetComponent<SpelesKontrole>();
+            SpelesKontrole stateController2 = GameObject.Find("States_3").GetComponent<SpelesKontrole>();
             if (stateController2.valsts.speletajs == Valstis.Speletaji.LSPR && !objekti.vaiIrSakumaRotasLSPR)    
             {
-                objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state4Pozicijas");
+                objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state3Pozicijas");
                 sakumaRotas(stateController2, objekti.rotasPozicijas, objekti.rotasPrefsLSPR, Valstis.Speletaji.LSPR, 2);
               
             }
@@ -137,30 +137,32 @@ public class SpelesKontrole : MonoBehaviour
         sprite.color = hoverKrasa;
     }
 
-    public void iekrasoBlakusPretiniekuTeritoriju(GameObject noklikState)
+public void iekrasoBlakusPretiniekuTeritoriju(GameObject noklikState)
+{
+    GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
+
+    Bounds territoryBounds = noklikState.GetComponent<PolygonCollider2D>().bounds;
+    float territoryWidth = territoryBounds.size.x;
+    float territoryHeight = territoryBounds.size.y;
+    Vector2 offset = new Vector2(territoryWidth * 0.001f, territoryHeight * 0.001f);
+
+    foreach (GameObject stateObject in visiStates)
     {
-        GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
-
-        Bounds territoryBounds = noklikState.GetComponent<PolygonCollider2D>().bounds;
-        float territoryWidth = territoryBounds.size.x;
-        float territoryHeight = territoryBounds.size.y;
-        Vector2 offset = new Vector2(territoryWidth * 0.001f, territoryHeight * 0.001f);
-        foreach (GameObject stateObject in visiStates)
-        {
         SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
-            float distance = Vector2.Distance(noklikState.transform.position, stateObject.transform.position - (Vector3)offset);
-           // Debug.Log("State Object: " + stateObject + " Distance: " + distance);
-         
-            if (stateController != null && stateController.valsts.speletajs == Valstis.Speletaji.LSPR && distance < 1.96f)
-            {
-                //Debug.Log("Nokrasojas State Object: " + stateObject + " Distance: " + blakusState);
-                //Debug.Log("Nokrasojas Distance: " + distance);
-                stateController.tintesKrasa(new Color32(255, 10, 0, 255));
-                objekti.vaiIrIzveleUzbr = true;
-            }
+        float distance = Vector2.Distance(noklikState.transform.position, stateObject.transform.position - (Vector3)offset);
 
+        // Debug.Log("State Object: " + stateObject + " Distance: " + distance);
+
+        if (stateController != null && stateController.valsts.speletajs == Valstis.Speletaji.LSPR && distance < 1.96f)
+        {
+            //Debug.Log("Nokrasojas State Object: " + stateObject + " Distance: " + blakusState);
+            //Debug.Log("Nokrasojas Distance: " + distance);
+            stateController.tintesKrasa(new Color32(255, 10, 0, 255)); // Highlight color
+            objekti.vaiIrIzveleUzbr = true;
         }
     }
+}
+
 
         public void iekrasoBlakusLietotajuTeritoriju(GameObject noklikState)
     {
@@ -200,11 +202,10 @@ public class SpelesKontrole : MonoBehaviour
             float distance = Vector2.Distance(kontrole.transform.position, stateObject.transform.position - (Vector3)offset);
          
             if (stateController != null && stateController.valsts.speletajs == Valstis.Speletaji.LSPR && distance < 1.96f && stateController != objekti.noklikBlakusState  && 
-            stateController != objekti.noklikState && objekti.atpakpesState == null)
+            stateController != objekti.noklikState && objekti.atpakpesState == null && stateController.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] == 0)
             {
                  objekti.atpakpesState = stateObject.GetComponent<SpelesKontrole>();
                  objekti.stateAtkapes = stateObject;
-                 Debug.Log("State controller: "+stateController);
             }
         }
         Debug.Log(objekti.atpakpesState);

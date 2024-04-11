@@ -5359,7 +5359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   valsts:
     nosaukums: States_3
-    speletajs: 1
+    speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
   valstsSaraksts: []
@@ -6282,6 +6282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objekti: {fileID: 0}
   kontrole: {fileID: 0}
+  ai: {fileID: 0}
 --- !u!4 &1027353618
 Transform:
   m_ObjectHideFlags: 0
@@ -6360,6 +6361,10 @@ MonoBehaviour:
   izmantotasPozicijas: []
   vaiIrSakumaRotas: 0
   vaiIrSakumaRotasLSPR: 0
+  atpakpesState: {fileID: 0}
+  stateAtkapes: {fileID: 0}
+  blakusStateLSPR: []
+  blakusStatePlayer: []
 --- !u!114 &1027353621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8622,7 +8627,7 @@ Transform:
   m_GameObject: {fileID: 1316202002}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -716.38, y: 29.1, z: -10023.749}
+  m_LocalPosition: {x: -719.8, y: 27.6, z: -10023.749}
   m_LocalScale: {x: 99.80305, y: 96.61394, z: 111.374985}
   m_ConstrainProportionsScale: 0
   m_Children:
