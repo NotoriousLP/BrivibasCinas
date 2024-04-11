@@ -36,6 +36,7 @@ public class SpelesKontrole : MonoBehaviour
 
 
     void Start(){
+        objekti.lietotajuKarta = true;
         objekti = FindObjectOfType<Objekti>();
         ai = FindObjectOfType<AI>();
             SpelesKontrole stateController = GameObject.Find("States_1").GetComponent<SpelesKontrole>();
@@ -247,7 +248,7 @@ public void iekrasoBlakusPretiniekuTeritoriju(GameObject noklikState)
 
         //Debug.Log(objekti.irIzvelesLauksIeslegts);
 
-        if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.PLAYER && objekti.vaiIrIzveleUzbr == false && objekti.vaiIrIzveleKust == false)
+        if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.PLAYER && objekti.vaiIrIzveleUzbr == false && objekti.vaiIrIzveleKust == false && objekti.lietotajuKarta == true)
         {
             objekti.noklikState = hit.collider.gameObject;
             //Debug.Log("Collider hit: " + hit.collider.name);
@@ -265,7 +266,7 @@ public void iekrasoBlakusPretiniekuTeritoriju(GameObject noklikState)
             objekti.plusMob.gameObject.SetActive(false);
             objekti.minusMob.gameObject.SetActive(false);
         }
-       if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.LSPR && objekti.vaiIrIzveleUzbr == true) {
+       if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.LSPR && objekti.vaiIrIzveleUzbr == true && objekti.lietotajuKarta == true) {
             //Debug.Log("Collider hit: " + hit.collider.name);
             objekti.noklikBlakusState = hit.collider.gameObject;
             objekti.kurVietaUzbrukt.gameObject.SetActive(false);
@@ -286,7 +287,7 @@ public void iekrasoBlakusPretiniekuTeritoriju(GameObject noklikState)
 
 
         }
-         if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.PLAYER && objekti.vaiIrIzveleKust == true){
+         if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.PLAYER && objekti.vaiIrIzveleKust == true && objekti.lietotajuKarta == true){
           objekti.noklikBlakusState = hit.collider.gameObject;
             objekti.kustinat.gameObject.SetActive(true);
             objekti.kurVietaKustinat.gameObject.SetActive(false);

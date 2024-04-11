@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AI : MonoBehaviour
@@ -80,7 +81,38 @@ public class AI : MonoBehaviour
                 }
     }
 
+    public void AIUzbruk(){
+
+
+    objekti.lietotajuKarta = true;
+    }
+
+    public void AIMobilize(){
+
+
+    objekti.lietotajuKarta = true;
+    }
+
+    public void AIParvietojas(){
     
+
+        objekti.lietotajuKarta = true;
+    }
+
+
+    public void AIKustiba(){
+        if(objekti.lietotajuKarta == false){
+            int skaitlis = 0;
+            skaitlis = Random.Range(skaitlis, 3);
+            switch(skaitlis){
+                case 0: AIUzbruk(); break;
+                case 1: AIMobilize(); break;
+                case 2: AIParvietojas(); break;
+            }
+        }
+    }
+
+
     void Update()
     {
         

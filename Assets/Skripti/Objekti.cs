@@ -6,6 +6,11 @@ using UnityEngine.UI;
 
 public class Objekti : MonoBehaviour
 {
+
+    //Lietotāju kārta
+    public bool lietotajuKarta = false;
+
+
     //Izvēles lauks
     public GameObject izvelesLauks;
     public bool irIzvelesLauksIeslegts = false;
@@ -65,10 +70,11 @@ public class Objekti : MonoBehaviour
     public bool vaiIrSakumaRotas = false;
     public bool vaiIrSakumaRotasLSPR = false;
 
-
+    //Teritorijas, kuras skatās uz kurieni atkāpties.
     public SpelesKontrole atpakpesState;
-
     public GameObject stateAtkapes;
+
+
 
     public GameObject[] blakusStateLSPR;
     public GameObject[] blakusStatePlayer;

@@ -51,6 +51,7 @@ public class Pogas : MonoBehaviour
         objekti.plusMob.gameObject.SetActive(true);
         objekti.minusMob.gameObject.SetActive(true);
         objekti.rotuSkaitsIzv = 0;
+        objekti.lietotajuKarta = false;
 
     }
 
@@ -127,6 +128,7 @@ public void plusPogaParvietot()
             }
         }
     }
+      objekti.lietotajuKarta = false;
 }
 
 
@@ -156,6 +158,7 @@ public void plusPogaParvietot()
                 }
             }
         }
+          objekti.lietotajuKarta = false;
     }
 
     public void parvietotRotas(){
@@ -324,13 +327,12 @@ public void plusPogaParvietot()
                         }
                         objekti.izmantotasPozicijas.Remove(objekti.rotasPozicijas[i]);
                         stateController.NonemtRotas(Valstis.Speletaji.PLAYER, 1);
+
                     }
                 }
                 }
             }
         }
-        }else{
-
         }
     }
         objekti.vaiIrIzveleUzbr = false;
@@ -340,6 +342,7 @@ public void plusPogaParvietot()
         objekti.skaits.gameObject.SetActive(false);
         objekti.plusUzb.gameObject.SetActive(false);
         objekti.minusUzb.gameObject.SetActive(false);
+        objekti.lietotajuKarta = false;
     }
 
     public void atpakalUzIzveli()
