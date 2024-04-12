@@ -36,14 +36,14 @@ public class SpelesKontrole : MonoBehaviour
 
 
     void Start(){
-        objekti.lietotajuKarta = true;
         objekti = FindObjectOfType<Objekti>();
         ai = FindObjectOfType<AI>();
+             objekti.lietotajuKarta = true;
             SpelesKontrole stateController = GameObject.Find("States_1").GetComponent<SpelesKontrole>();
             objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state1Pozicijas");
             if (stateController.valsts.speletajs == Valstis.Speletaji.PLAYER && !objekti.vaiIrSakumaRotas)    
             {
-                sakumaRotas(stateController, objekti.rotasPozicijas, objekti.rotasPrefs, Valstis.Speletaji.PLAYER, 3);
+                sakumaRotas(stateController, objekti.rotasPozicijas, objekti.rotasPrefs, Valstis.Speletaji.PLAYER, 4);
                 objekti.vaiIrSakumaRotas = true;
             }
 
@@ -51,7 +51,7 @@ public class SpelesKontrole : MonoBehaviour
             if (stateController1.valsts.speletajs == Valstis.Speletaji.LSPR && !objekti.vaiIrSakumaRotasLSPR)    
             {
                 objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state2Pozicijas");
-                sakumaRotas(stateController1, objekti.rotasPozicijas, objekti.rotasPrefsLSPR, Valstis.Speletaji.LSPR, 2);
+                sakumaRotas(stateController1, objekti.rotasPozicijas, objekti.rotasPrefsLSPR, Valstis.Speletaji.LSPR, 3);
               
             }
                         
@@ -207,9 +207,14 @@ public void iekrasoBlakusPretiniekuTeritoriju(GameObject noklikState)
             {
                  objekti.atpakpesState = stateObject.GetComponent<SpelesKontrole>();
                  objekti.stateAtkapes = stateObject;
+                Debug.Log("Pašreizējais skaits: "+stateController.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR]);
             }
         }
+        if(objekti.atpakpesState == null){
+            objekti.irIelenkti = true;
+        }
         Debug.Log(objekti.atpakpesState);
+        Debug.Log("Pašreizējais skaits: "+objekti.atpakpesState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR]);
         return objekti.atpakpesState;
     }
 

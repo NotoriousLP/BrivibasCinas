@@ -73,11 +73,19 @@ public class Objekti : MonoBehaviour
     //Teritorijas, kuras skatās uz kurieni atkāpties.
     public SpelesKontrole atpakpesState;
     public GameObject stateAtkapes;
-
+    public bool irIelenkti = false;
 
 
     public GameObject[] blakusStateLSPR;
     public GameObject[] blakusStatePlayer;
+
+
+    //AI blakus pie lietotāja state
+
+    public GameObject uzbruksanasState;
+    public SpelesKontrole uzbruksanasStateKontrole;
+    public GameObject noKuraStateLSPR;
+    public SpelesKontrole noKuraStateLSPRKontrole;
 }
 
 

@@ -52,7 +52,7 @@ public class Pogas : MonoBehaviour
         objekti.minusMob.gameObject.SetActive(true);
         objekti.rotuSkaitsIzv = 0;
         objekti.lietotajuKarta = false;
-
+        ai.AIKustiba();
     }
 
     public void kustinatPoga()
@@ -119,7 +119,6 @@ public void plusPogaParvietot()
 
             if (stateObject == objekti.noklikState)
         {
-            // Calculate the maximum number of troops that can be moved (minimum of available troops and 5 - current troop count)
             int pieejamasRotas = stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER];
             int maksimalasRotasKustinat = Mathf.Min(5 - stateController1.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER], pieejamasRotas);
             if (maksimalasRotasKustinat > 0 && objekti.rotuSkaitsIzv < maksimalasRotasKustinat)
@@ -129,6 +128,7 @@ public void plusPogaParvietot()
         }
     }
       objekti.lietotajuKarta = false;
+      ai.AIKustiba();
 }
 
 
@@ -159,6 +159,7 @@ public void plusPogaParvietot()
             }
         }
           objekti.lietotajuKarta = false;
+          ai.AIKustiba();
     }
 
     public void parvietotRotas(){
@@ -230,6 +231,7 @@ public void plusPogaParvietot()
         objekti.plusParvietot.gameObject.SetActive(false);
         objekti.minusParvietot.gameObject.SetActive(false);
         kontrole.atgriezLietotajuKrasas();
+        ai.AIKustiba();
     }
 
 
@@ -245,7 +247,6 @@ public void plusPogaParvietot()
         objekti.atpakpesState = null;
         objekti.stateAtkapes = null;
         SpelesKontrole noklikBlakusState = objekti.noklikBlakusState.GetComponent<SpelesKontrole>();
-        noklikBlakusState.Atpaksanas(noklikBlakusState);
 
 
         if(objekti.rotuSkaitsIzv > noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR]){
@@ -343,6 +344,7 @@ public void plusPogaParvietot()
         objekti.plusUzb.gameObject.SetActive(false);
         objekti.minusUzb.gameObject.SetActive(false);
         objekti.lietotajuKarta = false;
+        ai.AIKustiba();
     }
 
     public void atpakalUzIzveli()
