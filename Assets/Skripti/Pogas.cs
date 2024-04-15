@@ -295,6 +295,7 @@ public class Pogas : MonoBehaviour
                         objekti.rotuSkaitsIzv--;
                     }
                     irUzbrucis = true;
+                    Debug.Log("Rotu skaits: "+stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER]);
                     }
                 }
             }
