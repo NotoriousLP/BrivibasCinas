@@ -202,17 +202,13 @@ public void iekrasoBlakusPretiniekuTeritoriju(GameObject noklikState)
         
             float distance = Vector2.Distance(kontrole.transform.position, stateObject.transform.position - (Vector3)offset);
          
-            if (stateController != null && stateController.valsts.speletajs == speletajs && distance < 1.96f && stateController != objekti.noklikBlakusState  && 
+            if (stateController != null && stateController.valsts.speletajs == speletajs && distance < 1.96f  && 
             stateController != objekti.noklikState && objekti.atpakpesState == null && stateController.rotasSkaitsByPlayer[speletajs] == 0)
             {
                  objekti.atpakpesState = stateObject.GetComponent<SpelesKontrole>();
                  objekti.stateAtkapes = stateObject;
                 //Debug.Log("Pašreizējais skaits: "+stateController.rotasSkaitsByPlayer[speletajs]);
-            }/*else if(stateController != null && stateController.valsts.speletajs == speletajs && distance < 1.96f && stateController != objekti.noklikBlakusState && 
-            stateController != objekti.noklikState && objekti.atpakpesState == null){
-                 objekti.atpakpesState = stateObject.GetComponent<SpelesKontrole>();
-                 objekti.stateAtkapes = stateObject;
-            }*/
+            }
         }
         if(objekti.atpakpesState == null){
             objekti.irIelenkti = true;
@@ -352,13 +348,13 @@ public void iekrasoBlakusPretiniekuTeritoriju(GameObject noklikState)
 
                 foreach (GameObject stateObject in visiStates){
                   SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
-                if (stateController.valsts.speletajs == speletaji && stateObject.Equals(objekti.noklikBlakusState))
+                if (stateObject.Equals(objekti.noklikBlakusState))
                 {
                     uzbrukusoSkaits = noklikBlakusState.rotasSkaitsByPlayer[speletaji];
-                    //Debug.Log("uzbrūkošo skaits: "+uzbrukusoSkaits);
+                    Debug.Log("uzbrūkošo skaits: "+uzbrukusoSkaits);
                       for(int i=0; i<objekti.rotasPozicijas.Length; i++){
                         if (objekti.izmantotasPozicijas.Contains(objekti.rotasPozicijas[i]) && stateObject == objekti.noklikBlakusState){
-                            //Debug.Log("Skaits pretinieka: "+uzbrukusoSkaits); 
+                            Debug.Log("Skaits pretinieka: "+uzbrukusoSkaits); 
                          foreach (Transform child in objekti.noklikBlakusState.transform){
                          if (child.CompareTag("LSPRTroop") && uzbrukusoSkaits > 0){
                             Destroy(child.gameObject);
@@ -411,14 +407,14 @@ public void iekrasoBlakusPretiniekuTeritoriju(GameObject noklikState)
             int atkapsanasSkaits = 0;
              uzbruksanasState.Atpaksanas(uzbruksanasState, speletaji);
                 for(int i=0; i<visiStates.Length; i++){
-                 if(objekti.noklikBlakusState == GameObject.Find("States_"+i)){
+                 if(objekti.uzbruksanasState == GameObject.Find("States_"+i)){
                 objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state"+i+"Pozicijas");
                 }
                 }
 
                 foreach (GameObject stateObject in visiStates){
                   SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
-                if (stateController.valsts.speletajs == speletaji && stateObject.Equals(objekti.noklikBlakusState))
+                if (stateObject.Equals(objekti.uzbruksanasState))
                 {
                     uzbrukusoSkaits = uzbruksanasState.rotasSkaitsByPlayer[speletaji];
                     //Debug.Log("uzbrūkošo skaits: "+uzbrukusoSkaits);

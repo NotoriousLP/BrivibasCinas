@@ -44,7 +44,7 @@ public class AI : MonoBehaviour
         {
          SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();   
          float distance = Vector2.Distance(objekti.noKuraStateLSPRKontrole.transform.position, stateObject.transform.position - (Vector3)offset);
-                if(stateController != null && stateController.valsts.speletajs == Valstis.Speletaji.LSPR && stateController.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] <=2
+                if(stateController != null && stateController.valsts.speletajs == Valstis.Speletaji.PLAYER && stateController.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] < 3
                   && distance < 1.96f && stateController.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] != 5){
                  objekti.noKuraStateLSPRKontrole = stateObject.GetComponent<SpelesKontrole>();
                  objekti.noKuraStateLSPR = stateObject;                
@@ -65,8 +65,7 @@ public class AI : MonoBehaviour
         float distance = Vector2.Distance(objekti.noKuraStateLSPRKontrole.transform.position, stateObject.transform.position - (Vector3)offset);
         
         if(stateController != null && stateController.valsts.speletajs == Valstis.Speletaji.PLAYER && distance < 1.96f && 
-            stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] < objekti.noKuraStateLSPRKontrole.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR]
-            && stateController!=GameObject.Find("States_0")){
+            stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] < objekti.noKuraStateLSPRKontrole.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR]){
                  objekti.uzbruksanasStateKontrole = stateObject.GetComponent<SpelesKontrole>();
                  objekti.uzbruksanasState = stateObject;   
                  uzbrukt = true;
@@ -90,8 +89,8 @@ public class AI : MonoBehaviour
         Debug.Log("Notiek uzbrukšana uz lietotāju teritoriju");
         skaits = objekti.noKuraStateLSPRKontrole.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR];
         GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
-        kontrole.rotuAtkapsanasPlayer(Valstis.Speletaji.PLAYER);
         objekti.uzbruksanasState.GetComponent<SpelesKontrole>().valsts.speletajs = Valstis.Speletaji.LSPR;
+         kontrole.rotuAtkapsanasPlayer(Valstis.Speletaji.PLAYER);
             for(int i=0; i<visiStates.Length; i++){
             if(objekti.uzbruksanasState == GameObject.Find("States_"+i)){
                 objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state"+i+"Pozicijas");
@@ -169,6 +168,7 @@ public class AI : MonoBehaviour
                         objekti.izmantotasPozicijas.Add(objekti.rotasPozicijas[i]);
                         stateController.PievienotRotas(Valstis.Speletaji.LSPR, 1);
                         mobilizacijuSkaitsLSPR--;
+                        Debug.Log("AI pievieno rotas!");
                     }
 
             }
