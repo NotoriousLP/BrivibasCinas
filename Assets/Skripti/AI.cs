@@ -44,7 +44,7 @@ public class AI : MonoBehaviour
         {
          SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();   
          float distance = Vector2.Distance(objekti.noKuraStateLSPRKontrole.transform.position, stateObject.transform.position - (Vector3)offset);
-                if(stateController != null && stateController.valsts.speletajs == Valstis.Speletaji.LSPR && stateController.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] == 0
+                if(stateController != null && stateController.valsts.speletajs == Valstis.Speletaji.LSPR && stateController.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] <=2
                   && distance < 1.96f && stateController.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] != 5){
                  objekti.noKuraStateLSPRKontrole = stateObject.GetComponent<SpelesKontrole>();
                  objekti.noKuraStateLSPR = stateObject;                
@@ -64,8 +64,8 @@ public class AI : MonoBehaviour
         SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>(); 
         float distance = Vector2.Distance(objekti.noKuraStateLSPRKontrole.transform.position, stateObject.transform.position - (Vector3)offset);
         
-        if(stateController != null && stateController.valsts.speletajs == Valstis.Speletaji.PLAYER && distance < 2f && 
-            stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] <= objekti.noKuraStateLSPRKontrole.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR]
+        if(stateController != null && stateController.valsts.speletajs == Valstis.Speletaji.PLAYER && distance < 1.96f && 
+            stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] < objekti.noKuraStateLSPRKontrole.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR]
             && stateController!=GameObject.Find("States_0")){
                  objekti.uzbruksanasStateKontrole = stateObject.GetComponent<SpelesKontrole>();
                  objekti.uzbruksanasState = stateObject;   
@@ -83,7 +83,7 @@ public class AI : MonoBehaviour
 
     public void AIUzbruk(){
         bool irUzbrucis = false;
-        int skaits;
+        int skaits = 0;
         noKuraStateLSPRGajiens();
         LSPRUzbrukums();
         if(uzbrukt){
@@ -108,6 +108,7 @@ public class AI : MonoBehaviour
                         objekti.izmantotasPozicijas.Add(objekti.rotasPozicijas[i]);
                         stateController.PievienotRotas(Valstis.Speletaji.LSPR, 1);
                         skaits--;
+                        //Debug.Log("Rotas pievienojas");
                     }
                     irUzbrucis = true;
                     }
@@ -126,13 +127,15 @@ public class AI : MonoBehaviour
                 if (stateController.valsts.speletajs == Valstis.Speletaji.LSPR && stateObject.Equals(objekti.noKuraStateLSPR))
                 {
                     uzbrukusoSkaits = stateController1.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR];
+                    Debug.Log("AI uzbrūkošo skaits: "+uzbrukusoSkaits);
                       for(int i=0; i<stateController1.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR]; i++){
                         if (objekti.izmantotasPozicijas.Contains(objekti.rotasPozicijas[i]) && stateObject == objekti.noKuraStateLSPR){ 
-                         foreach (Transform child in objekti.noklikState.transform){
+                         foreach (Transform child in objekti.noKuraStateLSPR.transform){
                          if (child.CompareTag("LSPRTroop") && uzbrukusoSkaits > 0){
                             Destroy(child.gameObject);
                             uzbrukusoSkaits--;
                             irUzbrucis = false;
+                            Debug.Log("AI rotas pārvietojas");
                           }
                         }
                         objekti.izmantotasPozicijas.Remove(objekti.rotasPozicijas[i]);
@@ -149,7 +152,7 @@ public class AI : MonoBehaviour
 
     public void AIMobilize(){
     Debug.Log("Izsauc mobilizāciju");
-    mobilizacijuSkaitsLSPR = Random.Range(0, 2);
+    mobilizacijuSkaitsLSPR = Random.Range(1, 2);
             GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
             for(int i=0; i<visiStates.Length; i++){
                 if(objekti.noKuraStateLSPR == GameObject.Find("States_"+i)){
@@ -197,9 +200,4 @@ public class AI : MonoBehaviour
         }
     }
 
-
-    void Update()
-    {
-        
-    }
 }

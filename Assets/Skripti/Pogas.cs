@@ -275,8 +275,8 @@ public class Pogas : MonoBehaviour
 
 
         if(irUzvarejis){
+            objekti.noklikBlakusState.GetComponent<SpelesKontrole>().valsts.speletajs = Valstis.Speletaji.PLAYER;
             kontrole.rotuAtkapsanas(Valstis.Speletaji.LSPR);
-        objekti.noklikBlakusState.GetComponent<SpelesKontrole>().valsts.speletajs = Valstis.Speletaji.PLAYER;
             for(int i=0; i<visiStates.Length; i++){
             if(objekti.noklikBlakusState == GameObject.Find("States_"+i)){
                 objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state"+i+"Pozicijas");
