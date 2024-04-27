@@ -351,10 +351,19 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
             objekti.rotuSkaitsIzv = 0;
             atgriezLietotajuKrasas();
          }
+         if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.LSPR && objekti.vaiIrIzveleKust == true && objekti.otraSpeletajaKarta == true){
+          objekti.noklikBlakusState = hit.collider.gameObject;
+            objekti.kustinat.gameObject.SetActive(true);
+            objekti.kurVietaKustinat.gameObject.SetActive(false);
+            objekti.skaits.gameObject.SetActive(true);
+            objekti.plusParvietot.gameObject.SetActive(true);
+            objekti.minusParvietot.gameObject.SetActive(true);
+            objekti.rotuSkaitsIzv = 0;
+            atgriezPretiniekuKrasas();
+         }
 
-        
-        if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.LSPR && objekti.vaiIrIzveleUzbr == false && objekti.vaiIrIzveleKust == false && objekti.lietotajuKarta == false && objekti.otraSpeletajaKarta == true)
-        {
+         if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.LSPR && objekti.vaiIrIzveleUzbr == false && objekti.vaiIrIzveleKust == false && objekti.lietotajuKarta == false && objekti.otraSpeletajaKarta == true)
+          { 
             objekti.noklikState = hit.collider.gameObject;
             //Debug.Log("Collider hit: " + hit.collider.name);
             objekti.izvelesLauks.gameObject.SetActive(true);

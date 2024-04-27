@@ -39,6 +39,7 @@ public class Pogas : MonoBehaviour
         objekti.izvelesLauks.gameObject.SetActive(false);
         objekti.irIzvelesLauksIeslegts = false;
         kontrole.atgriezPretiniekuKrasas();
+         kontrole.atgriezLietotajuKrasas();
          objekti.vaiIrIzveleUzbr = false;
         objekti.vaiIrIzveleKust = false;
     }
@@ -57,7 +58,11 @@ public class Pogas : MonoBehaviour
     {
         objekti.izvele.gameObject.SetActive(false);
         objekti.kurVietaKustinat.gameObject.SetActive(true);
+        if(objekti.lietotajuKarta == true){
         kontrole.iekrasoBlakusLietotajuTeritoriju(objekti.noklikState);
+        }else if(objekti.otraSpeletajaKarta == true){
+         kontrole.iekrasoBlakusPretiniekuTeritoriju(objekti.noklikState);  
+        }
     }
 
     public void uzbruktPoga()
@@ -122,6 +127,11 @@ public class Pogas : MonoBehaviour
 
     public void plusPogaParvietot()
     {
+            if(objekti.lietotajuKarta == true){
+            speletaji = Valstis.Speletaji.PLAYER;
+          }else if(objekti.otraSpeletajaKarta == true){
+             speletaji = Valstis.Speletaji.LSPR;
+              }
         GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
 
         foreach (GameObject stateObject in visiStates)
@@ -131,8 +141,8 @@ public class Pogas : MonoBehaviour
 
                 if (stateObject == objekti.noklikState)
             {
-                int pieejamasRotas = stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER];
-                int maksimalasRotasKustinat = Mathf.Min(5 - stateController1.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER], pieejamasRotas);
+                int pieejamasRotas = stateController.rotasSkaitsByPlayer[speletaji];
+                int maksimalasRotasKustinat = Mathf.Min(5 - stateController1.rotasSkaitsByPlayer[speletaji], pieejamasRotas);
                 if (maksimalasRotasKustinat > 0 && objekti.rotuSkaitsIzv < maksimalasRotasKustinat)
                 {
                     objekti.rotuSkaitsIzv++;
