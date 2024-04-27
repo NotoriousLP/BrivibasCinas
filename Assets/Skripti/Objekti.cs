@@ -81,11 +81,15 @@ public class Objekti : MonoBehaviour
 
 
     //AI blakus pie lietotāja state
-
+    public int lietotajaGajieni = 0;
     public GameObject uzbruksanasState;
     public SpelesKontrole uzbruksanasStateKontrole;
     public GameObject noKuraStateLSPR;
     public SpelesKontrole noKuraStateLSPRKontrole;
+
+    public GameObject lietotajuState;
+
+    public bool otraSpeletajaKarta = false;
 }
 
 

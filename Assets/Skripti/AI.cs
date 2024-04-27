@@ -23,10 +23,23 @@ public class AI : MonoBehaviour
         float territoryWidth = territoryBounds.size.x;
         float territoryHeight = territoryBounds.size.y;
         Vector2 offset = new Vector2(territoryWidth * 0.001f, territoryHeight * 0.001f);
+        float distance  = 0;
+        SpelesKontrole lietotajaState = null;
         foreach (GameObject stateObject in visiStates)
         {
-        SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();        
-            if(stateController != null && stateController.valsts.speletajs == Valstis.Speletaji.LSPR && stateController.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] > 0){
+        SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();     
+        if(stateController != null && stateController.valsts.speletajs == Valstis.Speletaji.PLAYER && stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] > 0){
+            lietotajaState = stateObject.GetComponent<SpelesKontrole>();
+             objekti.lietotajuState = stateObject;        
+
+        }
+        }
+        lietotajaState = objekti.lietotajuState.GetComponent<SpelesKontrole>();
+        foreach (GameObject stateObject in visiStates)
+        {
+        SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();     
+        distance = Vector2.Distance(objekti.lietotajuState.transform.position, stateObject.transform.position - (Vector3)offset); 
+            if(stateController != null && stateController.valsts.speletajs == Valstis.Speletaji.LSPR && stateController.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] > 0 && distance < 1.96f){
                  objekti.noKuraStateLSPRKontrole = stateObject.GetComponent<SpelesKontrole>();
                  objekti.noKuraStateLSPR = stateObject;                
             }
@@ -40,12 +53,13 @@ public class AI : MonoBehaviour
         float territoryWidth = territoryBounds.size.x;
         float territoryHeight = territoryBounds.size.y;
         Vector2 offset = new Vector2(territoryWidth * 0.001f, territoryHeight * 0.001f);
+        float distance  = 0;
         foreach (GameObject stateObject in visiStates)
         {
          SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();   
-         float distance = Vector2.Distance(objekti.noKuraStateLSPRKontrole.transform.position, stateObject.transform.position - (Vector3)offset);
-                if(stateController != null && stateController.valsts.speletajs == Valstis.Speletaji.PLAYER && stateController.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] < 3
-                  && distance < 1.96f && stateController.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] != 5){
+             distance = Vector2.Distance(objekti.lietotajuState.transform.position, stateObject.transform.position - (Vector3)offset);   
+                if(stateController != null && stateController.valsts.speletajs == Valstis.Speletaji.LSPR && distance < 2.1f && stateController.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] != 5 &&
+                stateController.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] < 0){
                  objekti.noKuraStateLSPRKontrole = stateObject.GetComponent<SpelesKontrole>();
                  objekti.noKuraStateLSPR = stateObject;                
                  }
@@ -68,10 +82,9 @@ public class AI : MonoBehaviour
             stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] < objekti.noKuraStateLSPRKontrole.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR]){
                  objekti.uzbruksanasStateKontrole = stateObject.GetComponent<SpelesKontrole>();
                  objekti.uzbruksanasState = stateObject;   
-                 uzbrukt = true;
             }
         }
-        if(!uzbrukt && objekti.uzbruksanasState == null){
+        if(objekti.uzbruksanasState == null){
                noKuraStateLSPRVelreiz();
                 Debug.Log("AI šoreiz tad izvēlās: "+objekti.noKuraStateLSPR);
                 AIMobilize();
@@ -85,7 +98,7 @@ public class AI : MonoBehaviour
         int skaits = 0;
         noKuraStateLSPRGajiens();
         LSPRUzbrukums();
-        if(uzbrukt){
+        if(objekti.uzbruksanasState != null){
         Debug.Log("Notiek uzbrukšana uz lietotāju teritoriju");
         skaits = objekti.noKuraStateLSPRKontrole.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR];
         GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
@@ -134,7 +147,7 @@ public class AI : MonoBehaviour
                             Destroy(child.gameObject);
                             uzbrukusoSkaits--;
                             irUzbrucis = false;
-                            Debug.Log("AI rotas pārvietojas");
+                            //Debug.Log("AI rotas pārvietojas");
                           }
                         }
                         objekti.izmantotasPozicijas.Remove(objekti.rotasPozicijas[i]);
@@ -147,6 +160,7 @@ public class AI : MonoBehaviour
         }
         }
         objekti.lietotajuKarta = true;
+          objekti.lietotajaGajieni = 0;
     }
 
     public void AIMobilize(){
@@ -175,12 +189,14 @@ public class AI : MonoBehaviour
                 }
             }
     objekti.lietotajuKarta = true;
+      objekti.lietotajaGajieni = 0;
     }
 
     public void AIParvietojas(){
     
 
         objekti.lietotajuKarta = true;
+          objekti.lietotajaGajieni = 0;
     }
 
 
