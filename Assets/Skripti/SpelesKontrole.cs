@@ -418,6 +418,7 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
             int rotasSkaits = 0;
             int atkapsanasSkaits = 0;
              noklikBlakusState.Atpaksanas(noklikBlakusState, speletajs);
+
                 for(int i=0; i<visiStates.Length; i++){
                  if(objekti.noklikBlakusState == GameObject.Find("States_"+i)){
                 objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state"+i+"Pozicijas");
@@ -430,10 +431,10 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
                 {
                     if(pogas.speletaji == Valstis.Speletaji.PLAYER && objekti.lietotajuKarta){
                     rotasSkaits = noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR];
-                    atkapsanasSkaits = noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR];
+                    atkapsanasSkaits = noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] - objekti.rotuSkaitsIzv + 2;
                     }else if(pogas.speletaji == Valstis.Speletaji.LSPR && objekti.otraSpeletajaKarta){
                     rotasSkaits = noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER]; 
-                    atkapsanasSkaits = noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER];
+                    atkapsanasSkaits = noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] - objekti.rotuSkaitsIzv + 2;
                     }
 
                       for(int i=0; i<objekti.rotasPozicijas.Length; i++){

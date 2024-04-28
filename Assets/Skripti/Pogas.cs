@@ -312,7 +312,7 @@ public class Pogas : MonoBehaviour
         objekti.atpakpesState = null;
         objekti.stateAtkapes = null;
         SpelesKontrole noklikBlakusState = objekti.noklikBlakusState.GetComponent<SpelesKontrole>();
-
+        SpelesKontrole klikState = objekti.noklikState.GetComponent<SpelesKontrole>();
         if(objekti.lietotajuKarta==true){
         if(objekti.rotuSkaitsIzv > noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR]){
             irUzvarejis = true;   
@@ -347,10 +347,27 @@ public class Pogas : MonoBehaviour
 
        
        if(irZaudejis){
-            if(noklikBlakusState.rotasSkaitsByPlayer[speletaji] == 5 && objekti.rotuSkaitsIzv == 1){
-            }else if(noklikBlakusState.rotasSkaitsByPlayer[speletaji] == 4 && objekti.rotuSkaitsIzv == 2){
-            }else if(noklikBlakusState.rotasSkaitsByPlayer[speletaji] == 5 && objekti.rotuSkaitsIzv == 3){
+        if(objekti.lietotajuKarta){
+        if(noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] >= objekti.rotuSkaitsIzv){
+                
+                int rotasZaudejumi = noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] - objekti.rotuSkaitsIzv;
+               
+                rotasZaudejumi = Mathf.Max(rotasZaudejumi, 0);
+               
+                
+                Debug.Log("Enemy lost " +rotasZaudejumi+ " troops.");
             }
+        }else if(objekti.otraSpeletajaKarta){
+            if(noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] >= objekti.rotuSkaitsIzv){
+                
+                int rotasZaudejumi = noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] - objekti.rotuSkaitsIzv;
+               
+                rotasZaudejumi = Mathf.Max(rotasZaudejumi, 0);
+               
+                
+                Debug.Log("Enemy lost " +rotasZaudejumi+ " troops.");
+            }
+        }
         }
 
 
