@@ -214,7 +214,8 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
     Bounds territoryBounds = kontrole.GetComponent<PolygonCollider2D>().bounds;
     float territoryWidth = territoryBounds.size.x;
     float territoryHeight = territoryBounds.size.y;
-
+    objekti.irIelenkti = false;
+    
     //Pārbaudes mainīgie
     bool irAtrasts = false;  // Vai ir atrasta teritorija atkāpšanai
     bool navAtrasts = false; 
