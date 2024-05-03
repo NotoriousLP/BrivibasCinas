@@ -215,7 +215,7 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
     float territoryWidth = territoryBounds.size.x;
     float territoryHeight = territoryBounds.size.y;
     objekti.irIelenkti = false;
-    
+
     //Pārbaudes mainīgie
     bool irAtrasts = false;  // Vai ir atrasta teritorija atkāpšanai
     bool navAtrasts = false; 
@@ -420,7 +420,7 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
             int rotasSkaits = 0;
             int atkapsanasSkaits = 0;
              noklikBlakusState.Atpaksanas(noklikBlakusState, speletajs);
-
+            
                 for(int i=0; i<visiStates.Length; i++){
                  if(objekti.noklikBlakusState == GameObject.Find("States_"+i)){
                 objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state"+i+"Pozicijas");
