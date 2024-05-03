@@ -351,8 +351,12 @@ public class Pogas : MonoBehaviour
         if(noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] >= objekti.rotuSkaitsIzv){
                 
                 int rotasZaudejumi = noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] - objekti.rotuSkaitsIzv;
+
+                if(rotasZaudejumi == 0){
+                    
+                }                
                
-                rotasZaudejumi = Mathf.Max(rotasZaudejumi, 0);
+                rotasZaudejumi = Mathf.Max(rotasZaudejumi, 1);
                
                 
                 Debug.Log("Enemy lost " +rotasZaudejumi+ " troops.");
@@ -362,7 +366,7 @@ public class Pogas : MonoBehaviour
                 
                 int rotasZaudejumi = noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] - objekti.rotuSkaitsIzv;
                
-                rotasZaudejumi = Mathf.Max(rotasZaudejumi, 0);
+                rotasZaudejumi = Mathf.Max(rotasZaudejumi, 1);
                
                 
                 Debug.Log("Enemy lost " +rotasZaudejumi+ " troops.");
