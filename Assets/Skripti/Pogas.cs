@@ -188,12 +188,22 @@ public class Pogas : MonoBehaviour
                 }
             }
         }
+        objekti.izvelesLauks.gameObject.SetActive(false);
+        objekti.izvele.gameObject.SetActive(false);
+        objekti.mobilizet.gameObject.SetActive(false);
+        objekti.skaits.gameObject.SetActive(false);
+        objekti.plusMob.gameObject.SetActive(false);
+        objekti.minusMob.gameObject.SetActive(false);
         if(objekti.lietotajuKarta == true){
         objekti.lietotajuKarta = false;
         objekti.otraSpeletajaKarta = true;
+        objekti.LatvijasKarogs.gameObject.SetActive(false);
+        objekti.LSPRKarogs.gameObject.SetActive(true);
         }else if(objekti.otraSpeletajaKarta == true){
         objekti.otraSpeletajaKarta = false;
           objekti.lietotajuKarta = true;
+        objekti.LatvijasKarogs.gameObject.SetActive(true);
+        objekti.LSPRKarogs.gameObject.SetActive(false);
         }
           //ai.AIKustiba();
     }
@@ -298,9 +308,13 @@ public class Pogas : MonoBehaviour
         if(objekti.lietotajuKarta == true){
         objekti.lietotajuKarta = false;
         objekti.otraSpeletajaKarta = true;
+        objekti.LatvijasKarogs.gameObject.SetActive(false);
+        objekti.LSPRKarogs.gameObject.SetActive(true);
         }else if(objekti.otraSpeletajaKarta == true){
         objekti.otraSpeletajaKarta = false;
           objekti.lietotajuKarta = true;
+        objekti.LatvijasKarogs.gameObject.SetActive(true);
+        objekti.LSPRKarogs.gameObject.SetActive(false);
         }
         //ai.AIKustiba();
     }
@@ -479,9 +493,13 @@ public class Pogas : MonoBehaviour
         if(objekti.lietotajuKarta == true){
         objekti.lietotajuKarta = false;
         objekti.otraSpeletajaKarta = true;
+        objekti.LatvijasKarogs.gameObject.SetActive(false);
+        objekti.LSPRKarogs.gameObject.SetActive(true);
         }else if(objekti.otraSpeletajaKarta == true){
         objekti.otraSpeletajaKarta = false;
           objekti.lietotajuKarta = true;
+       objekti.LatvijasKarogs.gameObject.SetActive(true);
+        objekti.LSPRKarogs.gameObject.SetActive(false);
         }
         //ai.AIKustiba();
     }

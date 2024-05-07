@@ -632,6 +632,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -853,6 +854,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -1045,7 +1047,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000012398, y: -203}
+  m_AnchoredPosition: {x: 0.000012398, y: -127.63}
   m_SizeDelta: {x: 92.0423, y: 62.5697}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &123590042
@@ -1178,7 +1180,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -255, y: -174}
+  m_AnchoredPosition: {x: -227.1, y: -137.01}
   m_SizeDelta: {x: 137.8147, y: 47.3306}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &123667835
@@ -1462,7 +1464,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &134997603
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1480,7 +1482,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 104, y: -99}
+  m_AnchoredPosition: {x: 106, y: -45.582996}
   m_SizeDelta: {x: 62.046, y: 46.6967}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &134997604
@@ -1648,7 +1650,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00012207031, y: -203}
+  m_AnchoredPosition: {x: -0.0000054082, y: -136}
   m_SizeDelta: {x: 92.0423, y: 62.5697}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &138271143
@@ -1779,7 +1781,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -76, y: 48.233948}
+  m_AnchoredPosition: {x: 13, y: 35}
   m_SizeDelta: {x: 612.0204, y: 96.4684}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &180133584
@@ -1913,7 +1915,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -76, y: 48.233948}
+  m_AnchoredPosition: {x: 12, y: 28}
   m_SizeDelta: {x: 612.0204, y: 96.4684}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &220964249
@@ -2143,8 +2145,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -342, y: 218.92}
-  m_SizeDelta: {x: 75.8917, y: 61.504}
+  m_AnchoredPosition: {x: -263, y: 126}
+  m_SizeDelta: {x: 67.9003, y: 56.428}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &238450917
 GameObject:
@@ -2316,6 +2318,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -3268,6 +3271,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -3483,6 +3487,8 @@ RectTransform:
   - {fileID: 1650253368}
   - {fileID: 326960786}
   - {fileID: 1944042817}
+  - {fileID: 2071866091}
+  - {fileID: 1202353664}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3764,6 +3770,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -4315,6 +4322,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -4472,7 +4480,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -9169, y: 0.0021362}
+  m_AnchoredPosition: {x: 27196, y: 0.0021362}
   m_SizeDelta: {x: 8437.55, y: 6831.03}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &559626381
@@ -5108,7 +5116,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -110, y: -99}
+  m_AnchoredPosition: {x: -106, y: -36.583}
   m_SizeDelta: {x: 62.046, y: 46.6967}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &670136031
@@ -5612,7 +5620,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -76, y: 48.234}
+  m_AnchoredPosition: {x: 13, y: 26}
   m_SizeDelta: {x: 612.0204, y: 96.4684}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &810647635
@@ -5891,6 +5899,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -6006,7 +6015,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.7796, y: -99}
+  m_AnchoredPosition: {x: 1.7796, y: -40.514}
   m_SizeDelta: {x: 96.4408, y: 81.027}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &867855717
@@ -6217,6 +6226,7 @@ MonoBehaviour:
     speletajs: 1
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -6369,7 +6379,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &895389293
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6496,6 +6506,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -6761,7 +6772,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55.05
+  m_fontSize: 50.5
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6846,6 +6857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objekti: {fileID: 0}
   kontrole: {fileID: 0}
+  speletaji: 0
   ai: {fileID: 0}
 --- !u!4 &1027353618
 Transform:
@@ -6888,6 +6900,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lietotajuKarta: 0
+  LatvijasKarogs: {fileID: 1202353663}
+  LSPRKarogs: {fileID: 2071866090}
   izvelesLauks: {fileID: 1514541387}
   irIzvelesLauksIeslegts: 0
   izietPoga: {fileID: 0}
@@ -6931,10 +6945,13 @@ MonoBehaviour:
   irIelenkti: 0
   blakusStateLSPR: []
   blakusStatePlayer: []
+  lietotajaGajieni: 0
   uzbruksanasState: {fileID: 0}
   uzbruksanasStateKontrole: {fileID: 0}
   noKuraStateLSPR: {fileID: 0}
   noKuraStateLSPRKontrole: {fileID: 0}
+  lietotajuState: {fileID: 0}
+  otraSpeletajaKarta: 0
 --- !u!114 &1027353621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7102,6 +7119,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -7258,8 +7276,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 210.2984, y: -172.98}
-  m_SizeDelta: {x: 162.5568, y: 45.302}
+  m_AnchoredPosition: {x: 219, y: -136}
+  m_SizeDelta: {x: 145.6628, y: 45.302}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1056874280
 MonoBehaviour:
@@ -7391,7 +7409,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 104, y: -99}
+  m_AnchoredPosition: {x: 100, y: -36.583}
   m_SizeDelta: {x: 62.046, y: 46.6967}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1062473406
@@ -7593,7 +7611,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -76, y: 48.233887}
+  m_AnchoredPosition: {x: 8, y: 21}
   m_SizeDelta: {x: 612.0204, y: 96.4684}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1102813592
@@ -8012,6 +8030,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -8113,6 +8132,81 @@ PolygonCollider2D:
       - {x: 0.21, y: -0.75}
       - {x: 0.29999998, y: -0.66999996}
   m_UseDelaunayMesh: 0
+--- !u!1 &1202353663
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1202353664}
+  - component: {fileID: 1202353666}
+  - component: {fileID: 1202353665}
+  m_Layer: 5
+  m_Name: LatvijasKarogs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1202353664
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202353663}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 438051526}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -914, y: 518}
+  m_SizeDelta: {x: 117.0904, y: 59.4103}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1202353665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202353663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 24c55a738095f644c95e71913e2b1134, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1202353666
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202353663}
+  m_CullTransparentMesh: 1
 --- !u!1 &1205706980
 GameObject:
   m_ObjectHideFlags: 0
@@ -8387,6 +8481,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -8592,6 +8687,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -8739,7 +8835,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -76, y: 48.233948}
+  m_AnchoredPosition: {x: 0.00000095367, y: 1.7658}
   m_SizeDelta: {x: 612.0204, y: 96.4684}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1255489156
@@ -9086,7 +9182,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00012207031, y: -203}
+  m_AnchoredPosition: {x: -0.0000054082, y: -133}
   m_SizeDelta: {x: 92.0423, y: 62.5697}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1297956926
@@ -9433,6 +9529,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -9672,6 +9769,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -9892,6 +9990,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -10213,6 +10312,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -10571,6 +10671,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -10746,7 +10847,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 104, y: -99}
+  m_AnchoredPosition: {x: 109, y: -44}
   m_SizeDelta: {x: 62.046, y: 46.6967}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1461329433
@@ -11115,6 +11216,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -11331,6 +11433,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -11489,8 +11592,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -30, y: -298.18}
-  m_SizeDelta: {x: 789.8796, y: 517.381}
+  m_AnchoredPosition: {x: -415.68384, y: -388.82}
+  m_SizeDelta: {x: 610.4713, y: 336.28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1514541389
 MonoBehaviour:
@@ -11505,7 +11608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0.6686468, a: 0.29803923}
+  m_Color: {r: 0.6981132, g: 0.6026166, b: 0.66665554, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11634,6 +11737,7 @@ MonoBehaviour:
     speletajs: 1
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -11853,6 +11957,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -12266,7 +12371,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1601064915
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12284,7 +12389,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -110, y: -99}
+  m_AnchoredPosition: {x: -110, y: -45.583}
   m_SizeDelta: {x: 62.046, y: 46.6967}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1601064916
@@ -12415,7 +12520,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -76, y: 48.233948}
+  m_AnchoredPosition: {x: 9, y: 39}
   m_SizeDelta: {x: 612.0204, y: 96.4684}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1608655938
@@ -12653,6 +12758,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -13299,6 +13405,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -13527,6 +13634,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -13727,6 +13835,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -14071,6 +14180,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -14337,7 +14447,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 355, y: 224}
+  m_AnchoredPosition: {x: 259, y: 126}
   m_SizeDelta: {x: 58.5788, y: 51.3519}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1787861897
@@ -14682,6 +14792,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -15092,6 +15203,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -15483,6 +15595,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -15690,6 +15803,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -16135,7 +16249,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -110, y: -99}
+  m_AnchoredPosition: {x: -97, y: -44}
   m_SizeDelta: {x: 62.046, y: 46.6967}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2039070333
@@ -16335,6 +16449,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2
@@ -16485,7 +16600,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -26.683, y: -174}
+  m_AnchoredPosition: {x: 0.0000019073, y: -137.02}
   m_SizeDelta: {x: 153.3652, y: 47.335}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2068339599
@@ -16716,6 +16831,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2070702649}
   m_CullTransparentMesh: 1
+--- !u!1 &2071866090
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2071866091}
+  - component: {fileID: 2071866093}
+  - component: {fileID: 2071866092}
+  m_Layer: 5
+  m_Name: LSPRKarogs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2071866091
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071866090}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 438051526}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -913.99994, y: 518}
+  m_SizeDelta: {x: 117.09, y: 59.407}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2071866092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071866090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 904c5cfd7f3154b4287d36b500e41f60, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2071866093
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071866090}
+  m_CullTransparentMesh: 1
 --- !u!1 &2074821249
 GameObject:
   m_ObjectHideFlags: 0
@@ -16819,6 +17009,7 @@ MonoBehaviour:
     speletajs: 0
   parvalde: {fileID: 0}
   objekti: {fileID: 0}
+  pogas: {fileID: 0}
   valstsSaraksts: []
   vecaKrasa:
     serializedVersion: 2

@@ -10,6 +10,10 @@ public class Objekti : MonoBehaviour
     //Lietotāju kārta
     public bool lietotajuKarta = false;
 
+    public GameObject LatvijasKarogs;
+    public GameObject LSPRKarogs;
+
+
 
     //Izvēles lauks
     public GameObject izvelesLauks;

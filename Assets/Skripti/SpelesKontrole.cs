@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Mathematics;
 using Unity.VisualScripting;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -72,6 +73,8 @@ public class SpelesKontrole : MonoBehaviour
                   objekti.vaiIrSakumaRotasLSPR = true;
 
 
+        objekti.LatvijasKarogs.gameObject.SetActive(true);
+        objekti.LSPRKarogs.gameObject.SetActive(false);
         }
 
 

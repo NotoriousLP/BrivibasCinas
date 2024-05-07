@@ -19,6 +19,7 @@ TagManager:
   - state8Pozicijas
   - state9Pozicijas
   - state10Pozicijas
+  - state0Pozicijas
   layers:
   - Default
   - TransparentFX
