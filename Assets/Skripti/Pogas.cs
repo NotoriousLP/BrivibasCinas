@@ -78,18 +78,35 @@ public class Pogas : MonoBehaviour
 
     public void plusPogaMob()
     {
-        if(objekti.rotuSkaits > 0 && objekti.rotuSkaits <= 5 && objekti.rotuSkaitsIzv >= 0 && objekti.rotuSkaitsIzv < objekti.rotuSkaits)
+        if(objekti.lietotajuKarta == true){
+        if(objekti.rotuSkaitsPlayer > 0 && objekti.rotuSkaitsPlayer <= 5 && objekti.rotuSkaitsIzv >= 0 && objekti.rotuSkaitsIzv < objekti.rotuSkaitsPlayer)
         {
             objekti.rotuSkaitsIzv++;
         }
+        }else if(objekti.otraSpeletajaKarta == true){
+        if(objekti.rotuSkaitsLSPR > 0 && objekti.rotuSkaitsLSPR <= 5 && objekti.rotuSkaitsIzv >= 0 && objekti.rotuSkaitsIzv < objekti.rotuSkaitsLSPR)
+        {
+            objekti.rotuSkaitsIzv++;
+        } 
+        }
+
     }
 
     public void minusPogaMob()
     {
-        if (objekti.rotuSkaits > 0 && objekti.rotuSkaits <= 5 && objekti.rotuSkaitsIzv > 0 && objekti.rotuSkaitsIzv <= objekti.rotuSkaits)
+
+        if(objekti.lietotajuKarta == true){
+        if (objekti.rotuSkaitsPlayer > 0 && objekti.rotuSkaitsPlayer <= 5 && objekti.rotuSkaitsIzv > 0 && objekti.rotuSkaitsIzv <= objekti.rotuSkaitsPlayer)
         {
             objekti.rotuSkaitsIzv--;
         }
+        }else if(objekti.otraSpeletajaKarta == true){
+        if (objekti.rotuSkaitsLSPR > 0 && objekti.rotuSkaitsLSPR <= 5 && objekti.rotuSkaitsIzv > 0 && objekti.rotuSkaitsIzv <= objekti.rotuSkaitsLSPR)
+        {
+            objekti.rotuSkaitsIzv--;
+        }
+        }
+
     }
 
     public void plusPogaUzb(){
@@ -153,7 +170,7 @@ public class Pogas : MonoBehaviour
 
 
     public void mobilizetRotas(){
-        if(objekti.rotuSkaits != 0 && objekti.rotuSkaitsIzv !=0){
+        if(objekti.rotuSkaitsLSPR != 0 || objekti.rotuSkaitsPlayer != 0 && objekti.rotuSkaitsIzv !=0){
              if(objekti.lietotajuKarta == true){
             speletaji = Valstis.Speletaji.PLAYER;
           }else if(objekti.otraSpeletajaKarta == true){

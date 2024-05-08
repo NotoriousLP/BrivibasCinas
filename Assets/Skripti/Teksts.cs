@@ -21,7 +21,12 @@ public class Teksts : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rotuTeksts.text = objekti.rotuSkaits.ToString();
+        if(objekti.lietotajuKarta == true){
+        rotuTeksts.text = objekti.rotuSkaitsPlayer.ToString();
+        }else if(objekti.otraSpeletajaKarta == true){
+        rotuTeksts.text = objekti.rotuSkaitsLSPR.ToString();
+        }
+
         objekti.skaitaLauks.text = objekti.rotuSkaitsIzv.ToString();
     }
 }
