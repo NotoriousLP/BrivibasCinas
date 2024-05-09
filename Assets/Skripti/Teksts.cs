@@ -10,8 +10,13 @@ public class Teksts : MonoBehaviour
     //Teksti
     public TextMeshProUGUI rotuTeksts;
 
+    public TextMeshProUGUI skaitaLauks;
     public Objekti objekti;
     public SpelesKontrole kontrole;
+
+    public TextMeshProUGUI vesturisksApraksts;
+
+    public TextMeshProUGUI cinasTeksts;
 
      void Start()
     {
@@ -27,6 +32,6 @@ public class Teksts : MonoBehaviour
         rotuTeksts.text = objekti.rotuSkaitsLSPR.ToString();
         }
 
-        objekti.skaitaLauks.text = objekti.rotuSkaitsIzv.ToString();
+        skaitaLauks.text = objekti.rotuSkaitsIzv.ToString();
     }
 }

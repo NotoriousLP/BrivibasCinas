@@ -22,7 +22,7 @@ public class Objekti : MonoBehaviour
 
 
     //Izvele
-    public TextMeshProUGUI skaitaLauks;
+   
     public GameObject skaits;
     public Button plusMob;
     public Button minusMob;
@@ -48,6 +48,13 @@ public class Objekti : MonoBehaviour
 
     //atpakal lauks
     public GameObject atpakalUzIzveli;
+
+
+    //Vēsturiskā apraksta lietas
+
+    public GameObject pazinojumaLauks;
+
+    public bool apraksts = false;
 
 
     //ESC
@@ -95,6 +102,8 @@ public class Objekti : MonoBehaviour
     public GameObject lietotajuState;
 
     public bool otraSpeletajaKarta = false;
+
+
 }
 
 

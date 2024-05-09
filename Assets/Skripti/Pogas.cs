@@ -10,11 +10,13 @@ public class Pogas : MonoBehaviour
     public SpelesKontrole kontrole;
     public Valstis.Speletaji speletaji;
     public AI ai;
+    public Teksts  teksts;
     void Start()
     {
         objekti = FindObjectOfType<Objekti>();
         kontrole = FindAnyObjectByType<SpelesKontrole>();
         ai = FindAnyObjectByType<AI>();
+        teksts = FindAnyObjectByType<Teksts>();
     }
 
     public void uzIestatijumuAinu()
@@ -192,13 +194,16 @@ public class Pogas : MonoBehaviour
                         if (!objekti.izmantotasPozicijas.Contains(objekti.rotasPozicijas[i]) && objekti.rotuSkaitsIzv > 0){ 
                     if(speletaji == Valstis.Speletaji.PLAYER){
                         Instantiate(objekti.rotasPrefs, objekti.rotasPozicijas[i].transform.position, Quaternion.identity, objekti.noklikState.transform);
+                        objekti.rotuSkaitsPlayer--;
                         }else if(speletaji == Valstis.Speletaji.LSPR){
                         Instantiate(objekti.rotasPrefsLSPR, objekti.rotasPozicijas[i].transform.position, Quaternion.identity, objekti.noklikState.transform);
+                        objekti.rotuSkaitsLSPR--;
                         }
                         objekti.izmantotasPozicijas.Add(objekti.rotasPozicijas[i]);
 
                         stateController.PievienotRotas(speletaji, 1);
                         objekti.rotuSkaitsIzv--;
+                        
                     }
 
             }
@@ -385,7 +390,7 @@ public class Pogas : MonoBehaviour
             }
         }
 
-       
+ 
        if(irZaudejis){
         if(objekti.lietotajuKarta){
         if(noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] >= objekti.rotuSkaitsIzv){
@@ -412,6 +417,9 @@ public class Pogas : MonoBehaviour
                 Debug.Log("Enemy lost " +rotasZaudejumi+ " troops.");
             }
         }
+
+        teksts.cinasTeksts.text = "Tu esi zaudējis šo cīņu!";
+        objekti.pazinojumaLauks.gameObject.SetActive(true);
         }
 
 
@@ -453,6 +461,10 @@ public class Pogas : MonoBehaviour
                     }
                 Debug.Log("Rotu skaits: "+stateController.rotasSkaitsByPlayer[speletaji]);
                 }
+                teksts.cinasTeksts.text = "Tu esi uzvarējis šo cīņu!";
+                objekti.pazinojumaLauks.gameObject.SetActive(true);
+                kontrole.vesturisksNotikums();
+                objekti.apraksts = true;
                 
             }
                 if(irUzbrucis == true){
@@ -507,17 +519,6 @@ public class Pogas : MonoBehaviour
         objekti.skaits.gameObject.SetActive(false);
         objekti.plusUzb.gameObject.SetActive(false);
         objekti.minusUzb.gameObject.SetActive(false);
-        if(objekti.lietotajuKarta == true){
-        objekti.lietotajuKarta = false;
-        objekti.otraSpeletajaKarta = true;
-        objekti.LatvijasKarogs.gameObject.SetActive(false);
-        objekti.LSPRKarogs.gameObject.SetActive(true);
-        }else if(objekti.otraSpeletajaKarta == true){
-        objekti.otraSpeletajaKarta = false;
-          objekti.lietotajuKarta = true;
-       objekti.LatvijasKarogs.gameObject.SetActive(true);
-        objekti.LSPRKarogs.gameObject.SetActive(false);
-        }
         //ai.AIKustiba();
     }
 
@@ -543,4 +544,20 @@ public class Pogas : MonoBehaviour
     }
 
 
+
+    public void okPogaApraksts(){
+        objekti.pazinojumaLauks.gameObject.SetActive(false);
+        objekti.apraksts = false;
+        if(objekti.lietotajuKarta == true){
+        objekti.lietotajuKarta = false;
+        objekti.otraSpeletajaKarta = true;
+        objekti.LatvijasKarogs.gameObject.SetActive(false);
+        objekti.LSPRKarogs.gameObject.SetActive(true);
+        }else if(objekti.otraSpeletajaKarta == true){
+        objekti.otraSpeletajaKarta = false;
+          objekti.lietotajuKarta = true;
+       objekti.LatvijasKarogs.gameObject.SetActive(true);
+        objekti.LSPRKarogs.gameObject.SetActive(false);
+        }
+    }
 }

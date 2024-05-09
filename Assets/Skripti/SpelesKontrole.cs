@@ -315,7 +315,7 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
 
         //Debug.Log(objekti.irIzvelesLauksIeslegts);
 
-        if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.PLAYER && objekti.vaiIrIzveleUzbr == false && objekti.vaiIrIzveleKust == false && objekti.lietotajuKarta == true)
+        if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.PLAYER && objekti.vaiIrIzveleUzbr == false && objekti.vaiIrIzveleKust == false && objekti.apraksts == false && objekti.lietotajuKarta == true)
         {
             objekti.noklikState = hit.collider.gameObject;
             //Debug.Log("Collider hit: " + hit.collider.name);
@@ -332,6 +332,8 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
             objekti.minusUzb.gameObject.SetActive(false);
             objekti.plusMob.gameObject.SetActive(false);
             objekti.minusMob.gameObject.SetActive(false);
+            atgriezPretiniekuKrasas();
+            atgriezLietotajuKrasas();
         }
        if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.LSPR && objekti.vaiIrIzveleUzbr == true && objekti.lietotajuKarta == true) {
             //Debug.Log("Collider hit: " + hit.collider.name);
@@ -366,7 +368,7 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
             atgriezPretiniekuKrasas();
          }
 
-         if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.LSPR && objekti.vaiIrIzveleUzbr == false && objekti.vaiIrIzveleKust == false && objekti.lietotajuKarta == false && objekti.otraSpeletajaKarta == true)
+         if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.LSPR && objekti.vaiIrIzveleUzbr == false && objekti.vaiIrIzveleKust == false && objekti.apraksts == false && objekti.lietotajuKarta == false && objekti.otraSpeletajaKarta == true)
           { 
             objekti.noklikState = hit.collider.gameObject;
             //Debug.Log("Collider hit: " + hit.collider.name);
@@ -383,6 +385,8 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
             objekti.minusUzb.gameObject.SetActive(false);
             objekti.plusMob.gameObject.SetActive(false);
             objekti.minusMob.gameObject.SetActive(false);
+            atgriezPretiniekuKrasas();
+            atgriezLietotajuKrasas();
         }
 
        if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.PLAYER && objekti.vaiIrIzveleUzbr == true && objekti.otraSpeletajaKarta == true) {
@@ -558,6 +562,12 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
         //Debug.Log("Kopējais skaits uz noklik state: "+noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR]);
     }
 
+
+    public void vesturisksNotikums(){
+        if(objekti.lietotajuKarta){
+            
+        }
+    }
     public void rotuAtkapsanasPlayer(Valstis.Speletaji speletaji){
         GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
         SpelesKontrole uzbruksanasState = objekti.uzbruksanasState.GetComponent<SpelesKontrole>();
