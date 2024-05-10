@@ -209,13 +209,13 @@ public class Pogas : MonoBehaviour
             }
                 }
             }
-        }
         objekti.izvelesLauks.gameObject.SetActive(false);
         objekti.izvele.gameObject.SetActive(false);
         objekti.mobilizet.gameObject.SetActive(false);
         objekti.skaits.gameObject.SetActive(false);
         objekti.plusMob.gameObject.SetActive(false);
         objekti.minusMob.gameObject.SetActive(false);
+        objekti.bridinajumaTeksts.gameObject.SetActive(false);
         if(objekti.lietotajuKarta == true){
         objekti.lietotajuKarta = false;
         objekti.otraSpeletajaKarta = true;
@@ -226,6 +226,9 @@ public class Pogas : MonoBehaviour
           objekti.lietotajuKarta = true;
         objekti.LatvijasKarogs.gameObject.SetActive(true);
         objekti.LSPRKarogs.gameObject.SetActive(false);
+        }
+        }else if(objekti.rotuSkaitsIzv == 0){
+           objekti.bridinajumaTeksts.gameObject.SetActive(true);
         }
           //ai.AIKustiba();
     }
@@ -318,7 +321,6 @@ public class Pogas : MonoBehaviour
                 //Debug.Log("Blakus state"+stateController1.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER]);
             }
         }
-        }
         objekti.vaiIrIzveleKust = false;
         objekti.izvelesLauks.gameObject.SetActive(false);
         objekti.izvele.gameObject.SetActive(false);
@@ -326,6 +328,7 @@ public class Pogas : MonoBehaviour
         objekti.skaits.gameObject.SetActive(false);
         objekti.plusParvietot.gameObject.SetActive(false);
         objekti.minusParvietot.gameObject.SetActive(false);
+        objekti.bridinajumaTeksts.gameObject.SetActive(false);
         kontrole.atgriezLietotajuKrasas();
         if(objekti.lietotajuKarta == true){
         objekti.lietotajuKarta = false;
@@ -337,6 +340,9 @@ public class Pogas : MonoBehaviour
           objekti.lietotajuKarta = true;
         objekti.LatvijasKarogs.gameObject.SetActive(true);
         objekti.LSPRKarogs.gameObject.SetActive(false);
+        }
+        }else if(objekti.rotuSkaitsIzv == 0){
+           objekti.bridinajumaTeksts.gameObject.SetActive(true);
         }
         //ai.AIKustiba();
     }
@@ -356,9 +362,10 @@ public class Pogas : MonoBehaviour
         bool irZaudejis = false;
         objekti.atpakpesState = null;
         objekti.stateAtkapes = null;
+        teksts.vesturisksApraksts.text = " ";
         SpelesKontrole noklikBlakusState = objekti.noklikBlakusState.GetComponent<SpelesKontrole>();
         SpelesKontrole klikState = objekti.noklikState.GetComponent<SpelesKontrole>();
-        if(objekti.lietotajuKarta==true){
+        if(objekti.lietotajuKarta == true){
         if(objekti.rotuSkaitsIzv > noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR]){
             irUzvarejis = true;   
         }
@@ -396,10 +403,7 @@ public class Pogas : MonoBehaviour
         if(noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] >= objekti.rotuSkaitsIzv){
                 
                 int rotasZaudejumi = noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] - objekti.rotuSkaitsIzv;
-
-                if(rotasZaudejumi == 0){
-                    
-                }                
+     
                
                 rotasZaudejumi = Mathf.Max(rotasZaudejumi, 1);
                
@@ -420,6 +424,7 @@ public class Pogas : MonoBehaviour
 
         teksts.cinasTeksts.text = "Tu esi zaudējis šo cīņu!";
         objekti.pazinojumaLauks.gameObject.SetActive(true);
+         objekti.apraksts = true;
         }
 
 
@@ -463,7 +468,7 @@ public class Pogas : MonoBehaviour
                 }
                 teksts.cinasTeksts.text = "Tu esi uzvarējis šo cīņu!";
                 objekti.pazinojumaLauks.gameObject.SetActive(true);
-                kontrole.vesturisksNotikums();
+                teksts.vesturisksNotikums();
                 objekti.apraksts = true;
                 
             }
@@ -511,7 +516,6 @@ public class Pogas : MonoBehaviour
             }
         }
         }
-    }
         objekti.vaiIrIzveleUzbr = false;
         objekti.izvelesLauks.gameObject.SetActive(false);
         objekti.izvele.gameObject.SetActive(false);
@@ -519,7 +523,11 @@ public class Pogas : MonoBehaviour
         objekti.skaits.gameObject.SetActive(false);
         objekti.plusUzb.gameObject.SetActive(false);
         objekti.minusUzb.gameObject.SetActive(false);
+        objekti.bridinajumaTeksts.gameObject.SetActive(false);
         //ai.AIKustiba();
+        }else if(objekti.rotuSkaitsIzv == 0){
+           objekti.bridinajumaTeksts.gameObject.SetActive(true);
+        }
     }
 
     public void atpakalUzIzveli()
@@ -537,6 +545,7 @@ public class Pogas : MonoBehaviour
         objekti.minusMob.gameObject.SetActive(false);
         objekti.plusParvietot.gameObject.SetActive(false);
         objekti.minusParvietot.gameObject.SetActive(false);
+        objekti.bridinajumaTeksts.gameObject.SetActive(false);
         kontrole.atgriezPretiniekuKrasas();
         kontrole.atgriezLietotajuKrasas();
         objekti.vaiIrIzveleUzbr = false;

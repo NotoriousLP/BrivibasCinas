@@ -46,28 +46,46 @@ public class SpelesKontrole : MonoBehaviour
              objekti.lietotajuKarta = true;
              objekti.otraSpeletajaKarta = false;
 
-
             SpelesKontrole stateController = GameObject.Find("States_1").GetComponent<SpelesKontrole>();
             objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state1Pozicijas");
             if (stateController.valsts.speletajs == Valstis.Speletaji.PLAYER && !objekti.vaiIrSakumaRotas)    
             {
                 sakumaRotas(stateController, objekti.rotasPozicijas, objekti.rotasPrefs, Valstis.Speletaji.PLAYER, 5);
-                objekti.vaiIrSakumaRotas = true;
             }
 
+
             SpelesKontrole stateController1 = GameObject.Find("States_2").GetComponent<SpelesKontrole>();
-            if (stateController1.valsts.speletajs == Valstis.Speletaji.LSPR && !objekti.vaiIrSakumaRotasLSPR)    
+            if (stateController1.valsts.speletajs == Valstis.Speletaji.PLAYER && !objekti.vaiIrSakumaRotas)    
             {
                 objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state2Pozicijas");
-                sakumaRotas(stateController1, objekti.rotasPozicijas, objekti.rotasPrefsLSPR, Valstis.Speletaji.LSPR, 2);
-              
+                sakumaRotas(stateController1, objekti.rotasPozicijas, objekti.rotasPrefs, Valstis.Speletaji.PLAYER, 3);
             }
-                        
+
+             objekti.vaiIrSakumaRotas = true;
+
+
             SpelesKontrole stateController2 = GameObject.Find("States_3").GetComponent<SpelesKontrole>();
             if (stateController2.valsts.speletajs == Valstis.Speletaji.LSPR && !objekti.vaiIrSakumaRotasLSPR)    
             {
                 objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state3Pozicijas");
-                sakumaRotas(stateController2, objekti.rotasPozicijas, objekti.rotasPrefsLSPR, Valstis.Speletaji.LSPR, 2);
+                sakumaRotas(stateController2, objekti.rotasPozicijas, objekti.rotasPrefsLSPR, Valstis.Speletaji.LSPR, 1);
+              
+            }
+
+
+               SpelesKontrole stateController4 = GameObject.Find("States_4").GetComponent<SpelesKontrole>();
+            if (stateController4.valsts.speletajs == Valstis.Speletaji.LSPR && !objekti.vaiIrSakumaRotasLSPR)    
+            {
+                objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state4Pozicijas");
+                sakumaRotas(stateController4, objekti.rotasPozicijas, objekti.rotasPrefsLSPR, Valstis.Speletaji.LSPR, 1);
+              
+            }
+
+               SpelesKontrole stateController5 = GameObject.Find("States_5").GetComponent<SpelesKontrole>();
+            if (stateController5.valsts.speletajs == Valstis.Speletaji.LSPR && !objekti.vaiIrSakumaRotasLSPR)    
+            {
+                objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state5Pozicijas");
+                sakumaRotas(stateController5, objekti.rotasPozicijas, objekti.rotasPrefsLSPR, Valstis.Speletaji.LSPR, 2);
               
             }
                   objekti.vaiIrSakumaRotasLSPR = true;
@@ -332,6 +350,7 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
             objekti.minusUzb.gameObject.SetActive(false);
             objekti.plusMob.gameObject.SetActive(false);
             objekti.minusMob.gameObject.SetActive(false);
+            objekti.bridinajumaTeksts.gameObject.SetActive(false);
             atgriezPretiniekuKrasas();
             atgriezLietotajuKrasas();
         }
@@ -385,6 +404,7 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
             objekti.minusUzb.gameObject.SetActive(false);
             objekti.plusMob.gameObject.SetActive(false);
             objekti.minusMob.gameObject.SetActive(false);
+            objekti.bridinajumaTeksts.gameObject.SetActive(false);
             atgriezPretiniekuKrasas();
             atgriezLietotajuKrasas();
         }
@@ -562,12 +582,6 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
         //Debug.Log("Kopējais skaits uz noklik state: "+noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR]);
     }
 
-
-    public void vesturisksNotikums(){
-        if(objekti.lietotajuKarta){
-            
-        }
-    }
     public void rotuAtkapsanasPlayer(Valstis.Speletaji speletaji){
         GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
         SpelesKontrole uzbruksanasState = objekti.uzbruksanasState.GetComponent<SpelesKontrole>();

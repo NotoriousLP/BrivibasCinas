@@ -30,7 +30,7 @@ public class Objekti : MonoBehaviour
     public Button minusUzb;
     public Button plusParvietot;
     public Button minusParvietot;
-
+    public GameObject bridinajumaTeksts;
     public int rotuSkaitsIzv;
 
     //Izvēles lauks
@@ -64,7 +64,7 @@ public class Objekti : MonoBehaviour
 
 
     //Rotas skaits
-    public int rotuSkaitsLSPR = 0;
+    public int rotuSkaitsLSPR = 1;
     public int rotuSkaitsPlayer = 2;
     public GameObject noklikState;
     
