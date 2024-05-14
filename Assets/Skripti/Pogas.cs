@@ -515,7 +515,48 @@ public class Pogas : MonoBehaviour
                 }
             }
         }
+           int LSPRTeritorijuSkaits = 0;
+           int PlayerTeritorijuSkaits = 0;
+            teksts.uzvaretajuTeksts.text = "";
+            teksts.uzvaretajuApraksts.text = "";
+
+
+                foreach (GameObject stateObject in visiStates){
+
+                  SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
+                    if(stateController.valsts.speletajs == Valstis.Speletaji.PLAYER){
+                        PlayerTeritorijuSkaits++;
+                    }else if (stateController.valsts.speletajs == Valstis.Speletaji.LSPR){
+                        LSPRTeritorijuSkaits++;
+                    }
+
+                }
+
+                if(LSPRTeritorijuSkaits == 1){
+                    objekti.LSPRUzvarejis = true;
+                    teksts.uzvaretajuTeksts.text = "Lielinieki ir pārāki un Latvija padodas";
+                    teksts.uzvaretajuApraksts.text = "<style=h1>Kas notika?</style><br><#555>Latvija padodas un pēc 3 dienām ienāk lielinieku armija pēdejā brīvajā Latvijas teritorijā.<br><b>Pēteris Stučka</b> saglabā savu valdību Rīgā.<br><b>Latvijas pagaidu valdība</b> aizbēg uz Lielbritāniju.<br><b>1921. gadā</b> PSRS anektē Latvijas Sociālisto Padomju Republiku.";
+                    objekti.uzvaretajuLauks.gameObject.SetActive(true);
+                    objekti.fons.gameObject.SetActive(true);   
+                }else if(PlayerTeritorijuSkaits == 1){
+                    objekti.playerUzvarejis = true;
+                    teksts.uzvaretajuTeksts.text = "Lielinieki padodas un mūk prom uz Padomju Krieviju!";
+                teksts.uzvaretajuApraksts.text = "<#555><style=H1>Kas notika?</style><br><b>Kapēc parakstīja miera līgumu?</b><br>Iniciatīva nāca no Padomju Krievijas puses, lai izjauktu koalīciju pret to Baltijā un novērstu draudus Petrogradai.<br>Latvijas mērķis bija panākt neatkarības atzīšanu un izbeigt karu.<br><b>Vienošanās gaita:</b><br>Sākotnēji bija paredzētas kopīgas Baltijas valstu sarunas, tomēr Igaunija uzsāka atsevišķas sarunas.<br>Latvija parakstīja pamieru 1920. gada 30. janvārī, kas atļāva turpināt Latgales atbrīvošanu.<br>Miera sarunas notika Maskavā un Rīgā no 1920. gada aprīļa līdz augustam.<br>Krievijas delegācija sākotnēji izvirzīja nepieņemamas prasības, tomēr Latvijas panākumi kaujas laukā un Polijas uzbrukums Krievijai piespieda to piekāpties.<br><b>Līguma rezultāti:</b><br>Parakstīts 1920. gada 11. augustā Rīgā.<br>Atzina Latvijas neatkarību un noteica robežas.<br>Krievija atteicās no kara izdevumu atlīdzināšanas un atļāva daļēju Latvijas iedzīvotāju īpašuma reevakuāciju.<br>Līgums kalpoja par pamatu Latvijas starptautiskai atzīšanai un okupācijas neatzīšanai pēc Otrā pasaules kara.<br><b>Vēsturiskā nozīme:</b><br>Noslēdza Latvijas Neatkarības karu.<br>Bija nozīmīgs solis ceļā uz de jure atzīšanu.<br>Kalpo par starptautiskas tiesības pamatu Latvijas okupācijas neatzīšanai.<br><b>Piemiņa:</b><br>11. augusts ir Latvijas brīvības cīnītāju piemiņas diena.";
+                    objekti.uzvaretajuLauks.gameObject.SetActive(true);
+                    objekti.fons.gameObject.SetActive(true);
+                }
+
+
+
+
+                //Debug.Log("Latvijas state skaits: "+PlayerTeritorijuSkaits);
+                //Debug.Log("LSPR state skaits: "+LSPRTeritorijuSkaits);
+
+
         }
+
+
+
         objekti.vaiIrIzveleUzbr = false;
         objekti.izvelesLauks.gameObject.SetActive(false);
         objekti.izvele.gameObject.SetActive(false);

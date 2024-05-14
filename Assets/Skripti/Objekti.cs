@@ -104,6 +104,12 @@ public class Objekti : MonoBehaviour
     public bool otraSpeletajaKarta = false;
 
 
+
+    //Uzvarētāju lietas
+
+    public bool playerUzvarejis = false;
+    public bool LSPRUzvarejis = false;
+    public GameObject uzvaretajuLauks;
 }
 
 

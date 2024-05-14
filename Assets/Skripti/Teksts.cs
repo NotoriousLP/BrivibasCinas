@@ -16,8 +16,13 @@ public class Teksts : MonoBehaviour
     public SpelesKontrole kontrole;
 
     public TextMeshProUGUI vesturisksApraksts;
-
     public TextMeshProUGUI cinasTeksts;
+
+    //Uzvarētāju lauks
+    public TextMeshProUGUI uzvaretajuTeksts;
+    public TextMeshProUGUI uzvaretajuApraksts;
+
+
 
      void Start()
     {
