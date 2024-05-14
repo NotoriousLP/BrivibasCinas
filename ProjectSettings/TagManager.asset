@@ -20,6 +20,28 @@ TagManager:
   - state9Pozicijas
   - state10Pozicijas
   - state0Pozicijas
+  - state11Pozicijas
+  - state12Pozicijas
+  - state13Pozicijas
+  - state14Pozicijas
+  - state15Pozicijas
+  - state16Pozicijas
+  - state17Pozicijas
+  - state18Pozicijas
+  - state19Pozicijas
+  - state20Pozicijas
+  - state21Pozicijas
+  - state22Pozicijas
+  - state23Pozicijas
+  - state24Pozicijas
+  - state25Pozicijas
+  - state26Pozicijas
+  - state27Pozicijas
+  - state28Pozicijas
+  - state29Pozicijas
+  - state30Pozicijas
+  - state31Pozicijas
+  - state32Pozicijas
   layers:
   - Default
   - TransparentFX
