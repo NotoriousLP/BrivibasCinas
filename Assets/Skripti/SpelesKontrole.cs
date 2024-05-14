@@ -50,7 +50,7 @@ public class SpelesKontrole : MonoBehaviour
             objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state1Pozicijas");
             if (stateController.valsts.speletajs == Valstis.Speletaji.PLAYER && !objekti.vaiIrSakumaRotas)    
             {
-                sakumaRotas(stateController, objekti.rotasPozicijas, objekti.rotasPrefs, Valstis.Speletaji.PLAYER, 1);
+                sakumaRotas(stateController, objekti.rotasPozicijas, objekti.rotasPrefs, Valstis.Speletaji.PLAYER, 5);
             }
 
 
@@ -58,7 +58,7 @@ public class SpelesKontrole : MonoBehaviour
             if (stateController1.valsts.speletajs == Valstis.Speletaji.PLAYER && !objekti.vaiIrSakumaRotas)    
             {
                 objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state2Pozicijas");
-                sakumaRotas(stateController1, objekti.rotasPozicijas, objekti.rotasPrefs, Valstis.Speletaji.PLAYER, 1);
+                sakumaRotas(stateController1, objekti.rotasPozicijas, objekti.rotasPrefs, Valstis.Speletaji.PLAYER, 3);
             }
 
              objekti.vaiIrSakumaRotas = true;
