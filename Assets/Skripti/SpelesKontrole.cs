@@ -45,7 +45,7 @@ public class SpelesKontrole : MonoBehaviour
         pogas = FindAnyObjectByType<Pogas>();
              objekti.lietotajuKarta = true;
              objekti.otraSpeletajaKarta = false;
-
+            objekti.vaiIrEsc = false;
             SpelesKontrole stateController = GameObject.Find("States_1").GetComponent<SpelesKontrole>();
             objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state1Pozicijas");
             if (stateController.valsts.speletajs == Valstis.Speletaji.PLAYER && !objekti.vaiIrSakumaRotas)    
@@ -148,6 +148,7 @@ public class SpelesKontrole : MonoBehaviour
             objekti.ESCMenu.gameObject.SetActive(false);
             objekti.fons.gameObject.SetActive(false);
             objekti.vaiIrEsc = false;
+              Debug.Log("ESC izslēdzās!");
         }
     }
 

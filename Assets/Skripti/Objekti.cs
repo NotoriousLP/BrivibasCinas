@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Objekti : MonoBehaviour
 {
+
+    //Info
+    public bool nospiestaInfo = false;
+    public GameObject infoPanelis;
 
     //Lietotāju kārta
     public bool lietotajuKarta = false;

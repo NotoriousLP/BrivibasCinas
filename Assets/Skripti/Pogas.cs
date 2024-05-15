@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -546,13 +547,8 @@ public class Pogas : MonoBehaviour
                     objekti.fons.gameObject.SetActive(true);
                 }
 
-
-
-
                 //Debug.Log("Latvijas state skaits: "+PlayerTeritorijuSkaits);
                 //Debug.Log("LSPR state skaits: "+LSPRTeritorijuSkaits);
-
-
         }
 
 
@@ -608,6 +604,15 @@ public class Pogas : MonoBehaviour
           objekti.lietotajuKarta = true;
        objekti.LatvijasKarogs.gameObject.SetActive(true);
         objekti.LSPRKarogs.gameObject.SetActive(false);
+        }
+    }
+    public void infoPoga(){
+        if(objekti.nospiestaInfo == false){
+            objekti.nospiestaInfo = true;
+            objekti.infoPanelis.gameObject.SetActive(true);
+        }else if(objekti.nospiestaInfo == true){
+            objekti.nospiestaInfo = false;
+            objekti.infoPanelis.gameObject.SetActive(false);
         }
     }
 }
