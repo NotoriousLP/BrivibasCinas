@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Mathematics;
 using Unity.VisualScripting;
+using UnityEditor.SceneManagement;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -135,25 +136,32 @@ public class SpelesKontrole : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape) && objekti.vaiIrEsc == false) //Ieslēdz ESC menu
+        void Update()
         {
-            objekti.ESCMenu.gameObject.SetActive(true);
-            objekti.fons.gameObject.SetActive(true);
-            objekti.vaiIrEsc = true;
-            Debug.Log("ESC nostrādā");
-        }else if (Input.GetKeyDown(KeyCode.Escape) && objekti.vaiIrEsc == true) //Izslēdz ESC menu
-        {
-            objekti.ESCMenu.gameObject.SetActive(false);
-            objekti.fons.gameObject.SetActive(false);
-            objekti.vaiIrEsc = false;
-              Debug.Log("ESC izslēdzās!");
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if(objekti.vaiIrEsc == true){
+                    ESCoff();
+                }
+               else if (objekti.vaiIrEsc == false) // Ieslēdz ESC menu
+                {
+                    ESCon();
+                }
+            }
         }
+
+    void ESCoff(){
+         objekti.ESCMenu.gameObject.SetActive(false);
+         objekti.fons.gameObject.SetActive(false);
+         objekti.vaiIrEsc = false;
+         Debug.Log("ESC izslēdzas");
     }
-
-
-
+    void ESCon(){
+        objekti.ESCMenu.gameObject.SetActive(true);
+        objekti.fons.gameObject.SetActive(true);
+         Debug.Log("ESC nostrādā");
+         objekti.vaiIrEsc = true;
+    }
     void OnMouseEnter()
     {
         vecaKrasa = sprite.color;
