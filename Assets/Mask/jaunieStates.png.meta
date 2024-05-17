@@ -139,12 +139,12 @@ TextureImporter:
       name: States_2
       rect:
         serializedVersion: 2
-        x: 90
-        y: 310
-        width: 188
-        height: 224
+        x: 79
+        y: 227
+        width: 192
+        height: 301
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -152,27 +152,6 @@ TextureImporter:
       bones: []
       spriteID: 4c7ae8e06c81261459617da6ed92b38d
       internalID: 1294881997
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: States_1
-      rect:
-        serializedVersion: 2
-        x: 23
-        y: 40
-        width: 161
-        height: 243
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bf4cda7012261d547b54820bacde5c4c
-      internalID: -311878089
       vertices: []
       indices: 
       edges: []
