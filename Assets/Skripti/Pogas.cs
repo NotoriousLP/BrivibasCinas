@@ -252,31 +252,35 @@ public class Pogas : MonoBehaviour
                 objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state"+i+"Pozicijas");
                 }
             }
-            foreach (GameObject stateObject in visiStates){
-            SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
-                if (stateController.valsts.speletajs == speletaji && stateObject == objekti.noklikBlakusState)
-                {
-                         pieejamaVieta = 5 - stateController.rotasSkaitsByPlayer[speletaji];
-                          rotaParvietosana = Mathf.Min(objekti.rotuSkaitsIzv, pieejamaVieta);
-                         Debug.Log("Parv skaits: "+rotaParvietosana);
-                         Debug.Log("Parv skaits: "+objekti.rotuSkaitsIzv);
+            foreach (GameObject stateObject in visiStates) {
+                SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
+                if (stateController.valsts.speletajs == speletaji && stateObject == objekti.noklikBlakusState) {
+                    pieejamaVieta = 5 - stateController.rotasSkaitsByPlayer[speletaji];
+                    rotaParvietosana = Mathf.Min(objekti.rotuSkaitsIzv, pieejamaVieta);
 
-                      for(int i=0; i<objekti.rotasPozicijas.Length; i++){
-                        if (!objekti.izmantotasPozicijas.Contains(objekti.rotasPozicijas[i]) && objekti.rotuSkaitsIzv > 0){ 
-                       if(speletaji == Valstis.Speletaji.PLAYER && objekti.lietotajuKarta){
-                        Instantiate(objekti.rotasPrefs, objekti.rotasPozicijas[i].transform.position, Quaternion.identity, objekti.noklikBlakusState.transform);
-                        Debug.Log("Rotas pārvietojās");
-                        }else if(speletaji == Valstis.Speletaji.LSPR && objekti.otraSpeletajaKarta){
-                        Instantiate(objekti.rotasPrefsLSPR, objekti.rotasPozicijas[i].transform.position, Quaternion.identity, objekti.noklikBlakusState.transform);
-                        Debug.Log("Rotas pārvietojās");
+                    int parvietotasRotas = 0;
+                    for (int i = 0; i < objekti.rotasPozicijas.Length && parvietotasRotas < rotaParvietosana; i++) {
+                        bool pozicijaAiznemta = false;
+                        foreach (Transform child in objekti.noklikBlakusState.transform) {
+                            if (child.transform.position == objekti.rotasPozicijas[i].transform.position) {
+                                pozicijaAiznemta = true;
+                                break;
+                            }
                         }
-                        objekti.izmantotasPozicijas.Add(objekti.rotasPozicijas[i]);
-                        stateController.PievienotRotas(speletaji, 1);
-                        objekti.rotuSkaitsIzv--;
-                        Debug.Log("Rotas pamazām pārvietojās");
+                        if (!pozicijaAiznemta) {
+                            if (speletaji == Valstis.Speletaji.PLAYER && objekti.lietotajuKarta) {
+                                Instantiate(objekti.rotasPrefs, objekti.rotasPozicijas[i].transform.position, Quaternion.identity, objekti.noklikBlakusState.transform);
+                            } else if (speletaji == Valstis.Speletaji.LSPR && objekti.otraSpeletajaKarta) {
+                                Instantiate(objekti.rotasPrefsLSPR, objekti.rotasPozicijas[i].transform.position, Quaternion.identity, objekti.noklikBlakusState.transform);
+                            }
+
+                            objekti.izmantotasPozicijas.Add(objekti.rotasPozicijas[i]);
+                            stateController.PievienotRotas(speletaji, 1);
+                            objekti.rotuSkaitsIzv--;
+                            parvietotasRotas++;
+                        }
                     }
                     irParvietojis = true;
-                    }
                 }
             }
                 if(irParvietojis == true){
@@ -294,7 +298,7 @@ public class Pogas : MonoBehaviour
                     parvietojumoSkaits = rotaParvietosana;
                     Debug.Log("Pārvietojumo skaits: "+parvietojumoSkaits);
                       for(int i=0; i<parvietojumoSkaits; i++){
-                        if (objekti.izmantotasPozicijas.Contains(objekti.rotasPozicijas[i]) && stateObject == objekti.noklikState){ 
+                        if (stateObject == objekti.noklikState){ 
                          foreach (Transform child in objekti.noklikState.transform){
                         if(speletaji == Valstis.Speletaji.PLAYER && objekti.lietotajuKarta){
                          if (child.CompareTag("PLAYERTroop") && parvietojumoSkaits > 0){
@@ -366,6 +370,7 @@ public class Pogas : MonoBehaviour
         teksts.vesturisksApraksts.text = " ";
         SpelesKontrole noklikBlakusState = objekti.noklikBlakusState.GetComponent<SpelesKontrole>();
         SpelesKontrole klikState = objekti.noklikState.GetComponent<SpelesKontrole>();
+
         if(objekti.lietotajuKarta == true){
         if(objekti.rotuSkaitsIzv > noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR]){
             irUzvarejis = true;   
@@ -430,6 +435,7 @@ public class Pogas : MonoBehaviour
 
 
         if(irUzvarejis){
+            int uzbrukusoSkaits = objekti.rotuSkaitsIzv;
             objekti.noklikBlakusState.GetComponent<SpelesKontrole>().valsts.speletajs = speletaji;
             if(speletaji == Valstis.Speletaji.PLAYER && objekti.lietotajuKarta){
             kontrole.rotuAtkapsanas(Valstis.Speletaji.LSPR);
@@ -437,12 +443,13 @@ public class Pogas : MonoBehaviour
              kontrole.rotuAtkapsanas(Valstis.Speletaji.PLAYER);   
             }
             objekti.rotasPozicijas = null;
-            for(int i=0; i<visiStates.Length; i++){
 
+            for(int i=0; i<=visiStates.Length; i++){
             if(objekti.noklikBlakusState == GameObject.Find("States_"+i)){
                 objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state"+i+"Pozicijas");
                 }
             }
+
             foreach (GameObject stateObject in visiStates){
             SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
                 if (stateController.valsts.speletajs == speletaji && stateObject == objekti.noklikBlakusState)
@@ -453,30 +460,36 @@ public class Pogas : MonoBehaviour
                     stateController.tintesKrasa(new Color32(243, 43, 43, 235));
                     }
                       for(int i=0; i<objekti.rotasPozicijas.Length; i++){
-                        if (!objekti.izmantotasPozicijas.Contains(objekti.rotasPozicijas[i]) && objekti.rotuSkaitsIzv > 0){ 
+                        if (objekti.rotuSkaitsIzv > 0){ 
+                         Debug.Log("rotu Skaits if 460.rinda "+objekti.rotuSkaitsIzv);   
                         if(speletaji == Valstis.Speletaji.PLAYER && objekti.lietotajuKarta){
                         Instantiate(objekti.rotasPrefs, objekti.rotasPozicijas[i].transform.position, Quaternion.identity, objekti.noklikBlakusState.transform);
+                        Debug.Log("irUzvarejis if iziet PLAYER");
+
                         }else if(speletaji == Valstis.Speletaji.LSPR && objekti.otraSpeletajaKarta){
                         Instantiate(objekti.rotasPrefsLSPR, objekti.rotasPozicijas[i].transform.position, Quaternion.identity, objekti.noklikBlakusState.transform);
+                        Debug.Log("irUzvarejis if iziet LSPR");
                         }
+
                         objekti.izmantotasPozicijas.Add(objekti.rotasPozicijas[i]);
                         stateController.PievienotRotas(speletaji, 1);
                         objekti.rotuSkaitsIzv--;
                     }
                     irUzbrucis = true;
+                    Debug.Log("irUzvarejis Cikls iziet "+i);
                     }
                 Debug.Log("Rotu skaits: "+stateController.rotasSkaitsByPlayer[speletaji]);
                 }
                 teksts.cinasTeksts.text = "Tu esi uzvarējis šo cīņu!";
                 objekti.pazinojumaLauks.gameObject.SetActive(true);
                 teksts.vesturisksNotikums();
-                objekti.apraksts = true;
-                
+                objekti.apraksts = true;         
             }
+
                 if(irUzbrucis == true){
-                int uzbrukusoSkaits = 0;
+               
                 objekti.rotasPozicijas = null;
-                for(int i=0; i<visiStates.Length; i++){
+                for(int i=0; i<=visiStates.Length; i++){
                  if(objekti.noklikState == GameObject.Find("States_"+i)){
                 objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state"+i+"Pozicijas");
                 }
@@ -486,16 +499,17 @@ public class Pogas : MonoBehaviour
                    SpelesKontrole stateController1 = objekti.noklikBlakusState.GetComponent<SpelesKontrole>();
                 if (stateController.valsts.speletajs == speletaji && stateObject.Equals(objekti.noklikState))
                 {
-                    uzbrukusoSkaits = stateController1.rotasSkaitsByPlayer[speletaji];
                     Debug.Log("Uzbrūkošo skaits: "+uzbrukusoSkaits);
                       for(int i=0; i<stateController1.rotasSkaitsByPlayer[speletaji]; i++){
-                        if (objekti.izmantotasPozicijas.Contains(objekti.rotasPozicijas[i]) && stateObject == objekti.noklikState){ 
+                        if (stateObject == objekti.noklikState){ 
                          foreach (Transform child in objekti.noklikState.transform){
                             if(speletaji == Valstis.Speletaji.PLAYER){
                          if (child.CompareTag("PLAYERTroop") && uzbrukusoSkaits > 0){
                             Destroy(child.gameObject);
                             uzbrukusoSkaits--;
                             irUzbrucis = false;
+                            objekti.izmantotasPozicijas.Remove(objekti.rotasPozicijas[i]);
+                            stateController.NonemtRotas(speletaji, 1);
                             Debug.Log("Lietotāju rotas izdzēšs lai pārvietotu");
                           }
                         }else if(speletaji == Valstis.Speletaji.LSPR && objekti.otraSpeletajaKarta){
@@ -503,12 +517,12 @@ public class Pogas : MonoBehaviour
                             Destroy(child.gameObject);
                             uzbrukusoSkaits--;
                             irUzbrucis = false;
-                            //Debug.Log("Pretinieku rotas izdzēšs lai pārvietotu");
+                            objekti.izmantotasPozicijas.Remove(objekti.rotasPozicijas[i]);
+                            stateController.NonemtRotas(speletaji, 1);
+                            Debug.Log("Pretinieku rotas izdzēšs lai pārvietotu");
                           }
                         }
                          }
-                        objekti.izmantotasPozicijas.Remove(objekti.rotasPozicijas[i]);
-                        stateController.NonemtRotas(speletaji, 1);
                         //Debug.Log("Lietotāju/Pretinieku rotas tiek atkārtoti izdzēstas");
                     }
                     Debug.Log("Cikls nostrāda "+i+ " reizi");
@@ -516,11 +530,12 @@ public class Pogas : MonoBehaviour
                 }
             }
         }
+
+
            int LSPRTeritorijuSkaits = 0;
            int PlayerTeritorijuSkaits = 0;
             teksts.uzvaretajuTeksts.text = "";
             teksts.uzvaretajuApraksts.text = "";
-
 
                 foreach (GameObject stateObject in visiStates){
 
@@ -533,13 +548,13 @@ public class Pogas : MonoBehaviour
 
                 }
 
-                if(LSPRTeritorijuSkaits == 1){
+                if(PlayerTeritorijuSkaits == 1){
                     objekti.LSPRUzvarejis = true;
                     teksts.uzvaretajuTeksts.text = "Lielinieki ir pārāki un Latvija padodas";
                     teksts.uzvaretajuApraksts.text = "<style=h1>Kas notika?</style><br><#555>Latvija padodas un pēc 3 dienām ienāk lielinieku armija pēdejā brīvajā Latvijas teritorijā.<br><b>Pēteris Stučka</b> saglabā savu valdību Rīgā.<br><b>Latvijas pagaidu valdība</b> aizbēg uz Lielbritāniju.<br><b>1921. gadā</b> PSRS anektē Latvijas Sociālisto Padomju Republiku.";
                     objekti.uzvaretajuLauks.gameObject.SetActive(true);
                     objekti.fons.gameObject.SetActive(true);   
-                }else if(PlayerTeritorijuSkaits == 1){
+                }else if(LSPRTeritorijuSkaits == 1){
                     objekti.playerUzvarejis = true;
                     teksts.uzvaretajuTeksts.text = "Lielinieki padodas un mūk prom uz Padomju Krieviju!";
                 teksts.uzvaretajuApraksts.text = "<#555><style=H1>Kas notika?</style><br><b>Kapēc parakstīja miera līgumu?</b><br>Iniciatīva nāca no Padomju Krievijas puses, lai izjauktu koalīciju pret to Baltijā un novērstu draudus Petrogradai.<br>Latvijas mērķis bija panākt neatkarības atzīšanu un izbeigt karu.<br><b>Vienošanās gaita:</b><br>Sākotnēji bija paredzētas kopīgas Baltijas valstu sarunas, tomēr Igaunija uzsāka atsevišķas sarunas.<br>Latvija parakstīja pamieru 1920. gada 30. janvārī, kas atļāva turpināt Latgales atbrīvošanu.<br>Miera sarunas notika Maskavā un Rīgā no 1920. gada aprīļa līdz augustam.<br>Krievijas delegācija sākotnēji izvirzīja nepieņemamas prasības, tomēr Latvijas panākumi kaujas laukā un Polijas uzbrukums Krievijai piespieda to piekāpties.<br><b>Līguma rezultāti:</b><br>Parakstīts 1920. gada 11. augustā Rīgā.<br>Atzina Latvijas neatkarību un noteica robežas.<br>Krievija atteicās no kara izdevumu atlīdzināšanas un atļāva daļēju Latvijas iedzīvotāju īpašuma reevakuāciju.<br>Līgums kalpoja par pamatu Latvijas starptautiskai atzīšanai un okupācijas neatzīšanai pēc Otrā pasaules kara.<br><b>Vēsturiskā nozīme:</b><br>Noslēdza Latvijas Neatkarības karu.<br>Bija nozīmīgs solis ceļā uz de jure atzīšanu.<br>Kalpo par starptautiskas tiesības pamatu Latvijas okupācijas neatzīšanai.<br><b>Piemiņa:</b><br>11. augusts ir Latvijas brīvības cīnītāju piemiņas diena.";

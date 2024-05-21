@@ -26,7 +26,6 @@ public class UI : MonoBehaviour
             }
         }
 
-        
     void ESCoff(){
          objekti.ESCMenu.gameObject.SetActive(false);
          objekti.fons.gameObject.SetActive(false);
