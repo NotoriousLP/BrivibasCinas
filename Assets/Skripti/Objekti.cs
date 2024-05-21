@@ -115,6 +115,8 @@ public class Objekti : MonoBehaviour
     public bool playerUzvarejis = false;
     public bool LSPRUzvarejis = false;
     public GameObject uzvaretajuLauks;
+
+    public int[] vesturiskaAprakstaSkaits = new int[32];
 }
 
 
