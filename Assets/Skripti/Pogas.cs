@@ -10,6 +10,7 @@ public class Pogas : MonoBehaviour
     public Objekti objekti;
     public SpelesKontrole kontrole;
     public Valstis.Speletaji speletaji;
+    public datuGlabasana datuGlabasana;
     public AI ai;
     public Teksts  teksts;
     void Start()
@@ -18,7 +19,23 @@ public class Pogas : MonoBehaviour
         kontrole = FindAnyObjectByType<SpelesKontrole>();
         ai = FindAnyObjectByType<AI>();
         teksts = FindAnyObjectByType<Teksts>();
+        datuGlabasana = FindAnyObjectByType<datuGlabasana>();
     }
+
+    public void saglabatSpeli(){
+        datuGlabasana.saglabatSpeli();
+        objekti.ESCMenu.gameObject.SetActive(false);
+         objekti.fons.gameObject.SetActive(false);
+         objekti.vaiIrEsc = false;
+    }
+
+    public void ieprieksejaisProgress(){
+        datuGlabasana.ieprieksejaisProgress();
+        objekti.ESCMenu.gameObject.SetActive(false);
+        objekti.fons.gameObject.SetActive(false);
+        objekti.vaiIrEsc = false;     
+    }
+
 
     public void uzIestatijumuAinu()
     {

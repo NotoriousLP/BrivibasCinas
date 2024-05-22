@@ -8,6 +8,12 @@ using UnityEngine.UI;
 
 public class Teksts : MonoBehaviour
 {
+
+    //Save/Load teksti
+    public TextMeshProUGUI saveTeksts;
+    public TextMeshProUGUI loadTeksts;
+
+
     //Teksti
     public TextMeshProUGUI rotuTeksts;
 
@@ -28,6 +34,10 @@ public class Teksts : MonoBehaviour
     {
         objekti = FindObjectOfType<Objekti>();
         kontrole = FindAnyObjectByType<SpelesKontrole>();
+       if (PlayerPrefs.HasKey("saglabasanasLaiks")){
+          loadTeksts.text = "Iepriekšējais progress: " + PlayerPrefs.GetString("saglabasanasLaiks");
+          saveTeksts.text = "Saglabāts progress: "+ PlayerPrefs.GetString("saglabasanasLaiks");
+        }   
     }
     // Update is called once per frame
     void Update()
@@ -39,6 +49,7 @@ public class Teksts : MonoBehaviour
         }
 
         skaitaLauks.text = objekti.rotuSkaitsIzv.ToString();
+
     }
 
 

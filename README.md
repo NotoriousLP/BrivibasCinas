@@ -5,10 +5,11 @@ Spēle sākās no 1919. gada janvāra, kad Latvija bija nostabilizējusi fronti 
 
 - [ ] Spēlē var uzbrukt (Joprojām vēl pie izstrādāšanas)
 - [x] Spēle var mobilizēt rotas
-- [ ] Spēlē var pārvietot rotas (Īsti vel nestrādā)
+- [x] Spēlē var pārvietot rotas
 - [x] Spēlē var uzvarēt
 - [ ] Mūzikas sistēma
 - [ ] Skaņas efektu sistēma
+- [ ] Save/Load sistēma
 - [x] Izšķirtspējas sistēma
 
 Ainas:
