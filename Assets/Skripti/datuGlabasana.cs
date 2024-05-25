@@ -53,7 +53,6 @@ public class datuGlabasana : MonoBehaviour
                 command.ExecuteNonQuery();
             }
 
-            // Save the current game state
             List<Teritorija> territories = new List<Teritorija>();
             foreach (GameObject stateObject in GameObject.FindGameObjectsWithTag("Valsts"))
             {
@@ -65,16 +64,14 @@ public class datuGlabasana : MonoBehaviour
                 });
             }
 
-            // Ieliek jaunus datus
             using (var transaction = connection.BeginTransaction())
             {
-                foreach (var territory in territories) // Move the foreach loop inside the transaction block
+                foreach (var territory in territories) 
                 {
                     using (var command = connection.CreateCommand())
                     {
                         command.CommandText = "INSERT OR REPLACE INTO progress (StateName, Owner, TroopCount) VALUES (@valstsNosaukums, @ipasnieks, @rotasSkaits)";
 
-                        // Add parameters using command.Parameters.Add
                         var stateNameParam = command.CreateParameter();
                         stateNameParam.ParameterName = "@valstsNosaukums";
                         stateNameParam.Value = territory.ValstsNosaukums;
@@ -96,7 +93,7 @@ public class datuGlabasana : MonoBehaviour
                     }
 
                 }
-                transaction.Commit(); // Commit the changes to the database
+                transaction.Commit(); 
             }
             
             connection.Close();
@@ -132,7 +129,6 @@ public class datuGlabasana : MonoBehaviour
                         territories.Add(territory);
                     }
 
-                    // Update game state from loaded territories
                     foreach (var territory in territories)
                     {
                         GameObject stateObject = GameObject.Find(territory.ValstsNosaukums);
@@ -140,7 +136,6 @@ public class datuGlabasana : MonoBehaviour
                         {
                             SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
 
-                            // Clear existing troops and reset counts
                             foreach (Transform child in stateObject.transform)
                             {
                                 if (child.CompareTag("PLAYERTroop") || child.CompareTag("LSPRTroop"))
@@ -154,10 +149,8 @@ public class datuGlabasana : MonoBehaviour
                                 stateController.rotasSkaitsByPlayer[player] = 0;
                             }
 
-                            // Find predefined troop positions
                             GameObject[] troopPositions = GameObject.FindGameObjectsWithTag("state" + territory.ValstsNosaukums.Split('_')[1] + "Pozicijas");
 
-                            // Set ownership and instantiate new troops
                             stateController.valsts.speletajs = (Valstis.Speletaji)System.Enum.Parse(typeof(Valstis.Speletaji), territory.Ipasnieks);
                             stateController.rotasSkaitsByPlayer[stateController.valsts.speletajs] = territory.RotasSkaits;
                             for (int i = 0; i < territory.RotasSkaits && i < troopPositions.Length; i++) // Loop through positions and available troops
@@ -166,7 +159,6 @@ public class datuGlabasana : MonoBehaviour
                                 Instantiate(troopPrefab, troopPositions[i].transform.position, Quaternion.identity, stateObject.transform); 
                             }
 
-                            // Update visuals
                             stateController.tintesKrasa((stateController.valsts.speletajs == Valstis.Speletaji.PLAYER) ? new Color32(139, 221, 51, 255) : new Color32(243, 43, 43, 235));
                         }
                     }

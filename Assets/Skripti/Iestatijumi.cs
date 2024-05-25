@@ -19,11 +19,7 @@ public class Iestatijumi : MonoBehaviour
     //Resolution v�rt�bas
 
     //Ska�as v�rt�bas
-     public Slider volumeSlider;
-     public GameObject ObjektuMuzika;
 
-    public float MusicVolume = 0.5f;
-    public AudioSource AudioSource;
 
     [System.Obsolete]
     void Start()
@@ -56,48 +52,9 @@ public class Iestatijumi : MonoBehaviour
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
         //Resolution iestat�juma beigas
-
-        //Ska�as iestat�jumi
-        ObjektuMuzika = GameObject.FindWithTag("gameMusic");
-        AudioSource = ObjektuMuzika.GetComponent<AudioSource>();
-
-        MusicVolume = PlayerPrefs.GetFloat("volume");
-        AudioSource.volume = MusicVolume;
-        volumeSlider.value = MusicVolume;
-        //Ska�as beigas
-    }
-    private void Awake()
-    {
-        GameObject[] muzikasObj = GameObject.FindGameObjectsWithTag("gameMusic");
-        if (muzikasObj.Length > 1)
-        {
-            Destroy(this.gameObject);
-        }
-        DontDestroyOnLoad(this.gameObject);
-    }
-
-    void Update()
-    {
-        /*Scene tagadejaisScene = SceneManager.GetActiveScene();
-         if (tagadejaisScene.name == "spelesAina")
-        {
-            Destroy(this.gameObject);
-        }*/
-        AudioSource.volume = MusicVolume;
-        PlayerPrefs.SetFloat("volume", MusicVolume);
     }
 
 
-
-    public void VolumeUpdater(float volume)
-        {
-        MusicVolume = volume;
-        }
-
-        public void setResolution(int resolutionIndex) {
-        Resolution resolution = filteredResolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, true);
-        }
 
 
  
