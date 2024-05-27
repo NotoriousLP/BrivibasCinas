@@ -11703,6 +11703,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1027353618}
   - component: {fileID: 1027353617}
+  - component: {fileID: 1027353625}
   - component: {fileID: 1027353624}
   - component: {fileID: 1027353619}
   - component: {fileID: 1027353623}
@@ -11822,8 +11823,6 @@ MonoBehaviour:
   atpakpesState: {fileID: 0}
   stateAtkapes: {fileID: 0}
   irIelenkti: 0
-  blakusStateLSPR: []
-  blakusStatePlayer: []
   lietotajaGajieni: 0
   uzbruksanasState: {fileID: 0}
   uzbruksanasStateKontrole: {fileID: 0}
@@ -11834,10 +11833,11 @@ MonoBehaviour:
   playerUzvarejis: 0
   LSPRUzvarejis: 0
   uzvaretajuLauks: {fileID: 825809672}
-  vesturiskaAprakstaSkaits: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  vesturiskaAprakstaSkaits: 0000000000000000000000000000000000000000000000000000000000000000
   segVards: {fileID: 560829043}
   lideruLauks: {fileID: 298251137}
   kluduTeksts: {fileID: 1037529864}
+  AIieslegts: 0
 --- !u!114 &1027353621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11895,6 +11895,20 @@ MonoBehaviour:
   kontrole: {fileID: 0}
   speletaji: 0
   teksts: {fileID: 0}
+--- !u!114 &1027353625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027353615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f4be634c35b4cc4e9b9a17bc822b854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objekti: {fileID: 0}
+  kontrole: {fileID: 0}
 --- !u!1 &1037529864
 GameObject:
   m_ObjectHideFlags: 0

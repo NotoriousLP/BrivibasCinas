@@ -25,8 +25,7 @@ public class SpelesKontrole : MonoBehaviour
     public AI ai;
 
     
-    //Mainīgie
-    public float laiks = 0f;
+    //Mainīgie    
     int skaits;
 
     public Teksts  teksts;
@@ -38,7 +37,6 @@ public class SpelesKontrole : MonoBehaviour
 
 
     void Start(){
-        //objekti.AIieslegts = true;
         objekti = FindObjectOfType<Objekti>();
         ai = FindObjectOfType<AI>();
         pogas = FindAnyObjectByType<Pogas>();
@@ -136,11 +134,7 @@ public class SpelesKontrole : MonoBehaviour
 
         void Update()
         {
-            if(objekti.LSPRUzvarejis == false && objekti.playerUzvarejis == false){
-            laiks += Time.deltaTime; 
-            TimeSpan time = TimeSpan.FromSeconds(laiks);
-            teksts.timerText = time.ToString(@"mm\:ss");
-            }
+          
         }
     void OnMouseEnter()
     {
@@ -510,7 +504,7 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
                     }
 
                       for(int i=0; i<objekti.rotasPozicijas.Length; i++){
-                        if (objekti.izmantotasPozicijas.Contains(objekti.rotasPozicijas[i]) && stateObject == objekti.noklikBlakusState){
+                        if (stateObject == objekti.noklikBlakusState){
                         Debug.Log("Skaits pretinieka: "+rotasSkaits); 
                          foreach (Transform child in objekti.noklikBlakusState.transform){
                          if(pogas.speletaji == Valstis.Speletaji.PLAYER && objekti.lietotajuKarta){  
@@ -623,7 +617,7 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
                     }
                     rotasSkaits = uzbruksanasState.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER]; 
                       for(int i=0; i<objekti.rotasPozicijas.Length; i++){
-                        if (objekti.izmantotasPozicijas.Contains(objekti.rotasPozicijas[i]) && stateObject == objekti.uzbruksanasState){
+                        if (stateObject == objekti.uzbruksanasState){
                         Debug.Log("Skaits pretinieka: "+rotasSkaits); 
                          foreach (Transform child in objekti.uzbruksanasState.transform){
                          if (child.CompareTag("PLAYERTroop") && rotasSkaits > 0){

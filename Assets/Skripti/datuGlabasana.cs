@@ -12,6 +12,7 @@ public class datuGlabasana : MonoBehaviour
     public SpelesKontrole kontrole;
     public Valstis.Speletaji speletaji;
     public Teksts  teksts;
+    public UI ui;
 
     private string dbName = "URI=file:progress.db";
     void Start()
@@ -19,6 +20,7 @@ public class datuGlabasana : MonoBehaviour
         objekti = FindObjectOfType<Objekti>();
         kontrole = FindAnyObjectByType<SpelesKontrole>();
         teksts = FindAnyObjectByType<Teksts>();
+        ui = FindAnyObjectByType<UI>();
         createDB();
     }
 	public void createDB(){
@@ -164,6 +166,7 @@ public void pievienotDatus()
             }else if(objekti.otraSpeletajaKarta == true){
                 PlayerPrefs.SetString("lietotajuKarta", "LSPR");
             }
+            PlayerPrefs.SetFloat("spelesLaiks", ui.laiks);
             teksts.loadTeksts.text = "Iepriekšējais progress: " + PlayerPrefs.GetString("saglabasanasLaiks");
             teksts.saveTeksts.text = "Saglabāts progress: "+ PlayerPrefs.GetString("saglabasanasLaiks");
             Debug.Log("Spēle saglabājās veiskmīgi!");
@@ -236,6 +239,10 @@ public void pievienotDatus()
                 }
             objekti.rotuSkaitsLSPR = PlayerPrefs.GetInt("rotuSkaitsLSPR"); 
             objekti.rotuSkaitsPlayer = PlayerPrefs.GetInt("rotuSkaitsPlayer");
+            ui.laiks = 0f;
+            if (PlayerPrefs.HasKey("spelesLaiks")){
+            ui.laiks = PlayerPrefs.GetFloat("spelesLaiks"); 
+            }
             if(PlayerPrefs.GetString("lietotajuKarta") == "Latvia"){
                 objekti.lietotajuKarta = true;
                 objekti.otraSpeletajaKarta = false;
