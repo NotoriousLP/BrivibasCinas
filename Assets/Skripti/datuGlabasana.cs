@@ -27,6 +27,7 @@ public class datuGlabasana : MonoBehaviour
 
 			using (var command = connection.CreateCommand ()) {
 				command.CommandText = "CREATE TABLE IF NOT EXISTS progress (StateName TEXT primary key, Owner TEXT, TroopCount INT);";
+                 command.CommandText = "CREATE TABLE IF NOT EXISTS rezultati (ID INT, Laiks TEXT, Vards VARCHAR(65), Valsts TEXT);";
 				command.ExecuteNonQuery ();
 			}
 
@@ -34,6 +35,58 @@ public class datuGlabasana : MonoBehaviour
 		}
 	}
 
+public void pievienotDatus()
+{
+    if (objekti.LSPRUzvarejis == true)
+    {
+        teksts.Valstis = "LSPR";
+    }
+    else if (objekti.playerUzvarejis == true)
+    {
+        teksts.Valstis = "Latvija";
+    }
+
+    using (var connection = new SqliteConnection(dbName))
+    {
+        connection.Open();
+
+        using (var command = connection.CreateCommand())
+        {
+            command.CommandText = "INSERT INTO rezultati (Laiks, Vards, Valsts) VALUES ('" + teksts.timerText + "' , '" + objekti.segVards.text + "', '" + teksts.Valstis + "');";
+            command.ExecuteNonQuery();
+        }
+
+        connection.Close();
+    }
+    paraditRezDat();
+}
+
+	public void paraditRezDat(){
+
+		teksts.segVardsNos.text = "";
+		teksts.laiksNos.text = "";
+        teksts.valstsNos.text = "";
+
+		using (var connection = new SqliteConnection (dbName)) {
+			connection.Open ();
+
+			using (var command = connection.CreateCommand ()) {
+				command.CommandText = "SELECT Laiks, Vards, Valsts FROM rezultati ORDER BY Vards DESC";
+
+				using (IDataReader reader = command.ExecuteReader ()) {
+
+					while (reader.Read ()) {
+						teksts.segVardsNos.text += reader ["Vards"] + "\n\n";
+						teksts.valstsNos.text += reader ["Valsts"] + "\n\n";
+                        teksts.laiksNos.text += reader ["Laiks"] + "\n\n";
+					}
+
+					reader.Close ();
+				}
+			}
+			connection.Close ();
+		}
+	}
         public class Teritorija{
             public string ValstsNosaukums { get; set; }
             public string Ipasnieks { get; set; }

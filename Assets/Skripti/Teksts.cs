@@ -13,7 +13,7 @@ public class Teksts : MonoBehaviour
     public TextMeshProUGUI saveTeksts;
     public TextMeshProUGUI loadTeksts;
 
-
+    public string timerText;
     //Teksti
     public TextMeshProUGUI rotuTeksts;
 
@@ -29,6 +29,16 @@ public class Teksts : MonoBehaviour
     public TextMeshProUGUI uzvaretajuApraksts;
 
     public TextMeshProUGUI mobilizacijasTeksts;
+
+    //Datu bāzei
+    public string Valstis;
+
+    public TextMeshProUGUI valstsNos;
+    public TextMeshProUGUI segVardsNos;
+
+    public TextMeshProUGUI laiksNos;
+
+
 
      void Start()
     {

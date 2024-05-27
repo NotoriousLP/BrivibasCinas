@@ -117,6 +117,11 @@ public class Objekti : MonoBehaviour
     public GameObject uzvaretajuLauks;
 
     public int[] vesturiskaAprakstaSkaits = new int[32];
+
+     public TMP_InputField segVards;
+
+     public GameObject lideruLauks;
+     public GameObject kluduTeksts;
 }
 
 

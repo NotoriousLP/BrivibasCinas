@@ -26,9 +26,10 @@ public class SpelesKontrole : MonoBehaviour
 
     
     //Mainīgie
-
+    public float laiks = 0f;
     int skaits;
 
+    public Teksts  teksts;
     public Dictionary<Valstis.Speletaji, int> rotasSkaitsByPlayer = new Dictionary<Valstis.Speletaji, int>()
     {
         { Valstis.Speletaji.LSPR, 0 },
@@ -40,6 +41,7 @@ public class SpelesKontrole : MonoBehaviour
         objekti = FindObjectOfType<Objekti>();
         ai = FindObjectOfType<AI>();
         pogas = FindAnyObjectByType<Pogas>();
+        teksts = FindAnyObjectByType<Teksts>();
              objekti.lietotajuKarta = true;
              objekti.otraSpeletajaKarta = false;
             objekti.vaiIrEsc = false;
@@ -133,6 +135,11 @@ public class SpelesKontrole : MonoBehaviour
 
         void Update()
         {
+            if(objekti.LSPRUzvarejis == false && objekti.playerUzvarejis == false){
+            laiks += Time.deltaTime; 
+            TimeSpan time = TimeSpan.FromSeconds(laiks);
+            teksts.timerText = time.ToString(@"mm\:ss");
+            }
         }
     void OnMouseEnter()
     {
@@ -315,7 +322,8 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
 
         //Debug.Log(objekti.irIzvelesLauksIeslegts);
 
-        if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.PLAYER && objekti.vaiIrIzveleUzbr == false && objekti.vaiIrIzveleKust == false && objekti.apraksts == false && objekti.lietotajuKarta == true)
+        if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.PLAYER && objekti.vaiIrIzveleUzbr == false && objekti.vaiIrIzveleKust == false && 
+        objekti.apraksts == false && objekti.lietotajuKarta == true && objekti.LSPRUzvarejis == false && objekti.playerUzvarejis == false)
         {
             objekti.noklikState = hit.collider.gameObject;
             //Debug.Log("Collider hit: " + hit.collider.name);
@@ -371,7 +379,8 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
             atgriezPretiniekuKrasas();
          }
 
-         if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.LSPR && objekti.vaiIrIzveleUzbr == false && objekti.vaiIrIzveleKust == false && objekti.apraksts == false && objekti.lietotajuKarta == false && objekti.otraSpeletajaKarta == true)
+         if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.LSPR && objekti.vaiIrIzveleUzbr == false && objekti.vaiIrIzveleKust == false
+          && objekti.apraksts == false && objekti.lietotajuKarta == false && objekti.otraSpeletajaKarta == true && objekti.LSPRUzvarejis == false && objekti.playerUzvarejis == false)
           { 
             objekti.noklikState = hit.collider.gameObject;
             //Debug.Log("Collider hit: " + hit.collider.name);
