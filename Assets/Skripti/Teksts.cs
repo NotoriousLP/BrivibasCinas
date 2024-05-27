@@ -68,10 +68,11 @@ public class Teksts : MonoBehaviour
         if(objekti.lietotajuKarta){   
             if (objekti.noklikBlakusState == GameObject.Find("States_5")){
                 vesturisksApraksts.text = "<style=H1>Vēsturisks fakts</style><br><#555>3. martā sākās plašs uzbrukums Sarkanajai Armijai ar mērķi sasniegt Lielupi. Latviešu bataljonam bija jāveic uzbrukums Saldus virzienā. 6. martā negaidītā savstarpējā latviešu un vāciešu apšaudē gāja bojā Atsevišķā latviešu bataljona komandieris <b>Oskars Kalpaks</b>, Atsevišķās Studentu rotas komandieris kapteinis <b>Nikolajs Grundmanis</b>, jātnieku nodaļas virsleitnants <b>Pēteris Krievs</b> un piekomandētās artilērijas pusbaterijas leitnants <b>Šrinders</b>; arī vācu puse cieta zaudējumus. <br Pēc Kalpaka nāves bataljona komandēšana tika uzticēta kapteinim <b>Jānim Balodim</b>.";
-                objekti.vesturiskaAprakstaSkaits[1]++;
-                if( objekti.vesturiskaAprakstaSkaits[1] == 1){
+                
+                if( objekti.vesturiskaAprakstaSkaits[1] == false){
                     mobilizacijasTeksts.text = "Jūs zaudat 1 mobilizācijas iespēju";
                     objekti.rotuSkaitsPlayer--;
+                    objekti.vesturiskaAprakstaSkaits[1] = true;
                 }
             }
             if( objekti.noklikBlakusState == GameObject.Find("States_3")){
@@ -83,9 +84,9 @@ Pāvilostas un Aizputes pusē norisinājās vairāki notikumi Brīvības cīņu 
 Pāvilostas ostas ieņemšana: 1919. gada janvārī lielinieki ieņēma Pāvilostas ostu, bet vēlāk to atguva Latvijas armija.
 Lai gan šajā reģionā nenotika tik lielas kaujas kā citviet Latvijā, tomēr arī šeit cilvēki piedzīvoja kara grūtības un deva savu ieguldījumu Latvijas brīvības iegūšanā."; 
                     mobilizacijasTeksts.text = "Jūs iegūstat 1 mobilizācijas iespēju";
-                objekti.vesturiskaAprakstaSkaits[2]++;
-                if( objekti.vesturiskaAprakstaSkaits[2] == 1){
+                if( objekti.vesturiskaAprakstaSkaits[2] == false){
                    objekti.rotuSkaitsPlayer++;
+                   objekti.vesturiskaAprakstaSkaits[2] = true;
                 }
             }
             if( objekti.noklikBlakusState == GameObject.Find("States_20")){

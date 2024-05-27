@@ -150,10 +150,23 @@ public void pievienotDatus()
             }
             
             connection.Close();
+            string vesturiskaAprakstaString = "";
+            for (int i = 0; i < objekti.vesturiskaAprakstaSkaits.Length; i++)
+            {
+                vesturiskaAprakstaString += objekti.vesturiskaAprakstaSkaits[i] ? "1" : "0";
+            }
+            PlayerPrefs.SetString("vesturiskaAprakstaSkaits", vesturiskaAprakstaString);
+            PlayerPrefs.SetInt("rotuSkaitsLSPR", objekti.rotuSkaitsLSPR);
+            PlayerPrefs.SetInt("rotuSkaitsPlayer", objekti.rotuSkaitsPlayer);
             PlayerPrefs.SetString("saglabasanasLaiks", saglabasanasLaiks); 
+            if(objekti.lietotajuKarta == true){
+                PlayerPrefs.SetString("lietotajuKarta", "Latvia");
+            }else if(objekti.otraSpeletajaKarta == true){
+                PlayerPrefs.SetString("lietotajuKarta", "LSPR");
+            }
             teksts.loadTeksts.text = "Iepriekšējais progress: " + PlayerPrefs.GetString("saglabasanasLaiks");
             teksts.saveTeksts.text = "Saglabāts progress: "+ PlayerPrefs.GetString("saglabasanasLaiks");
-            Debug.Log("Game saved successfully.");
+            Debug.Log("Spēle saglabājās veiskmīgi!");
         }
     }
 
@@ -161,7 +174,7 @@ public void pievienotDatus()
 {
     try
     {
-        using (var connection = new SqliteConnection(dbName))
+        using (var connection = new SqliteConnection(dbName))   
         {
             connection.Open();
             using (var command = connection.CreateCommand())
@@ -202,27 +215,45 @@ public void pievienotDatus()
                                 stateController.rotasSkaitsByPlayer[player] = 0;
                             }
 
-                            GameObject[] troopPositions = GameObject.FindGameObjectsWithTag("state" + territory.ValstsNosaukums.Split('_')[1] + "Pozicijas");
+                            GameObject[] rotasPozicijas = GameObject.FindGameObjectsWithTag("state" + territory.ValstsNosaukums.Split('_')[1] + "Pozicijas");
 
                             stateController.valsts.speletajs = (Valstis.Speletaji)System.Enum.Parse(typeof(Valstis.Speletaji), territory.Ipasnieks);
                             stateController.rotasSkaitsByPlayer[stateController.valsts.speletajs] = territory.RotasSkaits;
-                            for (int i = 0; i < territory.RotasSkaits && i < troopPositions.Length; i++) // Loop through positions and available troops
+                            for (int i = 0; i < territory.RotasSkaits && i < rotasPozicijas.Length; i++) // Loop through positions and available troops
                             {
                                 GameObject troopPrefab = (stateController.valsts.speletajs == Valstis.Speletaji.PLAYER) ? objekti.rotasPrefs : objekti.rotasPrefsLSPR;
-                                Instantiate(troopPrefab, troopPositions[i].transform.position, Quaternion.identity, stateObject.transform); 
+                                Instantiate(troopPrefab, rotasPozicijas[i].transform.position, Quaternion.identity, stateObject.transform); 
                             }
 
                             stateController.tintesKrasa((stateController.valsts.speletajs == Valstis.Speletaji.PLAYER) ? new Color32(139, 221, 51, 255) : new Color32(243, 43, 43, 235));
                         }
                     }
                 }
+                string saglabataisString = PlayerPrefs.GetString("vesturiskaAprakstaSkaits");
+                for (int i = 0; i < objekti.vesturiskaAprakstaSkaits.Length && i < saglabataisString.Length; i++) // Prevent out-of-range errors
+                {
+                    objekti.vesturiskaAprakstaSkaits[i] = saglabataisString[i] == '1';
+                }
+            objekti.rotuSkaitsLSPR = PlayerPrefs.GetInt("rotuSkaitsLSPR"); 
+            objekti.rotuSkaitsPlayer = PlayerPrefs.GetInt("rotuSkaitsPlayer");
+            if(PlayerPrefs.GetString("lietotajuKarta") == "Latvia"){
+                objekti.lietotajuKarta = true;
+                objekti.otraSpeletajaKarta = false;
+                objekti.LatvijasKarogs.gameObject.SetActive(true);
+                objekti.LSPRKarogs.gameObject.SetActive(false);
+            }else if(PlayerPrefs.GetString("lietotajuKarta") == "LSPR"){
+                objekti.otraSpeletajaKarta = true;
+                objekti.lietotajuKarta = false;
+                objekti.LatvijasKarogs.gameObject.SetActive(false);
+                objekti.LSPRKarogs.gameObject.SetActive(true);
             }
-            Debug.Log("Game loaded successfully.");
+            Debug.Log("Spēle ielādējas veiksmīgi.");
+            }
         }
     }
         catch (Exception e)
         {
-            Debug.LogError("Error loading game: " + e.Message);
+            Debug.LogError("Error: " + e.Message);
         }
     }
 

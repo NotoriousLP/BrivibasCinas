@@ -21,7 +21,7 @@ public class ValstsParvalde : MonoBehaviour
 
     void pievienotValstsDatus()
     {
-        GameObject[] theArray = GameObject.FindGameObjectsWithTag("Valsts") as GameObject[];
+        GameObject[] theArray = GameObject.FindGameObjectsWithTag("Valsts");
         foreach (GameObject valsts in theArray)
         {
             valstsSaraksts.Add(valsts);

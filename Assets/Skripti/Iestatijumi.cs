@@ -54,8 +54,4 @@ public class Iestatijumi : MonoBehaviour
         //Resolution iestat�juma beigas
     }
 
-
-
-
- 
 }

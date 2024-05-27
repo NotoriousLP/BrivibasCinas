@@ -92,11 +92,6 @@ public class Objekti : MonoBehaviour
     public GameObject stateAtkapes;
     public bool irIelenkti = false;
 
-
-    public GameObject[] blakusStateLSPR;
-    public GameObject[] blakusStatePlayer;
-
-
     //AI blakus pie lietotāja state
     public int lietotajaGajieni = 0;
     public GameObject uzbruksanasState;
@@ -116,12 +111,16 @@ public class Objekti : MonoBehaviour
     public bool LSPRUzvarejis = false;
     public GameObject uzvaretajuLauks;
 
-    public int[] vesturiskaAprakstaSkaits = new int[32];
+    public bool[] vesturiskaAprakstaSkaits = new bool[32];
 
      public TMP_InputField segVards;
 
      public GameObject lideruLauks;
      public GameObject kluduTeksts;
+
+
+     //AI opcija
+      public bool AIieslegts = true;
 }
 
 
