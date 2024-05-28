@@ -743,7 +743,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 21348643}
         m_TargetAssemblyTypeName: Pogas, Assembly-CSharp
-        m_MethodName: uzAtpakal
+        m_MethodName: uzMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

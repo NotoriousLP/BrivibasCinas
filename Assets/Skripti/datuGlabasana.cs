@@ -161,6 +161,11 @@ public void pievienotDatus()
             PlayerPrefs.SetInt("rotuSkaitsLSPR", objekti.rotuSkaitsLSPR);
             PlayerPrefs.SetInt("rotuSkaitsPlayer", objekti.rotuSkaitsPlayer);
             PlayerPrefs.SetString("saglabasanasLaiks", saglabasanasLaiks); 
+            if(objekti.AIieslegts == true){
+            PlayerPrefs.SetString("pogasIzvele", "AI");
+            }else{
+            PlayerPrefs.SetString("pogasIzvele", "1v1");
+            }
             if(objekti.lietotajuKarta == true){
                 PlayerPrefs.SetString("lietotajuKarta", "Latvia");
             }else if(objekti.otraSpeletajaKarta == true){
@@ -222,7 +227,7 @@ public void pievienotDatus()
 
                             stateController.valsts.speletajs = (Valstis.Speletaji)System.Enum.Parse(typeof(Valstis.Speletaji), territory.Ipasnieks);
                             stateController.rotasSkaitsByPlayer[stateController.valsts.speletajs] = territory.RotasSkaits;
-                            for (int i = 0; i < territory.RotasSkaits && i < rotasPozicijas.Length; i++) // Loop through positions and available troops
+                            for (int i = 0; i < territory.RotasSkaits && i < rotasPozicijas.Length; i++)
                             {
                                 GameObject troopPrefab = (stateController.valsts.speletajs == Valstis.Speletaji.PLAYER) ? objekti.rotasPrefs : objekti.rotasPrefsLSPR;
                                 Instantiate(troopPrefab, rotasPozicijas[i].transform.position, Quaternion.identity, stateObject.transform); 
@@ -233,16 +238,19 @@ public void pievienotDatus()
                     }
                 }
                 string saglabataisString = PlayerPrefs.GetString("vesturiskaAprakstaSkaits");
-                for (int i = 0; i < objekti.vesturiskaAprakstaSkaits.Length && i < saglabataisString.Length; i++) // Prevent out-of-range errors
+                for (int i = 0; i < objekti.vesturiskaAprakstaSkaits.Length && i < saglabataisString.Length; i++) 
                 {
                     objekti.vesturiskaAprakstaSkaits[i] = saglabataisString[i] == '1';
                 }
             objekti.rotuSkaitsLSPR = PlayerPrefs.GetInt("rotuSkaitsLSPR"); 
             objekti.rotuSkaitsPlayer = PlayerPrefs.GetInt("rotuSkaitsPlayer");
             ui.laiks = 0f;
-            if (PlayerPrefs.HasKey("spelesLaiks")){
-            ui.laiks = PlayerPrefs.GetFloat("spelesLaiks"); 
+            if (PlayerPrefs.GetString("pogasIzvele") == "AI"){
+                objekti.AIieslegts = true;
+            }else if (PlayerPrefs.GetString("pogasIzvele") == "1v1"){
+                objekti.AIieslegts = false;
             }
+            if(PlayerPrefs.GetString("pogasIzvele") == "pogasIzvele"){}
             if(PlayerPrefs.GetString("lietotajuKarta") == "Latvia"){
                 objekti.lietotajuKarta = true;
                 objekti.otraSpeletajaKarta = false;
