@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/iestatijumi.unity
     guid: c58026ba1da317248972bb595d7d1439
   - enabled: 1
+    path: Assets/Scenes/spelesIzvele.unity
+    guid: 02cf2396767d5cb4783cdad8076cabe0
+  - enabled: 1
     path: Assets/Scenes/spelesAina.unity
     guid: cc43a20f45bbe7447a459f6c9d323ad5
   m_configObjects: {}

@@ -274,14 +274,24 @@ public void LSPRUzbrukums()
                 SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
                 if (stateController.valsts.speletajs == Valstis.Speletaji.LSPR && stateObject == objekti.noKuraStateLSPR)
                 {
+
                  for(int i=0; i<objekti.rotasPozicijas.Length; i++){
                         if (mobilizacijuSkaits > 0){ 
+                        bool pozicijaAiznemta = false;
+                      foreach (Transform child in objekti.noklikState.transform) {
+                        if (child.transform.position == objekti.rotasPozicijas[i].transform.position) {
+                              pozicijaAiznemta = true;
+                              break;
+                          }
+                    }
+                    if (!pozicijaAiznemta) {
                         Instantiate(objekti.rotasPrefsLSPR, objekti.rotasPozicijas[i].transform.position, Quaternion.identity, objekti.noKuraStateLSPR.transform);
                         objekti.izmantotasPozicijas.Add(objekti.rotasPozicijas[i]);
                         stateController.PievienotRotas(Valstis.Speletaji.LSPR, 1);
                         mobilizacijuSkaits--;
                         Debug.Log("AI pievieno rotas!");
                     }
+                 }
 
             }
                 }
@@ -293,8 +303,8 @@ public void LSPRUzbrukums()
     }
     public void AIAtkapjas(){
         Debug.Log("AI atkapjas");
-        noKuraStateLSPRGajiens();
         if(!objekti.lietotajuKarta){
+        noKuraStateLSPRGajiens();   
         kontrole.AIAtkapsanas(objekti.noKuraStateLSPR);
         }
         objekti.lietotajuKarta = true;

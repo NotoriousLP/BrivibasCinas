@@ -120,7 +120,19 @@ public class Objekti : MonoBehaviour
 
 
      //AI opcija
-      public bool AIieslegts = true;
+      public bool AIieslegts = false;
+      public int spelesGrutiba;
+      public GameObject sakumaIzvele;
+      public GameObject spelesIzvele;
+
+        void Awake(){
+		spelesGrutiba = PlayerPrefs.GetInt("Grutiba");
+        if(spelesGrutiba == 1){
+            AIieslegts = false;
+        }else if(spelesGrutiba == 2){
+            AIieslegts = true;
+        }
+	    }
 }
 
 

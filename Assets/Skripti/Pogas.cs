@@ -49,6 +49,22 @@ public class Pogas : MonoBehaviour
     {
         SceneManager.LoadScene("spelesAina", LoadSceneMode.Single);
     }
+
+    public void uzSpelesIzveli(){
+       SceneManager.LoadScene("spelesIzvele", LoadSceneMode.Single);
+    }
+    
+    public void uzSpeliAI()
+    {
+        SceneManager.LoadScene("spelesAina", LoadSceneMode.Single);
+        objekti.AIieslegts = true;
+    }
+      public void uzSpeli1v1()
+    {
+        SceneManager.LoadScene("spelesAina", LoadSceneMode.Single);
+        objekti.AIieslegts = false;
+    }
+
     public void izietNoSpeles()
     {
         Application.Quit();
@@ -209,7 +225,15 @@ public class Pogas : MonoBehaviour
                 if (stateController.valsts.speletajs == speletaji && stateObject == objekti.noklikState)
                 {
                  for(int i=0; i<objekti.rotasPozicijas.Length; i++){
-                        if (objekti.rotuSkaitsIzv > 0){ 
+                    if (objekti.rotuSkaitsIzv > 0){ 
+                    bool pozicijaAiznemta = false;
+                      foreach (Transform child in objekti.noklikState.transform) {
+                        if (child.transform.position == objekti.rotasPozicijas[i].transform.position) {
+                              pozicijaAiznemta = true;
+                              break;
+                          }
+                    }
+                    if (!pozicijaAiznemta) {
                     if(speletaji == Valstis.Speletaji.PLAYER){
                         Instantiate(objekti.rotasPrefs, objekti.rotasPozicijas[i].transform.position, Quaternion.identity, objekti.noklikState.transform);
                         objekti.rotuSkaitsPlayer--;
@@ -221,7 +245,7 @@ public class Pogas : MonoBehaviour
 
                         stateController.PievienotRotas(speletaji, 1);
                         objekti.rotuSkaitsIzv--;
-                        
+                    }
                     }
 
             }

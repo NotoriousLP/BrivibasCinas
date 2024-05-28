@@ -11794,7 +11794,7 @@ MonoBehaviour:
   ESCMenu: {fileID: 1944042816}
   fons: {fileID: 326960783}
   vaiIrEsc: 0
-  rotuSkaitsLSPR: 0
+  rotuSkaitsLSPR: 3
   rotuSkaitsPlayer: 2
   noklikState: {fileID: 0}
   noklikBlakusState: {fileID: 0}
@@ -17056,7 +17056,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -1520222917, guid: c8377d080ff41f04585f7d1027fedf5c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -17077,8 +17077,8 @@ Transform:
   m_GameObject: {fileID: 1391675622}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 155.03398, y: 164.58, z: -10023.749}
-  m_LocalScale: {x: 103.489845, y: 114.60485, z: 111.374985}
+  m_LocalPosition: {x: 155.03398, y: 174.49, z: -10023.749}
+  m_LocalScale: {x: 103.489845, y: 122.420906, z: 111.374985}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 99649548}
@@ -23561,8 +23561,8 @@ Transform:
   m_GameObject: {fileID: 1830432590}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 122.51249, y: 381.28113, z: -10023.749}
-  m_LocalScale: {x: 102.07652, y: 100.48343, z: 111.374985}
+  m_LocalPosition: {x: 117.6, y: 379.4, z: -10023.749}
+  m_LocalScale: {x: 102.07652, y: 105.5076, z: 111.374985}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2062332905}
