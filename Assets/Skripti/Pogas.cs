@@ -209,7 +209,7 @@ public class Pogas : MonoBehaviour
                 if (stateController.valsts.speletajs == speletaji && stateObject == objekti.noklikState)
                 {
                  for(int i=0; i<objekti.rotasPozicijas.Length; i++){
-                        if (!objekti.izmantotasPozicijas.Contains(objekti.rotasPozicijas[i]) && objekti.rotuSkaitsIzv > 0){ 
+                        if (objekti.rotuSkaitsIzv > 0){ 
                     if(speletaji == Valstis.Speletaji.PLAYER){
                         Instantiate(objekti.rotasPrefs, objekti.rotasPozicijas[i].transform.position, Quaternion.identity, objekti.noklikState.transform);
                         objekti.rotuSkaitsPlayer--;

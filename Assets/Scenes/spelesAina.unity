@@ -915,7 +915,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &51444936
 PolygonCollider2D:
@@ -1210,7 +1209,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &89560013
 PolygonCollider2D:
@@ -3345,7 +3343,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &242970271
 PolygonCollider2D:
@@ -4710,7 +4707,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &434242789
 PolygonCollider2D:
@@ -5414,7 +5410,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &463425922
 PolygonCollider2D:
@@ -6270,7 +6265,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &545676106
 PolygonCollider2D:
@@ -9526,7 +9520,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &852859573
 PolygonCollider2D:
@@ -10130,7 +10123,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4279609377
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &893978658
 PolygonCollider2D:
@@ -10413,7 +10405,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &902936798
 PolygonCollider2D:
@@ -11837,7 +11828,7 @@ MonoBehaviour:
   segVards: {fileID: 560829043}
   lideruLauks: {fileID: 298251137}
   kluduTeksts: {fileID: 1037529864}
-  AIieslegts: 0
+  AIieslegts: 1
 --- !u!114 &1027353621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11879,6 +11870,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objekti: {fileID: 0}
+  teksts: {fileID: 0}
+  laiks: 0
 --- !u!114 &1027353624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11895,6 +11888,7 @@ MonoBehaviour:
   kontrole: {fileID: 0}
   speletaji: 0
   teksts: {fileID: 0}
+  ui: {fileID: 0}
 --- !u!114 &1027353625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12305,7 +12299,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &1049563228
 PolygonCollider2D:
@@ -13979,7 +13972,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &1188695999
 PolygonCollider2D:
@@ -14654,7 +14646,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &1250006366
 PolygonCollider2D:
@@ -14863,7 +14854,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &1251905490
 PolygonCollider2D:
@@ -16050,7 +16040,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &1316202006
 PolygonCollider2D:
@@ -16363,7 +16352,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &1336307606
 PolygonCollider2D:
@@ -16622,7 +16610,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &1337034171
 PolygonCollider2D:
@@ -17123,7 +17110,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &1391675626
 PolygonCollider2D:
@@ -17555,7 +17541,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &1435502515
 PolygonCollider2D:
@@ -18173,7 +18158,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &1490067892
 PolygonCollider2D:
@@ -18393,7 +18377,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &1490449478
 PolygonCollider2D:
@@ -19108,7 +19091,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4283826091
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &1524085668
 PolygonCollider2D:
@@ -19331,7 +19313,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &1530894960
 PolygonCollider2D:
@@ -20383,7 +20364,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &1627374876
 PolygonCollider2D:
@@ -21204,7 +21184,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4283980031
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &1668614581
 PolygonCollider2D:
@@ -21435,7 +21414,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &1684610579
 PolygonCollider2D:
@@ -21639,7 +21617,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &1711830966
 PolygonCollider2D:
@@ -22356,7 +22333,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &1752865499
 PolygonCollider2D:
@@ -23618,7 +23594,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &1830432594
 PolygonCollider2D:
@@ -24425,7 +24400,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &1856990637
 PolygonCollider2D:
@@ -25529,7 +25503,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &1968473266
 PolygonCollider2D:
@@ -25874,7 +25847,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &1989021678
 PolygonCollider2D:
@@ -26558,7 +26530,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &2045455343
 PolygonCollider2D:
@@ -27497,7 +27468,6 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   ai: {fileID: 0}
-  laiks: 0
   teksts: {fileID: 0}
 --- !u!60 &2074821253
 PolygonCollider2D:

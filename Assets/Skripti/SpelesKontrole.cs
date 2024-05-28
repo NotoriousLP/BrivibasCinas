@@ -238,7 +238,7 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
 
         // Pārbaudīt vai atrasta valsts atkāpšanai pietiekami tuva un vai teritorija rotas ir mazāk par 0
         if (stateController != null && stateController.valsts.speletajs == speletajs && distance < 1.96f && 
-            stateController.rotasSkaitsByPlayer[speletajs] == 0)
+            stateController.rotasSkaitsByPlayer[speletajs] == 0 && kontrole!=stateController)
         {
             objekti.atpakpesState = stateObject.GetComponent<SpelesKontrole>();
             objekti.stateAtkapes = stateObject;
@@ -261,7 +261,8 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
             if (stateController != null && 
                 stateController.valsts.speletajs == speletajs && 
                 distance < 1.96f && 
-                stateController.rotasSkaitsByPlayer[speletajs] < 5)
+                stateController.rotasSkaitsByPlayer[speletajs] < 5
+                && kontrole!=stateController)
             {
                 objekti.atpakpesState = stateObject.GetComponent<SpelesKontrole>();
                 objekti.stateAtkapes = stateObject;
@@ -467,6 +468,8 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
                         atkapsanasSkaits = noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] - 1;
                     }else if(objekti.rotuSkaitsIzv== 4 && noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] == 4){
                         atkapsanasSkaits = noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR];
+                    }else if(objekti.rotuSkaitsIzv == 5 && noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] == 4){
+                        atkapsanasSkaits = noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR];
                     }else if(objekti.rotuSkaitsIzv == 5 && noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] == 5){
                         atkapsanasSkaits = noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR];
                     }
@@ -492,6 +495,8 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
                     }else if(objekti.rotuSkaitsIzv == 5 && noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] == 3){
                         atkapsanasSkaits = noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] - 1;
                     }else if(objekti.rotuSkaitsIzv == 4 && noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] == 4){
+                        atkapsanasSkaits = noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER];
+                    }else if(objekti.rotuSkaitsIzv == 5 && noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] == 4){
                         atkapsanasSkaits = noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER];
                     }else if(objekti.rotuSkaitsIzv == 5 && noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] == 5){
                         atkapsanasSkaits = noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER];
@@ -608,6 +613,8 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
                         atkapsanasSkaits = uzbruksanasState.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] - 1;
                     }else if(LSPRskaits == 4 && uzbruksanasState.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] == 4){
                         atkapsanasSkaits = uzbruksanasState.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER];
+                    }else if(LSPRskaits == 5 && uzbruksanasState.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] == 4){
+                        atkapsanasSkaits = uzbruksanasState.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER];
                     }else if(LSPRskaits == 5 && uzbruksanasState.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] == 5){
                         atkapsanasSkaits = uzbruksanasState.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER];
                     }
@@ -667,6 +674,73 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
         }
     }
 
+    public void AIAtkapsanas(GameObject noKuraStateLSPR){
+        GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
+        SpelesKontrole LSPRState = noKuraStateLSPR.GetComponent<SpelesKontrole>();
+        objekti.rotasPozicijas = null;
+        int rotasSkaits = 0;
+        int atkapsanasSkaits = 0;
+        objekti.atpakpesState = null;
+        objekti.stateAtkapes = null;
+        LSPRState.Atpaksanas(LSPRState, Valstis.Speletaji.LSPR);
+            for(int i=0; i<=visiStates.Length; i++){
+             if(noKuraStateLSPR == GameObject.Find("States_"+i)){
+            objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state"+i+"Pozicijas");
+            }
+            }
+            rotasSkaits = LSPRState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR]; 
+            atkapsanasSkaits = rotasSkaits; 
+                        Debug.Log("Skaits pretinieka: "+rotasSkaits); 
+                         foreach (Transform child in LSPRState.transform){
+                         if (child.CompareTag("LSPRTroop")){
+                            Destroy(child.gameObject);
+                            rotasSkaits--;
+                            Debug.Log("Nostrādā 446rinda");
+                            LSPRState.NonemtRotas(Valstis.Speletaji.LSPR, 1);
+                            for(int i=0; i<objekti.rotasPozicijas.Length; i++){
+                            objekti.izmantotasPozicijas.Remove(objekti.rotasPozicijas[i]);
+                             }
+                         }
+                        
 
+                }
+                Debug.Log("Atkāpšanās skaits 455rinda: "+atkapsanasSkaits);
+                //Debug.Log(objekti.atpakpesState);
+                
+            
+            if(!objekti.irIelenkti){
+                //Debug.Log(objekti.stateAtkapes);
+                 objekti.rotasPozicijas = null;
+                for(int i=0; i<=visiStates.Length; i++){
+                 if(objekti.stateAtkapes == GameObject.Find("States_"+i)){
+                objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state"+i+"Pozicijas");
+                }
+                }
+
+               //Debug.Log(atkapsanasSkaits);
+                foreach (GameObject stateObject in visiStates){
+                 SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
+                  if (stateController.valsts.speletajs == Valstis.Speletaji.LSPR  && stateObject.Equals(objekti.stateAtkapes)){
+                    for (int i = 0; i < objekti.rotasPozicijas.Length; i++) {
+                        bool pozicijaAiznemta = false;
+                        foreach (Transform child in objekti.noKuraStateLSPR.transform) {
+                            if (child.transform.position == objekti.rotasPozicijas[i].transform.position) {
+                                pozicijaAiznemta = true;
+                                break;
+                            }
+                        }
+                        if (!pozicijaAiznemta && atkapsanasSkaits > 0) {
+                            Instantiate(objekti.rotasPrefsLSPR, objekti.rotasPozicijas[i].transform.position, Quaternion.identity, objekti.stateAtkapes.transform);
+                            objekti.izmantotasPozicijas.Add(objekti.rotasPozicijas[i]);
+                            stateController.PievienotRotas(Valstis.Speletaji.LSPR, 1);
+                            atkapsanasSkaits--;
+                            Debug.Log("LSPR atkāpjas");
+                        }
+                    }                
+             }
+             }
+            }
+
+    }
 
 }
