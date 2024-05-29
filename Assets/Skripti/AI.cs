@@ -9,11 +9,13 @@ public class AI : MonoBehaviour
 
     public Objekti objekti;
     public SpelesKontrole kontrole;
+    public Pogas pogas;
 
     public void Start()
     {
         objekti = FindObjectOfType<Objekti>();
         kontrole = FindAnyObjectByType<SpelesKontrole>();
+        pogas = FindAnyObjectByType<Pogas>();
     }
     
 public void noKuraStateLSPRGajiens() 
@@ -223,6 +225,7 @@ public void LSPRUzbrukums()
             }
         }
         }
+        pogas.uzvaretajaParbaudeAI();
         objekti.lietotajuKarta = true;
     }
     private List<GameObject> prioritatesState(GameObject[] visiStates)

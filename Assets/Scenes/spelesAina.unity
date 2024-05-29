@@ -7127,6 +7127,16 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 5ae7aedbb0f6626418c7b19ce3756c1e, type: 3}
   - vards: notikumi
     clip: {fileID: 8300000, guid: e95b9b7752d756743af4365fc3b00aaa, type: 3}
+  - vards: atkapjas
+    clip: {fileID: 8300000, guid: be41cc2e8d32de34d99b3ed1cd25d8f7, type: 3}
+  - vards: staties
+    clip: {fileID: 8300000, guid: 2c25538287ed94047bed5ef9590bbb93, type: 3}
+  - vards: uzvarets
+    clip: {fileID: 8300000, guid: 3c75a7dec16b33b4dbb26795e62d554a, type: 3}
+  - vards: zaudet
+    clip: {fileID: 8300000, guid: ffd4c32ebfad07b47b1e6bea9f974324, type: 3}
+  - vards: parvietot
+    clip: {fileID: 8300000, guid: 5aa0a12eddbfc8f43a61fbd4032db7c5, type: 3}
   muzikasAvots: {fileID: 1931838710}
   sfxAvots: {fileID: 231895448}
 --- !u!4 &560999628
@@ -17083,7 +17093,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: -1520222917, guid: c8377d080ff41f04585f7d1027fedf5c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

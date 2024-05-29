@@ -371,8 +371,6 @@ public class Pogas : MonoBehaviour
                     }
                 }
                 }
-                //Debug.Log("Pašreizējais state: "+stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER]);
-                //Debug.Log("Blakus state"+stateController1.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER]);
             }
         }
         objekti.vaiIrIzveleKust = false;
@@ -403,7 +401,7 @@ public class Pogas : MonoBehaviour
         }else if(objekti.rotuSkaitsIzv == 0){
            objekti.bridinajumaTeksts.gameObject.SetActive(true);
         }
-        //ai.AIKustiba();
+       AudioSistema.Instance.speletSFX("parvietot");
     }
 
 
@@ -460,13 +458,14 @@ public class Pogas : MonoBehaviour
  
        if(irZaudejis){
         if(objekti.lietotajuKarta){
+
         }else if(objekti.otraSpeletajaKarta){
             
         }
-
         teksts.cinasTeksts.text = "Tu esi zaudējis šo cīņu!";
         objekti.pazinojumaLauks.gameObject.SetActive(true);
          objekti.apraksts = true;
+           AudioSistema.Instance.speletSFX("zaudet");
         }
 
 
@@ -565,7 +564,7 @@ public class Pogas : MonoBehaviour
                 }
             }
         }
-
+            AudioSistema.Instance.speletSFX("uzvarets");
         }
         objekti.vaiIrIzveleUzbr = false;
         objekti.izvelesLauks.gameObject.SetActive(false);
@@ -623,8 +622,12 @@ public class Pogas : MonoBehaviour
         objekti.lietotajuKarta = false;
          ai.AIKustiba();
         }
+        uzvaretajaParbaude();
+        AudioSistema.Instance.speletSFX("poga");
+    }
 
-        GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
+    public void uzvaretajaParbaude(){
+                GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
            int LSPRTeritorijuSkaits = 0;
            int PlayerTeritorijuSkaits = 0;
             teksts.uzvaretajuTeksts.text = "";
@@ -638,25 +641,69 @@ public class Pogas : MonoBehaviour
                     }
 
                 }
-                if(PlayerTeritorijuSkaits == 12 && objekti.AIieslegts == true){
+                if(PlayerTeritorijuSkaits == 12){
                     objekti.rotuSkaitsLSPR = 4;
                 }
+                Debug.Log("Teritoriju skaits Player: "+PlayerTeritorijuSkaits);
                 if(PlayerTeritorijuSkaits == 1){
                     objekti.LSPRUzvarejis = true;
                     teksts.uzvaretajuTeksts.text = "Lielinieki ir pārāki un Latvija padodas";
-                    teksts.uzvaretajuApraksts.text = "<style=h1>Kas notika?</style><br><#555>Latvija padodas un pēc 3 dienām ienāk lielinieku armija pēdejā brīvajā Latvijas teritorijā.<br><b>Pēteris Stučka</b> saglabā savu valdību Rīgā.<br><b>Latvijas pagaidu valdība</b> aizbēg uz Lielbritāniju.<br><b>1921. gadā</b> PSRS anektē Latvijas Sociālisto Padomju Republiku.";
-                    objekti.uzvaretajuLauks.gameObject.SetActive(true);
-                    objekti.fons.gameObject.SetActive(true);   
-                }else if(LSPRTeritorijuSkaits == 6){
+                    teksts.uzvaretajuApraksts.text = "<style=h1>Kas notika?</style><br><#555>Latvija padodas un pēc 3 dienām ienāk lielinieku armija pēdejā brīvajā Latvijas teritorijā.<br><b>Pēteris Stučka</b> saglabā savu valdību Rīgā.<br><b>Latvijas pagaidu valdība</b> aizbēg uz Lielbritāniju.<br><b>1921. gadā</b> PSRS anektē Latvijas Sociālisto Padomju Republiku.";  
+                    if(objekti.AIieslegts == true){
+                        objekti.uzvaretajuLauks.gameObject.SetActive(true);
+                        objekti.fons.gameObject.SetActive(true); 
+                        objekti.segVards.gameObject.SetActive(false);
+                        objekti.segVardsTeksts.gameObject.SetActive(false);
+                        objekti.okPogaAI.gameObject.SetActive(false);
+                        objekti.retryPogaAI.gameObject.SetActive(true);
+                        objekti.izietPogaAI.gameObject.SetActive(true);
+                    }else if(objekti.AIieslegts == false){
+                        objekti.uzvaretajuLauks.gameObject.SetActive(true);
+                        objekti.fons.gameObject.SetActive(true); 
+                        objekti.segVards.gameObject.SetActive(true);
+                        objekti.segVardsTeksts.gameObject.SetActive(true);
+                        objekti.okPogaAI.gameObject.SetActive(true);
+                        objekti.retryPogaAI.gameObject.SetActive(false);
+                        objekti.izietPogaAI.gameObject.SetActive(false);
+                    }
+                    AudioSistema.Instance.speletSFX("notikums");
+                }else if(LSPRTeritorijuSkaits == 29){
                     objekti.playerUzvarejis = true;
                     teksts.uzvaretajuTeksts.text = "Lielinieki padodas un mūk prom uz Padomju Krieviju!";
                 teksts.uzvaretajuApraksts.text = "<#555><style=H1>Kas notika?</style><br><b>Kapēc parakstīja miera līgumu?</b><br>Iniciatīva nāca no Padomju Krievijas puses, lai izjauktu koalīciju pret to Baltijā un novērstu draudus Petrogradai.<br>Latvijas mērķis bija panākt neatkarības atzīšanu un izbeigt karu.<br><b>Vienošanās gaita:</b><br>Sākotnēji bija paredzētas kopīgas Baltijas valstu sarunas, tomēr Igaunija uzsāka atsevišķas sarunas.<br>Latvija parakstīja pamieru 1920. gada 30. janvārī, kas atļāva turpināt Latgales atbrīvošanu.<br>Miera sarunas notika Maskavā un Rīgā no 1920. gada aprīļa līdz augustam.<br>Krievijas delegācija sākotnēji izvirzīja nepieņemamas prasības, tomēr Latvijas panākumi kaujas laukā un Polijas uzbrukums Krievijai piespieda to piekāpties.<br><b>Līguma rezultāti:</b><br>Parakstīts 1920. gada 11. augustā Rīgā.<br>Atzina Latvijas neatkarību un noteica robežas.<br>Krievija atteicās no kara izdevumu atlīdzināšanas un atļāva daļēju Latvijas iedzīvotāju īpašuma reevakuāciju.<br>Līgums kalpoja par pamatu Latvijas starptautiskai atzīšanai un okupācijas neatzīšanai pēc Otrā pasaules kara.<br><b>Vēsturiskā nozīme:</b><br>Noslēdza Latvijas Neatkarības karu.<br>Bija nozīmīgs solis ceļā uz de jure atzīšanu.<br>Kalpo par starptautiskas tiesības pamatu Latvijas okupācijas neatzīšanai.<br><b>Piemiņa:</b><br>11. augusts ir Latvijas brīvības cīnītāju piemiņas diena.";
                     objekti.uzvaretajuLauks.gameObject.SetActive(true);
                     objekti.fons.gameObject.SetActive(true);
+                    AudioSistema.Instance.speletSFX("notikums");
                 }
-
-                AudioSistema.Instance.speletSFX("poga");
     }
+
+        public void uzvaretajaParbaudeAI(){
+        GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
+           int PlayerTeritorijuSkaits = 0;
+            teksts.uzvaretajuTeksts.text = "";
+            teksts.uzvaretajuApraksts.text = "";
+                foreach (GameObject stateObject in visiStates){
+                  SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
+                    if(stateController.valsts.speletajs == Valstis.Speletaji.PLAYER){
+                        PlayerTeritorijuSkaits++;
+                    }
+                }
+                Debug.Log("Teritoriju skaits Player: "+PlayerTeritorijuSkaits);
+                if(PlayerTeritorijuSkaits == 1){
+                    objekti.LSPRUzvarejis = true;
+                    teksts.uzvaretajuTeksts.text = "Lielinieki ir pārāki un Latvija padodas";
+                    teksts.uzvaretajuApraksts.text = "<style=h1>Kas notika?</style><br><#555>Latvija padodas un pēc 3 dienām ienāk lielinieku armija pēdejā brīvajā Latvijas teritorijā.<br><b>Pēteris Stučka</b> saglabā savu valdību Rīgā.<br><b>Latvijas pagaidu valdība</b> aizbēg uz Lielbritāniju.<br><b>1921. gadā</b> PSRS anektē Latvijas Sociālisto Padomju Republiku.";  
+                        objekti.uzvaretajuLauks.gameObject.SetActive(true);
+                        objekti.fons.gameObject.SetActive(true); 
+                        objekti.segVards.gameObject.SetActive(false);
+                        objekti.segVardsTeksts.gameObject.SetActive(false);
+                        objekti.okPogaAI.gameObject.SetActive(false);
+                        objekti.retryPogaAI.gameObject.SetActive(true);
+                        objekti.izietPogaAI.gameObject.SetActive(true);
+                    AudioSistema.Instance.speletSFX("notikums");
+                }
+        }
+
     public void infoPoga(){
         if(objekti.nospiestaInfo == false){
             objekti.nospiestaInfo = true;

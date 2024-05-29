@@ -114,6 +114,10 @@ public class Objekti : MonoBehaviour
     public bool[] vesturiskaAprakstaSkaits = new bool[32];
 
      public TMP_InputField segVards;
+     public GameObject  segVardsTeksts;
+     public GameObject retryPogaAI;
+     public GameObject izietPogaAI;
+     public GameObject okPogaAI;
 
      public GameObject lideruLauks;
      public GameObject kluduTeksts;

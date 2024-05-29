@@ -319,7 +319,7 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
         //Debug.Log(objekti.irIzvelesLauksIeslegts);
 
         if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.PLAYER && objekti.vaiIrIzveleUzbr == false && objekti.vaiIrIzveleKust == false && 
-        objekti.apraksts == false && objekti.lietotajuKarta == true && objekti.LSPRUzvarejis == false && objekti.playerUzvarejis == false)
+        objekti.apraksts == false && objekti.lietotajuKarta == true && objekti.LSPRUzvarejis == false && objekti.playerUzvarejis == false && objekti.vaiIrEsc == false)
         {
             objekti.noklikState = hit.collider.gameObject;
             //Debug.Log("Collider hit: " + hit.collider.name);
@@ -339,8 +339,9 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
             objekti.bridinajumaTeksts.gameObject.SetActive(false);
             atgriezPretiniekuKrasas();
             atgriezLietotajuKrasas();
+            AudioSistema.Instance.speletSFX("staties");
         }
-       if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.LSPR && objekti.vaiIrIzveleUzbr == true && objekti.lietotajuKarta == true && sprite.color == new Color32(255, 10, 0, 235)) {
+       if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.LSPR && objekti.vaiIrIzveleUzbr == true && objekti.lietotajuKarta == true && sprite.color == new Color32(255, 10, 0, 235) && objekti.vaiIrEsc == false) {
             //Debug.Log("Collider hit: " + hit.collider.name);
             objekti.noklikBlakusState = hit.collider.gameObject;
             objekti.kurVietaUzbrukt.gameObject.SetActive(false);
@@ -354,7 +355,7 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
     
 
 
-         if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.PLAYER && objekti.vaiIrIzveleKust == true && objekti.lietotajuKarta == true && sprite.color == new Color32(196, 255, 134, 170)){
+         if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.PLAYER && objekti.vaiIrIzveleKust == true && objekti.lietotajuKarta == true && sprite.color == new Color32(196, 255, 134, 170)  && objekti.vaiIrEsc == false){
           objekti.noklikBlakusState = hit.collider.gameObject;
             objekti.kustinat.gameObject.SetActive(true);
             objekti.kurVietaKustinat.gameObject.SetActive(false);
@@ -364,7 +365,7 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
             objekti.rotuSkaitsIzv = 0;
             atgriezLietotajuKrasas();
          }
-         if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.LSPR && objekti.vaiIrIzveleKust == true && objekti.otraSpeletajaKarta == true && sprite.color == new Color32(255, 10, 0, 235)){
+         if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.LSPR && objekti.vaiIrIzveleKust == true && objekti.otraSpeletajaKarta == true && sprite.color == new Color32(255, 10, 0, 235) && objekti.vaiIrEsc == false){
           objekti.noklikBlakusState = hit.collider.gameObject;
             objekti.kustinat.gameObject.SetActive(true);
             objekti.kurVietaKustinat.gameObject.SetActive(false);
@@ -376,10 +377,9 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
          }
 
          if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.LSPR && objekti.vaiIrIzveleUzbr == false && objekti.vaiIrIzveleKust == false
-          && objekti.apraksts == false && objekti.lietotajuKarta == false && objekti.otraSpeletajaKarta == true && objekti.LSPRUzvarejis == false && objekti.playerUzvarejis == false)
+          && objekti.apraksts == false && objekti.lietotajuKarta == false && objekti.otraSpeletajaKarta == true && objekti.LSPRUzvarejis == false && objekti.playerUzvarejis == false && objekti.vaiIrEsc == false)
           { 
             objekti.noklikState = hit.collider.gameObject;
-            //Debug.Log("Collider hit: " + hit.collider.name);
             objekti.izvelesLauks.gameObject.SetActive(true);
             objekti.izvele.gameObject.SetActive(true);
             objekti.irIzvelesLauksIeslegts = true;
@@ -398,8 +398,8 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
             atgriezLietotajuKrasas();
         }
 
-       if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.PLAYER && objekti.vaiIrIzveleUzbr == true && objekti.otraSpeletajaKarta == true && sprite.color == new Color32(196, 255, 134, 170)) {
-            //Debug.Log("Collider hit: " + hit.collider.name);
+       if (hit.collider != null && valsts.speletajs == Valstis.Speletaji.PLAYER && objekti.vaiIrIzveleUzbr == true && objekti.otraSpeletajaKarta == true 
+       && sprite.color == new Color32(196, 255, 134, 170) && objekti.vaiIrEsc == false) {
             objekti.noklikBlakusState = hit.collider.gameObject;
             objekti.kurVietaUzbrukt.gameObject.SetActive(false);
             objekti.uzbrukt.gameObject.SetActive(true);

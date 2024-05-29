@@ -83,8 +83,8 @@ Pāvilostas un Aizputes pusē norisinājās vairāki notikumi Brīvības cīņu 
 <b>Bēgļu gaitas:</b> Pāvilostas un Aizputes apkārtnē bēgļu gaitās devās daudzi cilvēki, bēgot no kara darbības.
 Pāvilostas ostas ieņemšana: 1919. gada janvārī lielinieki ieņēma Pāvilostas ostu, bet vēlāk to atguva Latvijas armija.
 Lai gan šajā reģionā nenotika tik lielas kaujas kā citviet Latvijā, tomēr arī šeit cilvēki piedzīvoja kara grūtības un deva savu ieguldījumu Latvijas brīvības iegūšanā."; 
-                    mobilizacijasTeksts.text = "Jūs iegūstat 1 mobilizācijas iespēju";
                 if( objekti.vesturiskaAprakstaSkaits[2] == false){
+                mobilizacijasTeksts.text = "Jūs iegūstat 1 mobilizācijas iespēju";
                    objekti.rotuSkaitsPlayer++;
                    objekti.vesturiskaAprakstaSkaits[2] = true;
                 }
@@ -96,8 +96,44 @@ Lai gan Siguldas novads nebija lielu kauju centrs Brīvības cīņu laikā, tom�
 <b>Bēgļu plūsmas:</b> Siguldas novads, tāpat kā daudzas citas vietas Latvijā, uzņēma bēgļus, kas bija spiesti pamest savas mājas kara dēļ. Tas radīja papildu slogu vietējiem iedzīvotājiem, bet arī veicināja savstarpēju atbalstu un solidaritāti.
 <b>Mobilizācija un cīņas:</b> Arī Siguldas novada iedzīvotāji tika mobilizēti Latvijas armijā un piedalījās Brīvības cīņās. Lai gan lielākās kaujas nenotika tieši Siguldā, vietējo vīru devums bija nozīmīgs Latvijas neatkarības iegūšanā.
 Lai gan Siguldas novadā nav tik daudz piemiņas vietu par Brīvības cīņām kā citās Latvijas vietās, tomēr arī šeit var atrast liecības par šo laiku. Piemēram, Inčukalna kapos ir piemineklis Brīvības cīņās kritušajiem karavīriem.";
+                    if( objekti.vesturiskaAprakstaSkaits[3] == false){
+                mobilizacijasTeksts.text = "Jūs iegūstat 1 mobilizācijas iespēju";
+                   objekti.rotuSkaitsPlayer++;
+                   objekti.vesturiskaAprakstaSkaits[3] = true;
+                }
           }
-
+            if( objekti.noklikBlakusState == GameObject.Find("States_6")){
+                vesturisksApraksts.text = @"";
+                    if( objekti.vesturiskaAprakstaSkaits[4] == false){
+                mobilizacijasTeksts.text = "Jūs iegūstat 1 mobilizācijas iespēju";
+                   objekti.rotuSkaitsPlayer++;
+                   objekti.vesturiskaAprakstaSkaits[4] = true;
+                }
+          }
+            if( objekti.noklikBlakusState == GameObject.Find("States_11")){
+                vesturisksApraksts.text = @"";
+                    if( objekti.vesturiskaAprakstaSkaits[5] == false){
+                mobilizacijasTeksts.text = "Jūs iegūstat 1 mobilizācijas iespēju";
+                   objekti.rotuSkaitsPlayer++;
+                   objekti.vesturiskaAprakstaSkaits[5] = true;
+                }
+          }   
+        if( objekti.noklikBlakusState == GameObject.Find("States_12")){
+                vesturisksApraksts.text = @"";
+                    if( objekti.vesturiskaAprakstaSkaits[6] == false){
+                mobilizacijasTeksts.text = "Jūs iegūstat 1 mobilizācijas iespēju";
+                   objekti.rotuSkaitsPlayer++;
+                   objekti.vesturiskaAprakstaSkaits[6] = true;
+                }
+          }   
+        if( objekti.noklikBlakusState == GameObject.Find("States_32")){
+                vesturisksApraksts.text = @"";
+                    if( objekti.vesturiskaAprakstaSkaits[6] == false){
+                mobilizacijasTeksts.text = "Jūs iegūstat 1 mobilizācijas iespēju";
+                   objekti.rotuSkaitsPlayer++;
+                   objekti.vesturiskaAprakstaSkaits[6] = true;
+                }
+          }   
         }
 
     }
