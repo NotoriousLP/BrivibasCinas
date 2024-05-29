@@ -551,7 +551,15 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
                  SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
                   if (stateController.valsts.speletajs == speletajs && stateObject.Equals(objekti.stateAtkapes)){
                  for(int i=0; i<objekti.rotasPozicijas.Length; i++){
-                        if (!objekti.izmantotasPozicijas.Contains(objekti.rotasPozicijas[i]) && atkapsanasSkaits > 0){ 
+                    bool pozicijaAiznemta = false;
+                        foreach (Transform child in objekti.stateAtkapes.transform) {
+                            if (child.transform.position == objekti.rotasPozicijas[i].transform.position) {
+                                pozicijaAiznemta = true;
+                                Debug.Log("Šis aizgāja");
+                                break;
+                            }
+                        } 
+                        if (!pozicijaAiznemta && atkapsanasSkaits > 0  && stateController.rotasSkaitsByPlayer[speletajs] !=5){ 
                         if(pogas.speletaji == Valstis.Speletaji.PLAYER && objekti.lietotajuKarta){
                         Instantiate(objekti.rotasPrefsLSPR, objekti.rotasPozicijas[i].transform.position, Quaternion.identity, objekti.stateAtkapes.transform);
                         
@@ -657,13 +665,21 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
                  SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
                   if (stateController.valsts.speletajs == speletajs && stateObject.Equals(objekti.stateAtkapes)){
                  for(int i=0; i<objekti.rotasPozicijas.Length; i++){
-                        if (atkapsanasSkaits > 0){ 
+                    bool pozicijaAiznemta = false;
+                        foreach (Transform child in objekti.stateAtkapes.transform) {
+                            if (child.transform.position == objekti.rotasPozicijas[i].transform.position) {
+                                pozicijaAiznemta = true;
+                                Debug.Log("Šis aizgāja");
+                                break;
+                            }
+                        } 
+                        if (!pozicijaAiznemta && atkapsanasSkaits > 0 && stateController.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] !=5){ 
                         Instantiate(objekti.rotasPrefs, objekti.rotasPozicijas[i].transform.position, Quaternion.identity, objekti.stateAtkapes.transform);       
                         objekti.izmantotasPozicijas.Add(objekti.rotasPozicijas[i]);
                         stateController.PievienotRotas(speletajs, 1);
                         atkapsanasSkaits--;
                         Debug.Log("Lietotājs atkāpjas");
-                    }
+                        }
 
                 }                  
              }
@@ -723,12 +739,13 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
                   if (stateController.valsts.speletajs == Valstis.Speletaji.LSPR  && stateObject.Equals(objekti.stateAtkapes)){
                     for (int i = 0; i < objekti.rotasPozicijas.Length; i++) {
                         bool pozicijaAiznemta = false;
-                        foreach (Transform child in objekti.noKuraStateLSPR.transform) {
+                        foreach (Transform child in objekti.stateAtkapes.transform) {
                             if (child.transform.position == objekti.rotasPozicijas[i].transform.position) {
                                 pozicijaAiznemta = true;
+                                Debug.Log("Šis aizgāja");
                                 break;
                             }
-                        }
+                        } 
                         if (!pozicijaAiznemta && atkapsanasSkaits > 0) {
                             Instantiate(objekti.rotasPrefsLSPR, objekti.rotasPozicijas[i].transform.position, Quaternion.identity, objekti.stateAtkapes.transform);
                             objekti.izmantotasPozicijas.Add(objekti.rotasPozicijas[i]);

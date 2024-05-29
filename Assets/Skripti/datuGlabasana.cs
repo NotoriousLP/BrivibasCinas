@@ -28,11 +28,13 @@ public class datuGlabasana : MonoBehaviour
 			connection.Open();
 
 			using (var command = connection.CreateCommand ()) {
-				command.CommandText = "CREATE TABLE IF NOT EXISTS progress (StateName TEXT primary key, Owner TEXT, TroopCount INT);";
-                 command.CommandText = "CREATE TABLE IF NOT EXISTS rezultati (ID INT, Laiks TEXT, Vards VARCHAR(65), Valsts TEXT);";
+				command.CommandText = "CREATE TABLE IF NOT EXISTS rezultati (ID INT, Laiks TEXT, Vards VARCHAR(65), Valsts TEXT);";
 				command.ExecuteNonQuery ();
 			}
-
+			using (var command = connection.CreateCommand ()) {
+				command.CommandText = "CREATE TABLE IF NOT EXISTS progress (StateName TEXT primary key, Owner TEXT, TroopCount INT);";
+				command.ExecuteNonQuery ();
+			}
 			connection.Close ();
 		}
 	}

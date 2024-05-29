@@ -4,6 +4,7 @@ using System.Security.Cryptography.X509Certificates;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class Pogas : MonoBehaviour
 {
 
@@ -13,6 +14,7 @@ public class Pogas : MonoBehaviour
     public datuGlabasana datuGlabasana;
     public AI ai;
     public Teksts  teksts;
+
     void Start()
     {
         objekti = FindObjectOfType<Objekti>();
@@ -27,47 +29,43 @@ public class Pogas : MonoBehaviour
         objekti.ESCMenu.gameObject.SetActive(false);
          objekti.fons.gameObject.SetActive(false);
          objekti.vaiIrEsc = false;
+        AudioSistema.Instance.speletSFX("poga");
     }
 
     public void ieprieksejaisProgress(){
         datuGlabasana.ieprieksejaisProgress();
         objekti.ESCMenu.gameObject.SetActive(false);
         objekti.fons.gameObject.SetActive(false);
-        objekti.vaiIrEsc = false;     
+        objekti.vaiIrEsc = false; 
+        AudioSistema.Instance.speletSFX("poga");    
     }
 
 
     public void uzIestatijumuAinu()
     {
         SceneManager.LoadScene("iestatijumi", LoadSceneMode.Single);
+        AudioSistema.Instance.speletSFX("poga");
     }
     public void uzMainMenu()
     {
         SceneManager.LoadScene("mainMenu", LoadSceneMode.Single);
+        AudioSistema.Instance.speletSFX("poga");
     }
     public void uzSpeli()
     {
         SceneManager.LoadScene("spelesAina", LoadSceneMode.Single);
+        AudioSistema.Instance.speletSFX("poga");
     }
 
     public void uzSpelesIzveli(){
        SceneManager.LoadScene("spelesIzvele", LoadSceneMode.Single);
-    }
-    
-    public void uzSpeliAI()
-    {
-        SceneManager.LoadScene("spelesAina", LoadSceneMode.Single);
-        objekti.AIieslegts = true;
-    }
-      public void uzSpeli1v1()
-    {
-        SceneManager.LoadScene("spelesAina", LoadSceneMode.Single);
-        objekti.AIieslegts = false;
+       AudioSistema.Instance.speletSFX("poga");
     }
 
     public void izietNoSpeles()
     {
         Application.Quit();
+        AudioSistema.Instance.speletSFX("poga");
     }
 
     public void izietNoLauka()
@@ -78,6 +76,7 @@ public class Pogas : MonoBehaviour
          kontrole.atgriezLietotajuKrasas();
          objekti.vaiIrIzveleUzbr = false;
         objekti.vaiIrIzveleKust = false;
+        AudioSistema.Instance.speletSFX("poga");
     }
 
     public void mobilizetPoga()
@@ -88,6 +87,7 @@ public class Pogas : MonoBehaviour
         objekti.plusMob.gameObject.SetActive(true);
         objekti.minusMob.gameObject.SetActive(true);
         objekti.rotuSkaitsIzv = 0;
+        AudioSistema.Instance.speletSFX("poga");
     }
 
     public void kustinatPoga()
@@ -99,6 +99,7 @@ public class Pogas : MonoBehaviour
         }else if(objekti.otraSpeletajaKarta == true){
          kontrole.iekrasoBlakusPretiniekuTeritoriju(objekti.noklikState);  
         }
+        AudioSistema.Instance.speletSFX("poga");
     }
 
     public void uzbruktPoga()
@@ -110,6 +111,7 @@ public class Pogas : MonoBehaviour
         }else if(objekti.otraSpeletajaKarta == true){
          kontrole.iekrasoBlakusLietotajuTeritoriju(objekti.noklikState);  
         }
+        AudioSistema.Instance.speletSFX("poga");
     }
 
     public void plusPogaMob()
@@ -125,7 +127,7 @@ public class Pogas : MonoBehaviour
             objekti.rotuSkaitsIzv++;
         } 
         }
-
+        AudioSistema.Instance.speletSFX("poga");
     }
 
     public void minusPogaMob()
@@ -142,7 +144,7 @@ public class Pogas : MonoBehaviour
             objekti.rotuSkaitsIzv--;
         }
         }
-
+        AudioSistema.Instance.speletSFX("poga");
     }
 
     public void plusPogaUzb(){
@@ -158,8 +160,8 @@ public class Pogas : MonoBehaviour
         stateController.rotasSkaitsByPlayer[speletaji] > 0 && stateController.rotasSkaitsByPlayer[speletaji] <= 5 && objekti.rotuSkaitsIzv < stateController.rotasSkaitsByPlayer[speletaji]){
               objekti.rotuSkaitsIzv++;
         }
-    
     }
+    AudioSistema.Instance.speletSFX("poga");
     }
   public void minusPogaUzb(){
         GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
@@ -174,8 +176,8 @@ public class Pogas : MonoBehaviour
         stateController.rotasSkaitsByPlayer[speletaji] > 0 && stateController.rotasSkaitsByPlayer[speletaji] <= 5 && objekti.rotuSkaitsIzv <= stateController.rotasSkaitsByPlayer[speletaji] && objekti.rotuSkaitsIzv > 0){
               objekti.rotuSkaitsIzv--;
         }
-    
     }
+    AudioSistema.Instance.speletSFX("poga");
     }
 
     public void plusPogaParvietot()
@@ -202,6 +204,7 @@ public class Pogas : MonoBehaviour
                 }
             }
         }
+        AudioSistema.Instance.speletSFX("poga");
     }
 
 
@@ -277,7 +280,7 @@ public class Pogas : MonoBehaviour
         }else if(objekti.rotuSkaitsIzv == 0){
            objekti.bridinajumaTeksts.gameObject.SetActive(true);
         }
-          //ai.AIKustiba();
+        AudioSistema.Instance.speletSFX("poga");
     }
 
     public void parvietotRotas(){
@@ -556,7 +559,6 @@ public class Pogas : MonoBehaviour
                           }
                         }
                          }
-                        //Debug.Log("Lietotāju/Pretinieku rotas tiek atkārtoti izdzēstas");
                     }
                     Debug.Log("Cikls nostrāda "+i+ " reizi");
                 }
@@ -564,8 +566,6 @@ public class Pogas : MonoBehaviour
             }
         }
 
-                //Debug.Log("Latvijas state skaits: "+PlayerTeritorijuSkaits);
-                //Debug.Log("LSPR state skaits: "+LSPRTeritorijuSkaits);
         }
         objekti.vaiIrIzveleUzbr = false;
         objekti.izvelesLauks.gameObject.SetActive(false);
@@ -575,10 +575,10 @@ public class Pogas : MonoBehaviour
         objekti.plusUzb.gameObject.SetActive(false);
         objekti.minusUzb.gameObject.SetActive(false);
         objekti.bridinajumaTeksts.gameObject.SetActive(false);
-        //ai.AIKustiba();
         }else if(objekti.rotuSkaitsIzv == 0){
            objekti.bridinajumaTeksts.gameObject.SetActive(true);
         }
+        
     }
 
     public void atpakalUzIzveli()
@@ -601,6 +601,7 @@ public class Pogas : MonoBehaviour
         kontrole.atgriezLietotajuKrasas();
         objekti.vaiIrIzveleUzbr = false;
         objekti.vaiIrIzveleKust = false;
+        AudioSistema.Instance.speletSFX("poga");
     }
 
     public void okPogaApraksts(){
@@ -637,6 +638,9 @@ public class Pogas : MonoBehaviour
                     }
 
                 }
+                if(PlayerTeritorijuSkaits == 12 && objekti.AIieslegts == true){
+                    objekti.rotuSkaitsLSPR = 4;
+                }
                 if(PlayerTeritorijuSkaits == 1){
                     objekti.LSPRUzvarejis = true;
                     teksts.uzvaretajuTeksts.text = "Lielinieki ir pārāki un Latvija padodas";
@@ -650,6 +654,8 @@ public class Pogas : MonoBehaviour
                     objekti.uzvaretajuLauks.gameObject.SetActive(true);
                     objekti.fons.gameObject.SetActive(true);
                 }
+
+                AudioSistema.Instance.speletSFX("poga");
     }
     public void infoPoga(){
         if(objekti.nospiestaInfo == false){
@@ -659,6 +665,7 @@ public class Pogas : MonoBehaviour
             objekti.nospiestaInfo = false;
             objekti.infoPanelis.gameObject.SetActive(false);
         }
+        AudioSistema.Instance.speletSFX("poga");
     }
         public void rezultatuPoga(){  
         if(!string.IsNullOrEmpty(objekti.segVards.text)){      
@@ -669,6 +676,7 @@ public class Pogas : MonoBehaviour
         }else{
             objekti.kluduTeksts.gameObject.SetActive(true);
         }
+        AudioSistema.Instance.speletSFX("poga");
        }
 
 }

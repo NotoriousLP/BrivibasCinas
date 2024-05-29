@@ -7,7 +7,6 @@ public enum grutibasPakapes{
     bezAI = 1,
 	arAI = 2,
 }
-
 public class spelesIzvele : MonoBehaviour
 {
     public Button poga1v1;
@@ -30,7 +29,7 @@ public class spelesIzvele : MonoBehaviour
         }else{
             PlayerPrefs.SetInt("Grutiba", izveletaPoga);
         }
-
+        AudioSistema.Instance.speletSFX("poga");
         SceneManager.LoadScene("spelesAina", LoadSceneMode.Single);
     }
 }

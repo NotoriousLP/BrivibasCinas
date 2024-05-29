@@ -90,7 +90,7 @@ Lai gan šajā reģionā nenotika tik lielas kaujas kā citviet Latvijā, tomēr
                 }
             }
             if( objekti.noklikBlakusState == GameObject.Find("States_20")){
-                vesturisksApraksts.text = @"<#555><style=H1>Vēsturisks fakts</style><br>
+                vesturisksApraksts.text = @"<#555><style=H1>Vēsturisks fakts</style>
 Lai gan Siguldas novads nebija lielu kauju centrs Brīvības cīņu laikā, tomēr arī šajā apvidū risinājās notikumi, kas ietekmēja kara gaitu un Latvijas valsts veidošanos:
 <b>Inčukalna kauja:</b> 1919. gada 10. novembrī Inčukalnā notika viena no izšķirošajām Brīvības cīņu kaujām, kurā Latvijas armija sakāva Bermonta armiju. Šī uzvara pavēra ceļu Rīgas atbrīvošanai un bija nozīmīgs pagrieziena punkts Latvijas neatkarības iegūšanā.
 <b>Bēgļu plūsmas:</b> Siguldas novads, tāpat kā daudzas citas vietas Latvijā, uzņēma bēgļus, kas bija spiesti pamest savas mājas kara dēļ. Tas radīja papildu slogu vietējiem iedzīvotājiem, bet arī veicināja savstarpēju atbalstu un solidaritāti.

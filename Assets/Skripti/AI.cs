@@ -278,13 +278,13 @@ public void LSPRUzbrukums()
                  for(int i=0; i<objekti.rotasPozicijas.Length; i++){
                         if (mobilizacijuSkaits > 0){ 
                         bool pozicijaAiznemta = false;
-                      foreach (Transform child in objekti.noklikState.transform) {
+                      foreach (Transform child in objekti.noKuraStateLSPR.transform) {
                         if (child.transform.position == objekti.rotasPozicijas[i].transform.position) {
                               pozicijaAiznemta = true;
                               break;
                           }
                     }
-                    if (!pozicijaAiznemta) {
+                    if (!pozicijaAiznemta && stateController.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR]!=5) {
                         Instantiate(objekti.rotasPrefsLSPR, objekti.rotasPozicijas[i].transform.position, Quaternion.identity, objekti.noKuraStateLSPR.transform);
                         objekti.izmantotasPozicijas.Add(objekti.rotasPozicijas[i]);
                         stateController.PievienotRotas(Valstis.Speletaji.LSPR, 1);
