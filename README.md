@@ -12,8 +12,8 @@ Spēle būs 2 iespējas - spēlet ar botu(AI) vai 1 pret 1 ar otru spēlētāju.
 - [x] Izšķirtspējas sistēma
 - [x] AI un 1v1 spēles izvēle 
 - [ ] Vēstures apraksti, notikumi 
-- [ ] Mūzikas sistēma
-- [ ] Skaņas efektu sistēma
+- [x] Mūzikas sistēma
+- [x] Skaņas efektu sistēma
 
 
 Ainas:
