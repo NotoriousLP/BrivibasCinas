@@ -7125,7 +7125,7 @@ MonoBehaviour:
   sfxSkanas:
   - vards: poga
     clip: {fileID: 8300000, guid: 5ae7aedbb0f6626418c7b19ce3756c1e, type: 3}
-  - vards: notikumi
+  - vards: notikums
     clip: {fileID: 8300000, guid: e95b9b7752d756743af4365fc3b00aaa, type: 3}
   - vards: atkapjas
     clip: {fileID: 8300000, guid: be41cc2e8d32de34d99b3ed1cd25d8f7, type: 3}
@@ -11906,6 +11906,10 @@ MonoBehaviour:
   uzvaretajuLauks: {fileID: 825809672}
   vesturiskaAprakstaSkaits: 0000000000000000000000000000000000000000000000000000000000000000
   segVards: {fileID: 560829043}
+  segVardsTeksts: {fileID: 1885636975}
+  retryPogaAI: {fileID: 291052631}
+  izietPogaAI: {fileID: 1789254132}
+  okPogaAI: {fileID: 2120512305}
   lideruLauks: {fileID: 298251137}
   kluduTeksts: {fileID: 1037529864}
   AIieslegts: 1
@@ -11986,6 +11990,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objekti: {fileID: 0}
   kontrole: {fileID: 0}
+  pogas: {fileID: 0}
 --- !u!1 &1037529864
 GameObject:
   m_ObjectHideFlags: 0
