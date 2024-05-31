@@ -250,6 +250,9 @@ public void LSPRUzbrukums()
     return stateController.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] < 3; 
 }
     public void AIMobilize(){
+    if (objekti.rotuSkaitsLSPR == 0 && objekti.noKuraStateLSPR == null){
+        objekti.rotuSkaitsLSPR = 1;
+    }
     if(objekti.rotuSkaitsLSPR > 0 && !objekti.lietotajuKarta){
     noKuraStateLSPRGajiens();
     Debug.Log("Izsauc mobilizāciju");
