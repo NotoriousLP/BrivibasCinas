@@ -129,10 +129,6 @@ public class SpelesKontrole : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
     }
 
-        void Update()
-        {
-          
-        }
     void OnMouseEnter()
     {
         vecaKrasa = sprite.color;

@@ -32,7 +32,7 @@ public class datuGlabasana : MonoBehaviour
 				command.ExecuteNonQuery ();
 			}
 			using (var command = connection.CreateCommand ()) {
-				command.CommandText = "CREATE TABLE IF NOT EXISTS progress (StateName TEXT primary key, Owner TEXT, TroopCount INT);";
+				command.CommandText = "CREATE TABLE IF NOT EXISTS progress (StateNos TEXT primary key, Ipasnieks TEXT, rotuSkaits INT);";
 				command.ExecuteNonQuery ();
 			}
 			connection.Close ();
@@ -127,7 +127,7 @@ public void pievienotDatus()
                 {
                     using (var command = connection.CreateCommand())
                     {
-                        command.CommandText = "INSERT OR REPLACE INTO progress (StateName, Owner, TroopCount) VALUES (@valstsNosaukums, @ipasnieks, @rotasSkaits)";
+                        command.CommandText = "INSERT OR REPLACE INTO progress (StateNos, Ipasnieks, rotuSkaits) VALUES (@valstsNosaukums, @ipasnieks, @rotasSkaits)";
 
                         var stateNameParam = command.CreateParameter();
                         stateNameParam.ParameterName = "@valstsNosaukums";
@@ -198,9 +198,9 @@ public void pievienotDatus()
                     {
                         Teritorija territory = new Teritorija()
                         {
-                            ValstsNosaukums = reader["StateName"].ToString(),
-                            Ipasnieks = reader["Owner"].ToString(),
-                            RotasSkaits = Convert.ToInt32(reader["TroopCount"])
+                            ValstsNosaukums = reader["StateNos"].ToString(),
+                            Ipasnieks = reader["Ipasnieks"].ToString(),
+                            RotasSkaits = Convert.ToInt32(reader["rotuSkaits"])
                         };
                         territories.Add(territory);
                     }
