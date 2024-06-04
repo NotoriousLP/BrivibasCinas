@@ -129,6 +129,11 @@ public class Objekti : MonoBehaviour
       public GameObject sakumaIzvele;
       public GameObject spelesIzvele;
 
+     //Mob un pārv lauks
+     public GameObject pazRotuLauks;
+
+
+
         void Awake(){
 		spelesGrutiba = PlayerPrefs.GetInt("Grutiba");
         if(spelesGrutiba == 1){

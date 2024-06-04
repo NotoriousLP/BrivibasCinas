@@ -174,8 +174,8 @@ public void pievienotDatus()
                 PlayerPrefs.SetString("lietotajuKarta", "LSPR");
             }
             PlayerPrefs.SetFloat("spelesLaiks", ui.laiks);
-            teksts.loadTeksts.text = "Iepriekšējais progress: " + PlayerPrefs.GetString("saglabasanasLaiks");
-            teksts.saveTeksts.text = "Saglabāts progress: "+ PlayerPrefs.GetString("saglabasanasLaiks");
+            teksts.loadTeksts.text = "Iepriekšējais progress: " + PlayerPrefs.GetString("saglabasanasLaiks") + " Veids: "+PlayerPrefs.GetString("pogasIzvele");
+            teksts.saveTeksts.text = "Saglabāts progress: "+ PlayerPrefs.GetString("saglabasanasLaiks") + " Veids: "+PlayerPrefs.GetString("pogasIzvele");
             Debug.Log("Spēle saglabājās veiskmīgi!");
         }
     }

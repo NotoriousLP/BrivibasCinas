@@ -1,57 +1,52 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+
 public class Iestatijumi : MonoBehaviour
 {
-
-    // Lietas prieks resolution
     [SerializeField] private TMP_Dropdown resolutionDropdown;
 
-
     private Resolution[] resolutions;
-    private List<Resolution> filteredResolutions;
+    private int currentResolutionIndex = 0; 
 
-    private float currentRefreshRate;
-    private int currentResolutionIndex = 0;
-    //Resolution v�rt�bas
-
-    //Ska�as v�rt�bas
-
-
-    [System.Obsolete]
     void Start()
     {
-        resolutions = Screen.resolutions;
-        filteredResolutions = new List<Resolution>();
+        resolutions = new Resolution[]
+        {
+            new Resolution { width = 3840, height = 2160},
+            new Resolution { width = 1920, height = 1080},
+            new Resolution { width = 1366, height = 768},
+             new Resolution { width = 1600, height = 900},
+        };
 
+        // Clear the dropdown options and add the custom resolutions
         resolutionDropdown.ClearOptions();
-        currentRefreshRate = Screen.currentResolution.refreshRate;
-
-        for (int i = 0; i < resolutions.Length; i++) {
-
-            if (resolutions[i].refreshRate == currentRefreshRate)
-            {
-                filteredResolutions.Add(resolutions[i]);
-            }
-        }
-
         List<string> options = new List<string>();
-        for (int i = 0; i < filteredResolutions.Count; i++) {
-            string resolutionOption = filteredResolutions[i].width + "x" + filteredResolutions[i].height + " " + filteredResolutions[i].refreshRate + "Hz";
-            options.Add(resolutionOption);
-            if (filteredResolutions[i].width == Screen.width && filteredResolutions[i].height == Screen.height) {
+        for (int i = 0; i < resolutions.Length; i++) 
+        {
+            string option = $"{resolutions[i].width} x {resolutions[i].height}";
+            options.Add(option);
+
+            // Find the current resolution index
+            if (resolutions[i].width == Screen.currentResolution.width &&
+                resolutions[i].height == Screen.currentResolution.height)
+            {
                 currentResolutionIndex = i;
             }
         }
 
-
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
-        //Resolution iestat�juma beigas
+
+        // Add listener for dropdown value changes
+        resolutionDropdown.onValueChanged.AddListener(SetResolution); 
     }
 
+    // Method to set the resolution
+    void SetResolution(int resolutionIndex) 
+    {
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
 }

@@ -332,7 +332,7 @@ public void LSPRUzbrukums()
             }
             else
             {
-                // ja nav iespējams uzbrukt, atkāpjas
+                // ja nav iespējams uzbrukt, mobilizē
                 if (objekti.rotuSkaitsLSPR > 0)
                 {
                     AIMobilize();

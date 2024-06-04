@@ -261,22 +261,11 @@ public class Pogas : MonoBehaviour
         objekti.plusMob.gameObject.SetActive(false);
         objekti.minusMob.gameObject.SetActive(false);
         objekti.bridinajumaTeksts.gameObject.SetActive(false);
-         if(objekti.AIieslegts == false){
-        if(objekti.lietotajuKarta == true){
-        objekti.lietotajuKarta = false;
-        objekti.otraSpeletajaKarta = true;
-        objekti.LatvijasKarogs.gameObject.SetActive(false);
-        objekti.LSPRKarogs.gameObject.SetActive(true);
-        }else if(objekti.otraSpeletajaKarta == true){
-        objekti.otraSpeletajaKarta = false;
-          objekti.lietotajuKarta = true;
-        objekti.LatvijasKarogs.gameObject.SetActive(true);
-        objekti.LSPRKarogs.gameObject.SetActive(false);
-        }
-        }else if(objekti.AIieslegts == true){
-        objekti.lietotajuKarta = false;
-         ai.AIKustiba();
-        }
+        teksts.rotasTeksts.text = "Tagad jūs var mobilizēt tikai "+objekti.rotuSkaitsIzv.ToString()+" rotas";
+        teksts.infoTeksts.text = "Jūs mobilizējāt rotas!";
+        objekti.pazRotuLauks.gameObject.SetActive(true);
+        teksts.rotasTeksts.gameObject.SetActive(true);
+        objekti.apraksts = true;
         }else if(objekti.rotuSkaitsIzv == 0){
            objekti.bridinajumaTeksts.gameObject.SetActive(true);
         }
@@ -382,26 +371,15 @@ public class Pogas : MonoBehaviour
         objekti.minusParvietot.gameObject.SetActive(false);
         objekti.bridinajumaTeksts.gameObject.SetActive(false);
         kontrole.atgriezLietotajuKrasas();
-         if(objekti.AIieslegts == false){
-        if(objekti.lietotajuKarta == true){
-        objekti.lietotajuKarta = false;
-        objekti.otraSpeletajaKarta = true;
-        objekti.LatvijasKarogs.gameObject.SetActive(false);
-        objekti.LSPRKarogs.gameObject.SetActive(true);
-        }else if(objekti.otraSpeletajaKarta == true){
-        objekti.otraSpeletajaKarta = false;
-          objekti.lietotajuKarta = true;
-        objekti.LatvijasKarogs.gameObject.SetActive(true);
-        objekti.LSPRKarogs.gameObject.SetActive(false);
-        }
-        }else if(objekti.AIieslegts == true){
-        objekti.lietotajuKarta = false;
-         ai.AIKustiba();
-        }
+        AudioSistema.Instance.speletSFX("parvietot");
+        teksts.infoTeksts.text = "Jūs pārvietojāt rotas!";
+        objekti.pazRotuLauks.gameObject.SetActive(true);
+        teksts.rotasTeksts.gameObject.SetActive(false);
+        objekti.apraksts = true;
         }else if(objekti.rotuSkaitsIzv == 0){
            objekti.bridinajumaTeksts.gameObject.SetActive(true);
         }
-       AudioSistema.Instance.speletSFX("parvietot");
+
     }
 
 
@@ -605,6 +583,8 @@ public class Pogas : MonoBehaviour
 
     public void okPogaApraksts(){
         objekti.pazinojumaLauks.gameObject.SetActive(false);
+        objekti.pazRotuLauks.gameObject.SetActive(false);
+        teksts.rotasTeksts.gameObject.SetActive(false);
         objekti.apraksts = false;
          if(objekti.AIieslegts == false){
         if(objekti.lietotajuKarta == true){

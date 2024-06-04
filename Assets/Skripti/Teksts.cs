@@ -30,6 +30,8 @@ public class Teksts : MonoBehaviour
 
     public TextMeshProUGUI mobilizacijasTeksts;
 
+    public TextMeshProUGUI rotasTeksts;
+    public TextMeshProUGUI infoTeksts;
     //Datu bāzei
     public string Valstis;
 
@@ -39,14 +41,13 @@ public class Teksts : MonoBehaviour
     public TextMeshProUGUI laiksNos;
 
 
-
      void Start()
     {
         objekti = FindObjectOfType<Objekti>();
         kontrole = FindAnyObjectByType<SpelesKontrole>();
        if (PlayerPrefs.HasKey("saglabasanasLaiks")){
-          loadTeksts.text = "Iepriekšējais progress: " + PlayerPrefs.GetString("saglabasanasLaiks");
-          saveTeksts.text = "Saglabāts progress: "+ PlayerPrefs.GetString("saglabasanasLaiks");
+            loadTeksts.text = "Iepriekšējais progress: " + PlayerPrefs.GetString("saglabasanasLaiks") + " Veids: "+PlayerPrefs.GetString("pogasIzvele");
+            saveTeksts.text = "Saglabāts progress: "+ PlayerPrefs.GetString("saglabasanasLaiks") + " Veids: "+PlayerPrefs.GetString("pogasIzvele");
         }   
     }
     // Update is called once per frame
