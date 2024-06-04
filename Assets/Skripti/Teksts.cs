@@ -40,6 +40,8 @@ public class Teksts : MonoBehaviour
 
     public TextMeshProUGUI laiksNos;
 
+    public string spelesVeids;
+
 
      void Start()
     {

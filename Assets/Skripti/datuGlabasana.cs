@@ -28,7 +28,7 @@ public class datuGlabasana : MonoBehaviour
 			connection.Open();
 
 			using (var command = connection.CreateCommand ()) {
-				command.CommandText = "CREATE TABLE IF NOT EXISTS rezultati (ID INT, Laiks TEXT, Vards VARCHAR(65), Valsts TEXT);";
+				command.CommandText = "CREATE TABLE IF NOT EXISTS rezultati (ID INT, Laiks TEXT, Vards VARCHAR(65), Valsts TEXT, spelesVeids VARCHAR(25));";
 				command.ExecuteNonQuery ();
 			}
 			using (var command = connection.CreateCommand ()) {
@@ -49,6 +49,11 @@ public void pievienotDatus()
     {
         teksts.Valstis = "Latvija";
     }
+     if(objekti.AIieslegts == true){
+       teksts.spelesVeids = "AI";
+        }else{
+       teksts.spelesVeids = "1v1";
+        }
 
     using (var connection = new SqliteConnection(dbName))
     {
@@ -56,7 +61,7 @@ public void pievienotDatus()
 
         using (var command = connection.CreateCommand())
         {
-            command.CommandText = "INSERT INTO rezultati (Laiks, Vards, Valsts) VALUES ('" + teksts.timerText + "' , '" + objekti.segVards.text + "', '" + teksts.Valstis + "');";
+            command.CommandText = "INSERT INTO rezultati (Laiks, Vards, Valsts, spelesVeids) VALUES ('" + teksts.timerText + "' , '" + objekti.segVards.text + "', '" + teksts.Valstis + "', '"+teksts.spelesVeids+"');";
             command.ExecuteNonQuery();
         }
 
@@ -70,13 +75,15 @@ public void pievienotDatus()
 		teksts.segVardsNos.text = "";
 		teksts.laiksNos.text = "";
         teksts.valstsNos.text = "";
-
 		using (var connection = new SqliteConnection (dbName)) {
 			connection.Open ();
 
 			using (var command = connection.CreateCommand ()) {
-				command.CommandText = "SELECT Laiks, Vards, Valsts FROM rezultati ORDER BY Vards DESC";
-
+                if(objekti.AIieslegts == true){
+				command.CommandText = "SELECT Laiks, Vards, Valsts FROM rezultati WHERE spelesVeids = 'AI' ORDER BY Laiks DESC";
+                }else{
+                    command.CommandText = "SELECT Laiks, Vards, Valsts FROM rezultati WHERE spelesVeids = '1v1' ORDER BY Laiks DESC";
+                }
 				using (IDataReader reader = command.ExecuteReader ()) {
 
 					while (reader.Read ()) {
