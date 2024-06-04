@@ -19,7 +19,6 @@ public class Iestatijumi : MonoBehaviour
              new Resolution { width = 1600, height = 900},
         };
 
-        // Clear the dropdown options and add the custom resolutions
         resolutionDropdown.ClearOptions();
         List<string> options = new List<string>();
         for (int i = 0; i < resolutions.Length; i++) 
@@ -27,7 +26,6 @@ public class Iestatijumi : MonoBehaviour
             string option = $"{resolutions[i].width} x {resolutions[i].height}";
             options.Add(option);
 
-            // Find the current resolution index
             if (resolutions[i].width == Screen.currentResolution.width &&
                 resolutions[i].height == Screen.currentResolution.height)
             {
@@ -39,11 +37,9 @@ public class Iestatijumi : MonoBehaviour
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
 
-        // Add listener for dropdown value changes
         resolutionDropdown.onValueChanged.AddListener(SetResolution); 
     }
 
-    // Method to set the resolution
     void SetResolution(int resolutionIndex) 
     {
         Resolution resolution = resolutions[resolutionIndex];

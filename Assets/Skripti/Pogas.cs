@@ -435,11 +435,6 @@ public class Pogas : MonoBehaviour
 
  
        if(irZaudejis){
-        if(objekti.lietotajuKarta){
-
-        }else if(objekti.otraSpeletajaKarta){
-            
-        }
         teksts.cinasTeksts.text = "Tu esi zaudējis šo cīņu!";
         objekti.pazinojumaLauks.gameObject.SetActive(true);
          objekti.apraksts = true;
