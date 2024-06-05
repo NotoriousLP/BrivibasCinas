@@ -56,5 +56,8 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "BrivibasCinas.sln"
+    "dotnet.defaultSolution": "BrivibasCinas.sln",
+    "codesnap.containerPadding": "1em",
+    "codesnap.showLineNumbers": false,
+    "codesnap.boxShadow": "rgba(0, 0, 0, 0.55) 0px 2px 15px"
 }

@@ -149,7 +149,6 @@ public void LSPRUzbrukums()
 
         Debug.Log("AI šoreiz tad izvēlās: " + objekti.noKuraStateLSPR);
 
-        // If still no valid state, mobilize
         if (objekti.uzbruksanasState == null)
         {
             AIMobilize(); 
@@ -260,15 +259,15 @@ public void LSPRUzbrukums()
         objekti.rotuSkaitsLSPR =  objekti.rotuSkaitsLSPR - mobilizacijuSkaits;
         Debug.Log("Mob skaits: "+mobilizacijuSkaits);
         GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
-        List<GameObject> threatenedStates = prioritatesState(visiStates);
+        List<GameObject> prioritatesStates = prioritatesState(visiStates);
 
-        if (threatenedStates.Count == 0)
+        if (prioritatesStates.Count == 0)
         {
             noKuraStateLSPRGajiens();
         }
         else
         {
-            objekti.noKuraStateLSPR = threatenedStates[0]; 
+            objekti.noKuraStateLSPR = prioritatesStates[0]; 
             objekti.noKuraStateLSPRKontrole = objekti.noKuraStateLSPR.GetComponent<SpelesKontrole>();
         }   
             for(int i=0; i<visiStates.Length; i++){

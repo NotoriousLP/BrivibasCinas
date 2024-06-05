@@ -272,18 +272,21 @@ public class Pogas : MonoBehaviour
         AudioSistema.Instance.speletSFX("poga");
     }
 
+    //Funkcija, kas pārvieto spēlētāja izvēlētās rotas uz citu valsti.
     public void parvietotRotas(){
         if(objekti.rotuSkaitsIzv!=0){
+        //Pārbauda, vai ir izvēlētas kādas rotas pārvietošanai.   
         bool irParvietojis = false;
         int pieejamaVieta = 0;
         int rotaParvietosana = 0;
         objekti.rotasPozicijas = null;
-        
+         //Nosaka, kurš spēlētājs veic pārvietošanu (Pirmais lietotājs vai otrs lietotājs).
          if(objekti.lietotajuKarta == true){
             speletaji = Valstis.Speletaji.PLAYER;
           }else if(objekti.otraSpeletajaKarta == true){
              speletaji = Valstis.Speletaji.LSPR;
             }
+        //Atrod visus state objektus ar tagu "Valsts".
         GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
             for(int i=0; i<visiStates.Length; i++){
             if(objekti.noklikBlakusState == GameObject.Find("States_"+i)){
@@ -293,11 +296,14 @@ public class Pogas : MonoBehaviour
             foreach (GameObject stateObject in visiStates) {
                 SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
                 if (stateController.valsts.speletajs == speletaji && stateObject == objekti.noklikBlakusState) {
+                    //Aprēķina pieejamo vietu skaitu un pārvietojamo rotu skaitu.
                     pieejamaVieta = 5 - stateController.rotasSkaitsByPlayer[speletaji];
                     rotaParvietosana = Mathf.Min(objekti.rotuSkaitsIzv, pieejamaVieta);
 
                     int parvietotasRotas = 0;
+                     //Pārbauda katru iespējamo pozīciju izvēlētajā state.
                     for (int i = 0; i < objekti.rotasPozicijas.Length && parvietotasRotas < rotaParvietosana; i++) {
+                         //Pārbauda, vai pozīcija ir aizņemta.
                         bool pozicijaAiznemta = false;
                         foreach (Transform child in objekti.noklikBlakusState.transform) {
                             if (child.transform.position == objekti.rotasPozicijas[i].transform.position) {
@@ -305,22 +311,27 @@ public class Pogas : MonoBehaviour
                                 break;
                             }
                         }
+                        //Ja pozīcija nav aizņemta, izveido jaunu rotu tajā.
                         if (!pozicijaAiznemta) {
                             if (speletaji == Valstis.Speletaji.PLAYER && objekti.lietotajuKarta) {
-                                Instantiate(objekti.rotasPrefs, objekti.rotasPozicijas[i].transform.position, Quaternion.identity, objekti.noklikBlakusState.transform);
+                                Instantiate(objekti.rotasPrefs, objekti.rotasPozicijas[i].transform.position, Quaternion.identity,
+                                 objekti.noklikBlakusState.transform);
                             } else if (speletaji == Valstis.Speletaji.LSPR && objekti.otraSpeletajaKarta) {
-                                Instantiate(objekti.rotasPrefsLSPR, objekti.rotasPozicijas[i].transform.position, Quaternion.identity, objekti.noklikBlakusState.transform);
+                                Instantiate(objekti.rotasPrefsLSPR, objekti.rotasPozicijas[i].transform.position, Quaternion.identity,
+                                 objekti.noklikBlakusState.transform);
                             }
-
+                            //Atjaunina izmantotās pozīcijas, rotu skaitu un pārvietoto rotu skaitu.
                             objekti.izmantotasPozicijas.Add(objekti.rotasPozicijas[i]);
                             stateController.PievienotRotas(speletaji, 1);
                             objekti.rotuSkaitsIzv--;
                             parvietotasRotas++;
                         }
                     }
+                    // Norāda, ka pārvietošana ir notikusi.
                     irParvietojis = true;
                 }
             }
+            //Ja pārvietošana ir notikusi, noņem pārvietotās rotas no sākotnējā state(Teritorijas).
                 if(irParvietojis == true){
                 int parvietojumoSkaits = 0;
                 for(int i=0; i<visiStates.Length; i++){
@@ -331,16 +342,18 @@ public class Pogas : MonoBehaviour
                 foreach (GameObject stateObject in visiStates){
                   SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
                    SpelesKontrole stateController1 = objekti.noklikBlakusState.GetComponent<SpelesKontrole>();
+                   //Ja state pieder izvēlētajam spēlētājam un ir tā, no kuras teritorijas tu pārvietoi rotas, tad
                 if (stateController.valsts.speletajs == speletaji && stateObject.Equals(objekti.noklikState))
                 {
                     parvietojumoSkaits = rotaParvietosana;
                     Debug.Log("Pārvietojumo skaits: "+parvietojumoSkaits);
+                    // Noņem pārvietotās rotas no sākotnējās valsts.
                       for(int i=0; i<parvietojumoSkaits; i++){
                         if (stateObject == objekti.noklikState){ 
                          foreach (Transform child in objekti.noklikState.transform){
                         if(speletaji == Valstis.Speletaji.PLAYER && objekti.lietotajuKarta){
                          if (child.CompareTag("PLAYERTroop") && parvietojumoSkaits > 0){
-                            Destroy(child.gameObject);
+                            Destroy(child.gameObject); //Iznīcina spēles objektu
                             parvietojumoSkaits--;
                             stateController.NonemtRotas(speletaji, 1);
                             objekti.izmantotasPozicijas.Remove(objekti.rotasPozicijas[i]);
@@ -356,6 +369,7 @@ public class Pogas : MonoBehaviour
                           }
                         }
                         }
+                        // Ja nav izvēlētas rotas, parāda brīdinājuma tekstu.
                          Debug.Log("Rotas skaits uz uzsķlikšķinātā state: "+stateController.rotasSkaitsByPlayer[speletaji]);
                     }
                 }
@@ -371,6 +385,7 @@ public class Pogas : MonoBehaviour
         objekti.minusParvietot.gameObject.SetActive(false);
         objekti.bridinajumaTeksts.gameObject.SetActive(false);
         kontrole.atgriezLietotajuKrasas();
+         //Atskaņo skaņas efektu un parāda paziņojumu par pārvietošanu.
         AudioSistema.Instance.speletSFX("parvietot");
         teksts.infoTeksts.text = "Jūs pārvietojāt rotas!";
         objekti.pazRotuLauks.gameObject.SetActive(true);
@@ -602,7 +617,7 @@ public class Pogas : MonoBehaviour
     }
 
     public void uzvaretajaParbaude(){
-                GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
+           GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
            int LSPRTeritorijuSkaits = 0;
            int PlayerTeritorijuSkaits = 0;
             teksts.uzvaretajuTeksts.text = "";

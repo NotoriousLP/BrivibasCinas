@@ -422,15 +422,19 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
     }
 
     public void rotuAtkapsanas(Valstis.Speletaji speletajs){
+        //Atrod visus spēles objektus ar tagu "Valsts" un iegūstam SpelesKontrole komponentu.
         GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
         SpelesKontrole noklikBlakusState = objekti.noklikBlakusState.GetComponent<SpelesKontrole>();
+        //Atiestatām mainīgos, kas saistīti ar rotu pozīcijām un skaitu
         objekti.rotasPozicijas = null;
             int rotasSkaits = 0;
             int atkapsanasSkaits = 0;
+             //Izsaucam Atkāpšanās funkciju, lai sagatavotu atkāpšanās procesu.
              noklikBlakusState.Atpaksanas(noklikBlakusState, speletajs);
-            
+             //Ar for ciklu saņems informāciju, lai dabūtu rotas pozīcijas pareizās vietās
                 for(int i=0; i<=visiStates.Length; i++){
                  if(objekti.noklikBlakusState == GameObject.Find("States_"+i)){
+                //Dabū rotas atkāpšanās pozīcijas
                 objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state"+i+"Pozicijas");
                 }
                 }
@@ -439,9 +443,10 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
                   SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
                 if (stateObject.Equals(objekti.noklikBlakusState))
                 {
-
+                    //Pārbaudā, vai spēlētājs ir pirmais lietotājs.
                     if(pogas.speletaji == Valstis.Speletaji.PLAYER && objekti.lietotajuKarta){
 
+                    //Šeit pārbaudīs visus pretinieku/lietotāju zaudējumus
                     rotasSkaits = noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR];
                     Debug.Log("Rotas skaits pretinieka: "+rotasSkaits);
                     if(objekti.rotuSkaitsIzv >= 1 && noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR] == 1){
@@ -469,8 +474,9 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
                     }
 
                     Debug.Log("474.rindaa Atkāpšanās skaits: "+atkapsanasSkaits);
+                    //Pārbauda, vai spēlētājs ir otrais lietotājs.
                     }else if(pogas.speletaji == Valstis.Speletaji.LSPR && objekti.otraSpeletajaKarta){
-
+                    //Šeit pārbaudīs visus pretinieku/lietotāju zaudējumus
                     rotasSkaits = noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER]; 
                    if(objekti.rotuSkaitsIzv>= 1 && noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER] == 1){
                         atkapsanasSkaits = noklikBlakusState.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER];
@@ -499,21 +505,24 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
                     if(atkapsanasSkaits < 0){
                     atkapsanasSkaits = Mathf.Max(atkapsanasSkaits, 0);
                     }
-
                     }
-
                       for(int i=0; i<objekti.rotasPozicijas.Length; i++){
                         if (stateObject == objekti.noklikBlakusState){
                         Debug.Log("Skaits pretinieka: "+rotasSkaits); 
+                        //Šajā for loopā izdzesīs visas rotas, kuras atkāpās
                          foreach (Transform child in objekti.noklikBlakusState.transform){
+                            //Pārbauda vai ir pirmā lietotāja kārta.
                          if(pogas.speletaji == Valstis.Speletaji.PLAYER && objekti.lietotajuKarta){  
                          if (child.CompareTag("LSPRTroop") && rotasSkaits > 0){
+                            //Izdzēšs rotas objektu no kartes.
                             Destroy(child.gameObject);
                             rotasSkaits--;
                             Debug.Log("Nostrādā 440rinda");
                             stateController.NonemtRotas(speletajs, 1);
+                            //Noņem no izmantotām pozīcījām atkāpušās rotas.
                             objekti.izmantotasPozicijas.Remove(objekti.rotasPozicijas[i]);
                           }
+                          //Pārbauda vai ir otrā lietotāja kārta.
                          }else if(pogas.speletaji == Valstis.Speletaji.LSPR && objekti.otraSpeletajaKarta){
                          if (child.CompareTag("PLAYERTroop") && rotasSkaits > 0){
                             Destroy(child.gameObject);
@@ -531,20 +540,21 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
                 //Debug.Log(objekti.atpakpesState);
                 }
             }
+            //Ja rotas nav ielenktas, tad veic atkāpšanos.
             if(!objekti.irIelenkti){
-                //Debug.Log(objekti.stateAtkapes);
                  objekti.rotasPozicijas = null;
+                 //Nosaka, no kuras state atkāpsies un dabūs rotas pozīcijas.
                 for(int i=0; i<=visiStates.Length; i++){
                  if(objekti.stateAtkapes == GameObject.Find("States_"+i)){
                 objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state"+i+"Pozicijas");
                 }
                 }
-
-               //Debug.Log(atkapsanasSkaits);
                 foreach (GameObject stateObject in visiStates){
                  SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
                   if (stateController.valsts.speletajs == speletajs && stateObject.Equals(objekti.stateAtkapes)){
+                    //Pārbaudām katru iespējamo pozīciju atkāpšanās valstī.
                  for(int i=0; i<objekti.rotasPozicijas.Length; i++){
+                     //Pārbaudām, vai pozīcija ir brīva
                     bool pozicijaAiznemta = false;
                         foreach (Transform child in objekti.stateAtkapes.transform) {
                             if (child.transform.position == objekti.rotasPozicijas[i].transform.position) {
@@ -552,15 +562,21 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
                                 Debug.Log("Šis aizgāja");
                                 break;
                             }
-                        } 
-                        if (!pozicijaAiznemta && atkapsanasSkaits > 0  && stateController.rotasSkaitsByPlayer[speletajs] !=5){ 
+                        }
+                        // Ja pozīcija ir brīva un ir atkāpšanās iespējas, izveidojam jaunu rotu. 
+                        if (!pozicijaAiznemta && atkapsanasSkaits > 0 && stateController.rotasSkaitsByPlayer[speletajs] !=5){
+                            //Parādīsies jaunas rotas, atkarībā kurš no lietotājiem tikko atkāpās. 
                         if(pogas.speletaji == Valstis.Speletaji.PLAYER && objekti.lietotajuKarta){
-                        Instantiate(objekti.rotasPrefsLSPR, objekti.rotasPozicijas[i].transform.position, Quaternion.identity, objekti.stateAtkapes.transform);
+                        Instantiate(objekti.rotasPrefsLSPR, objekti.rotasPozicijas[i].transform.position, 
+                        Quaternion.identity, objekti.stateAtkapes.transform);
                         
                         }else if(pogas.speletaji == Valstis.Speletaji.LSPR && objekti.otraSpeletajaKarta){
-                        Instantiate(objekti.rotasPrefs, objekti.rotasPozicijas[i].transform.position, Quaternion.identity, objekti.stateAtkapes.transform);
+                        Instantiate(objekti.rotasPrefs, objekti.rotasPozicijas[i].transform.position, 
+                        Quaternion.identity, objekti.stateAtkapes.transform);
                         }
+                        //Pievieno jaunas rotas izmantotās pozīcījās
                         objekti.izmantotasPozicijas.Add(objekti.rotasPozicijas[i]);
+                        //Ar šo funkciju kontrolē katrā state skaitu
                         stateController.PievienotRotas(speletajs, 1);
                         atkapsanasSkaits--;
                         Debug.Log("Lietotājs atkāpjas");
@@ -570,12 +586,14 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
              }
                 }
         }else{
+            //Ja rotas ir ielenktas, tad visas rotas, kas zaudēja cīņu, tika iznīcinātas
             noklikBlakusState.NonemtRotas(speletajs, noklikBlakusState.rotasSkaitsByPlayer[speletajs]);
             Debug.Log("Rotas bija ielenktas, un visas tika izdzēstas");
         }
     }
 
  public void rotuAtkapsanasPlayer(Valstis.Speletaji speletajs, int LSPRskaits){
+    //Atrod visus spēles objektus ar tagu "Valsts" un iegūstam SpelesKontrole komponentu.
         GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
         SpelesKontrole uzbruksanasState = objekti.uzbruksanasState.GetComponent<SpelesKontrole>();
         objekti.rotasPozicijas = null;
@@ -678,67 +696,81 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
         }
     }
 
-    public void AIAtkapsanas(GameObject noKuraStateLSPR){
+        public void AIAtkapsanas(GameObject noKuraStateLSPR){
+        // Atrodam visus spēles objektus ar tagu "Valsts".
         GameObject[] visiStates = GameObject.FindGameObjectsWithTag("Valsts");
+
+        // Iegūstam SpelesKontrole komponentu valstij, no kuras LSPR atkāpjas.
         SpelesKontrole LSPRState = noKuraStateLSPR.GetComponent<SpelesKontrole>();
+
+        // Atiestatām mainīgos, kas saistīti ar rotu pozīcijām un skaitu.
         objekti.rotasPozicijas = null;
         int rotasSkaits = 0;
         int atkapsanasSkaits = 0;
         objekti.atpakpesState = null;
         objekti.stateAtkapes = null;
-        LSPRState.Atpaksanas(LSPRState, Valstis.Speletaji.LSPR);
-            for(int i=0; i<=visiStates.Length; i++){
-             if(noKuraStateLSPR == GameObject.Find("States_"+i)){
-            objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state"+i+"Pozicijas");
-            }
-            }
-            rotasSkaits = LSPRState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR]; 
-            atkapsanasSkaits = rotasSkaits; 
-                        Debug.Log("Skaits pretinieka: "+rotasSkaits); 
-                         foreach (Transform child in LSPRState.transform){
-                         if (child.CompareTag("LSPRTroop")){
-                            Destroy(child.gameObject);
-                            rotasSkaits--;
-                            Debug.Log("Nostrādā 446rinda");
-                            LSPRState.NonemtRotas(Valstis.Speletaji.LSPR, 1);
-                            for(int i=0; i<objekti.rotasPozicijas.Length; i++){
-                            objekti.izmantotasPozicijas.Remove(objekti.rotasPozicijas[i]);
-                             }
-                         }
-                        
 
+        // Sagatavojam atkāpšanās procesu.
+        LSPRState.Atpaksanas(LSPRState, Valstis.Speletaji.LSPR);
+
+        // Nosakām, no kuras valsts LSPR atkāpjas, un atrodam visas iespējamās rotu pozīcijas šajā valstī.
+        for (int i = 0; i <= visiStates.Length; i++) {
+            if (noKuraStateLSPR == GameObject.Find("States_" + i)) {
+                objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state" + i + "Pozicijas");
+            }
+        }
+
+        // Iegūstam kopējo rotu skaitu valstī, no kuras LSPR atkāpjas, un piešķiram to atkāpšanās skaitam.
+        rotasSkaits = LSPRState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR];
+        atkapsanasSkaits = rotasSkaits;
+
+        // Noņemam visas LSPR rotas no valsts, no kuras tiek atkāptos.
+        foreach (Transform child in LSPRState.transform) {
+            if (child.CompareTag("LSPRTroop")) {
+                Destroy(child.gameObject); 
+                rotasSkaits--;           
+                LSPRState.NonemtRotas(Valstis.Speletaji.LSPR, 1); //Atjauninam informāciju par rotu skaitu.
+                //Atbrīvojam izmantotās pozīcijas.
+                for (int i = 0; i < objekti.rotasPozicijas.Length; i++) {
+                    objekti.izmantotasPozicijas.Remove(objekti.rotasPozicijas[i]);
                 }
-                Debug.Log("Atkāpšanās skaits 455rinda: "+atkapsanasSkaits);
-            if(!objekti.irIelenkti){
-                 objekti.rotasPozicijas = null;
-                for(int i=0; i<=visiStates.Length; i++){
-                 if(objekti.stateAtkapes == GameObject.Find("States_"+i)){
-                objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state"+i+"Pozicijas");
-                }
-                }
-                foreach (GameObject stateObject in visiStates){
-                 SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
-                  if (stateController.valsts.speletajs == Valstis.Speletaji.LSPR  && stateObject.Equals(objekti.stateAtkapes)){
+            }
+        }
+                    Debug.Log("Atkāpšanās skaits 455rinda: "+atkapsanasSkaits);
+                if(!objekti.irIelenkti){
+                    objekti.rotasPozicijas = null;
+                    for(int i=0; i<=visiStates.Length; i++){
+                    if(objekti.stateAtkapes == GameObject.Find("States_"+i)){
+                    objekti.rotasPozicijas = GameObject.FindGameObjectsWithTag("state"+i+"Pozicijas");
+                    }
+                    }
+                            //Pārbaudām katru valsti un veicam atkāpšanās loģiku.
+            foreach (GameObject stateObject in visiStates) {
+                SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
+                //Ja valsts pieder LSPR un ir izvēlētā atkāpšanās valsts, tad:
+                if (stateController.valsts.speletajs == Valstis.Speletaji.LSPR && stateObject.Equals(objekti.stateAtkapes)) {
+                    //Pārbaudām katru iespējamo pozīciju atkāpšanās valstī.
                     for (int i = 0; i < objekti.rotasPozicijas.Length; i++) {
+                        //Pārbaudām, vai pozīcija ir brīva.
                         bool pozicijaAiznemta = false;
                         foreach (Transform child in objekti.stateAtkapes.transform) {
                             if (child.transform.position == objekti.rotasPozicijas[i].transform.position) {
                                 pozicijaAiznemta = true;
-                                Debug.Log("Šis aizgāja");
                                 break;
                             }
-                        } 
+                        }
+
+                        //Ja pozīcija ir brīva un ir atkāpšanās iespējas, izveidojam jaunu LSPR rotu.
                         if (!pozicijaAiznemta && atkapsanasSkaits > 0) {
                             Instantiate(objekti.rotasPrefsLSPR, objekti.rotasPozicijas[i].transform.position, Quaternion.identity, objekti.stateAtkapes.transform);
                             objekti.izmantotasPozicijas.Add(objekti.rotasPozicijas[i]);
                             stateController.PievienotRotas(Valstis.Speletaji.LSPR, 1);
                             atkapsanasSkaits--;
-                            Debug.Log("LSPR atkāpjas");
                         }
-                    }                
-             }
-             }
+                    }
+                }
             }
+        }
 
     }
 
