@@ -690,7 +690,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -142.33522, y: -121}
+  m_AnchoredPosition: {x: -142.09, y: -120.999985}
   m_SizeDelta: {x: 281.7116, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &430154642
@@ -713,7 +713,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Efektu apjoms:'
+  m_text: "Efektu ska\u013Cums:"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2434,8 +2434,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -143.24144, y: -57.6}
-  m_SizeDelta: {x: 281.7116, y: 50}
+  m_AnchoredPosition: {x: -142.09, y: -63.1}
+  m_SizeDelta: {x: 290.13, y: 57.431}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1336171043
 MonoBehaviour:
@@ -2457,7 +2457,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "M\u016Bzikas apjoms:"
+  m_text: "M\u016Bzikas ska\u013Cums:"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
