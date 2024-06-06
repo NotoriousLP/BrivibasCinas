@@ -748,7 +748,8 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
             foreach (GameObject stateObject in visiStates) {
                 SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
                 //Ja valsts pieder LSPR un ir izvēlētā atkāpšanās valsts, tad:
-                if (stateController.valsts.speletajs == Valstis.Speletaji.LSPR && stateObject.Equals(objekti.stateAtkapes)) {
+                if (stateController.valsts.speletajs == Valstis.Speletaji.LSPR
+                 && stateObject.Equals(objekti.stateAtkapes)) {
                     //Pārbaudām katru iespējamo pozīciju atkāpšanās valstī.
                     for (int i = 0; i < objekti.rotasPozicijas.Length; i++) {
                         //Pārbaudām, vai pozīcija ir brīva.
@@ -762,7 +763,8 @@ public SpelesKontrole Atpaksanas(SpelesKontrole kontrole, Valstis.Speletaji spel
 
                         //Ja pozīcija ir brīva un ir atkāpšanās iespējas, izveidojam jaunu LSPR rotu.
                         if (!pozicijaAiznemta && atkapsanasSkaits > 0) {
-                            Instantiate(objekti.rotasPrefsLSPR, objekti.rotasPozicijas[i].transform.position, Quaternion.identity, objekti.stateAtkapes.transform);
+                            Instantiate(objekti.rotasPrefsLSPR, objekti.rotasPozicijas[i].transform.position, 
+                            Quaternion.identity, objekti.stateAtkapes.transform);
                             objekti.izmantotasPozicijas.Add(objekti.rotasPozicijas[i]);
                             stateController.PievienotRotas(Valstis.Speletaji.LSPR, 1);
                             atkapsanasSkaits--;

@@ -52,7 +52,6 @@ public class Teksts : MonoBehaviour
             saveTeksts.text = "Saglabāts progress: "+ PlayerPrefs.GetString("saglabasanasLaiks") + " Veids: "+PlayerPrefs.GetString("pogasIzvele");
         }   
     }
-    // Update is called once per frame
     void Update()
     {
         if(objekti.lietotajuKarta == true){
@@ -67,7 +66,7 @@ public class Teksts : MonoBehaviour
 
 
     
-    public void vesturisksNotikums(){
+    public void vesturisksNotikums(){ //Funckija, kas pārbauda vēsturisku notikumu.
         if(objekti.lietotajuKarta){   
             if (objekti.noklikBlakusState == GameObject.Find("States_5")){
                 vesturisksApraksts.text = "<style=H1>Vēsturisks fakts</style><br><#555>3. martā sākās plašs uzbrukums Sarkanajai Armijai ar mērķi sasniegt Lielupi. Latviešu bataljonam bija jāveic uzbrukums Saldus virzienā. 6. martā negaidītā savstarpējā latviešu un vāciešu apšaudē gāja bojā Atsevišķā latviešu bataljona komandieris <b>Oskars Kalpaks</b>, Atsevišķās Studentu rotas komandieris kapteinis <b>Nikolajs Grundmanis</b>, jātnieku nodaļas virsleitnants <b>Pēteris Krievs</b> un piekomandētās artilērijas pusbaterijas leitnants <b>Šrinders</b>; arī vācu puse cieta zaudējumus. <br Pēc Kalpaka nāves bataljona komandēšana tika uzticēta kapteinim <b>Jānim Balodim</b>.";
