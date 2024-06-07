@@ -90,7 +90,7 @@ public class SpelesKontrole : MonoBehaviour
         objekti.LSPRKarogs.gameObject.SetActive(false);
         }
 
-    public void PievienotRotas(Valstis.Speletaji speletajs, int count)
+    public void PievienotRotas(Valstis.Speletaji speletajs, int count) //Funkcija, kas pievieno rotas skaitu no teritorijas
     {
         if (rotasSkaitsByPlayer.ContainsKey(speletajs))
         {
@@ -99,7 +99,7 @@ public class SpelesKontrole : MonoBehaviour
 
     }
     
-    public void NonemtRotas(Valstis.Speletaji speletajs, int count)
+    public void NonemtRotas(Valstis.Speletaji speletajs, int count) //Funkcija, kas izdzēšs rotas skaitu no teritorijas
     {
         if (rotasSkaitsByPlayer.ContainsKey(speletajs))
         {
@@ -157,7 +157,7 @@ public void iekrasoBlakusPretiniekuTeritoriju(GameObject noklikState)
         SpelesKontrole stateController = stateObject.GetComponent<SpelesKontrole>();
         float distance = Vector2.Distance(noklikState.transform.position, stateObject.transform.position - (Vector3)offset);
 
-        Debug.Log("State Object: " + stateObject + " Distance: " + distance);
+        //Debug.Log("State objekti: " + stateObject + " Distance: " + distance);
 
         if (stateController != null && stateController.valsts.speletajs == Valstis.Speletaji.LSPR && distance < 1.96f)
         {

@@ -243,12 +243,17 @@ MonoBehaviour:
   uzvaretajuLauks: {fileID: 0}
   vesturiskaAprakstaSkaits: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   segVards: {fileID: 0}
+  segVardsTeksts: {fileID: 0}
+  retryPogaAI: {fileID: 0}
+  izietPogaAI: {fileID: 0}
+  okPogaAI: {fileID: 0}
   lideruLauks: {fileID: 0}
   kluduTeksts: {fileID: 0}
   AIieslegts: 0
   spelesGrutiba: 0
   sakumaIzvele: {fileID: 0}
   spelesIzvele: {fileID: 950557381}
+  pazRotuLauks: {fileID: 0}
 --- !u!114 &21348647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -469,12 +474,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 99.65
+  m_fontSize: 90
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 100
+  m_fontSizeMax: 90
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -1721,12 +1726,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 99.65
+  m_fontSize: 90
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 100
+  m_fontSizeMax: 90
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -2586,12 +2591,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 96.6
+  m_fontSize: 90
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 100
+  m_fontSizeMax: 90
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512

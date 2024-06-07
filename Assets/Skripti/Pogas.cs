@@ -115,26 +115,36 @@ public class Pogas : MonoBehaviour
         AudioSistema.Instance.speletSFX("poga");
     }
 
-    public void plusPogaMob() //Plus poga mobilizēšanai
+public void plusPogaMob() 
+{
+    if (objekti.lietotajuKarta == true) // Pirmā lietotāja kārta
     {
-        if(objekti.lietotajuKarta == true){
-        if(objekti.rotuSkaitsPlayer > 0 && objekti.rotuSkaitsPlayer <= 5 && objekti.rotuSkaitsIzv >= 0 && objekti.rotuSkaitsIzv < objekti.rotuSkaitsPlayer)
+        SpelesKontrole klikState = objekti.noklikState.GetComponent<SpelesKontrole>();
+        int pasreizejaisSkaits = klikState.rotasSkaitsByPlayer[Valstis.Speletaji.PLAYER];
+        int maxMobilizacija = objekti.rotuSkaitsPlayer;
+
+        if (objekti.rotuSkaitsIzv < maxMobilizacija && pasreizejaisSkaits + objekti.rotuSkaitsIzv < 5)  
         {
             objekti.rotuSkaitsIzv++;
         }
-        }else if(objekti.otraSpeletajaKarta == true){
-        if(objekti.rotuSkaitsLSPR > 0 && objekti.rotuSkaitsLSPR <= 5 && objekti.rotuSkaitsIzv >= 0 && objekti.rotuSkaitsIzv < objekti.rotuSkaitsLSPR)
-        {
-            objekti.rotuSkaitsIzv++;
-        } 
-        }
-        AudioSistema.Instance.speletSFX("poga");
     }
+    else if (objekti.otraSpeletajaKarta == true) // Otrā lietotāja kārta
+    {
+        SpelesKontrole klikState = objekti.noklikState.GetComponent<SpelesKontrole>();
+        int pasreizejaisSkaits = klikState.rotasSkaitsByPlayer[Valstis.Speletaji.LSPR];
+        if (objekti.rotuSkaitsIzv < objekti.rotuSkaitsLSPR && pasreizejaisSkaits + objekti.rotuSkaitsIzv < 5) 
+        {
+            objekti.rotuSkaitsIzv++;
+        }
+    }
+    AudioSistema.Instance.speletSFX("poga");
+}
+
 
     public void minusPogaMob() //Mīnus poga mobilizēšanai
     {
-
         if(objekti.lietotajuKarta == true){
+    
         if (objekti.rotuSkaitsPlayer > 0 && objekti.rotuSkaitsPlayer <= 5 && objekti.rotuSkaitsIzv > 0 && objekti.rotuSkaitsIzv <= objekti.rotuSkaitsPlayer)
         {
             objekti.rotuSkaitsIzv--;
