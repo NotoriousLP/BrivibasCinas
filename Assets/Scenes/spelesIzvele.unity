@@ -1322,7 +1322,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 911.1788}
+  m_SizeDelta: {x: 0, y: 1308.408}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &845796776
 MonoBehaviour:
@@ -1349,17 +1349,24 @@ MonoBehaviour:
     Latvijas atbr\u012Bvo\u0161anu no lieliniekiem jeb bo\u013C\u0161evikiem.\_\nSp\u0113le
     ir Latvijas kartes izskat\u0101 un b\u016Bs iez\u012Bm\u0113tas teritorijas,
     kuras abiem lietot\u0101jiem b\u016Bs, k\u0101 ar\u012B karav\u012Bru rotas katram
-    redzamas.\_\n\n<b>Sp\u0113les galvenais m\u0113r\u0137is:</b>\nAr j\u016Bsu rotam
-    galvenais m\u0113r\u0137is ar rot\u0101m ir uzbrukt viens otram un uzvar\u0113t
-    sp\u0113li, sp\u0113le beigsies, ka vienam no lietot\u0101jam b\u016Bs tikai
-    paliku\u0161a 1 teritorija, no kurienes var iebrukt.\n\n<b>Sp\u0113les funkcijas:</b>\nKatram
-    ir savas teritorijas, uz t\u0101m nok\u013Cik\u0161\u0137inot par\u0101d\u012Bsies
-    lauks ar tr\u012Bs galven\u0101m pog\u0101m - uzbrukt, p\u0101rvietot un mobiliz\u0113t.\n\n<b>Uzbrukt</b>-
-    Uzbrukt pretinieku lietot\u0101ju teritorij\u0101 ar rot\u0101m, un lai uzvar\u0113tu
-    vajag rotas p\u0101r\u0101kumu pret pretinieku lietot\u0101ju.\n\n<b>P\u0101rvietot</b>-J\u016Bs
-    varat p\u0101rvietot rotas, kur jums vajag, piem\u0113ram, lai aizkriet aizsarg\u0101t
-    vietu, kur varb\u016Bt ir \u013Coti v\u0101ja poz\u012Bcija, kur var iebrukt,
-    vai gatavoties uzbrukumam."
+    redzamas.\_\nSp\u0113le ir divi veidi - Sp\u0113let ar datoru(botu) vai sp\u0113let
+    1 pret 1(ar draugu)\n\n<b>Sp\u0113les galvenais m\u0113r\u0137is:</b>\nAr j\u016Bsu
+    rotam galvenais m\u0113r\u0137is ar rot\u0101m ir uzbrukt viens otram un uzvar\u0113t
+    sp\u0113li, sp\u0113le beigsies, ka Latvijai b\u016Bs palikusi 1 teritorija,
+    no kurienes var iebrukt, k\u0101 ar\u012B LSPR b\u016Bs tikai paliku\u0161as
+    5 teritorijas. K\u0101 ar\u012B sp\u0113les m\u0113r\u0137is ir apskat\u012Bt
+    v\u0113sturiskos notikums par \u0161o c\u012B\u0146u laikiem.\n\n<b>Sp\u0113les
+    funkcijas:</b>\nKatram ir savas teritorijas, uz t\u0101m nok\u013Cik\u0161\u0137inot
+    par\u0101d\u012Bsies lauks ar tr\u012Bs galven\u0101m pog\u0101m - uzbrukt, p\u0101rvietot
+    un mobiliz\u0113t.\n\n<b>Uzbrukt</b>- Uzbrukt pretinieku lietot\u0101ju teritorij\u0101
+    ar rot\u0101m, un lai uzvar\u0113tu vajag rotas p\u0101r\u0101kumu pret pretinieku
+    lietot\u0101ju.\n\n<b>P\u0101rvietot</b>-J\u016Bs varat p\u0101rvietot rotas,
+    kur jums vajag, piem\u0113ram, lai aizkriet aizsarg\u0101t vietu, kur varb\u016Bt
+    ir \u013Coti v\u0101ja poz\u012Bcija, kur var iebrukt, vai gatavoties uzbrukumam.\n\n<b>Uzbrukt</b>
+    - Sp\u0113les galven\u0101 lieta \u0161eit ir uzbruk\u0161ana, lai uzvar\u0113tu
+    vajag rotu p\u0101rsvaru. Ja uzbruksiet ar vien\u0101d\u0101m rot\u0101m, tad
+    ir 50% iesp\u0113ja ka uzvarat vai zaudat.\nRotas zaud\u0113jums ar\u012B var
+    b\u016Bt atkar\u012Bba no rotu p\u0101rsvara.\n\nLai veiksme sp\u0113l\u0113\u0161an\u0101!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
